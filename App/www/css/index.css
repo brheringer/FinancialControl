@@ -1,0 +1,215 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+	background-color: coral;
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+
+/* Portrait layout (default) */
+.app {
+    position:absolute;             /* position in the center of the screen */
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+.formField {
+	/*background-color: none;*/
+	border: 1px;
+	border-style: none;
+	margin: 2px;
+	padding: 2px;
+}
+
+.formFieldLabel {
+	/*color: white;*/
+	font-weight: normal;
+	margin-right: 20px;
+}
+
+.formGroupLabel {
+	/*color: white;*/
+	font-weight: bold;
+}
+
+.formFieldsArea {
+	background-color: white;
+	border: 1px;
+	border-style: solid;
+	margin: 10px;
+	padding: 10px;
+}
+
+.formStatusBar {
+	background-color: yellow;
+	padding: 10px;
+}
+
+.formTitle {
+    font-size: x-large;
+    font-weight:bold;
+	padding: 10px;
+    text-align:left;
+}
+
+md-input-container {
+	max-width: 40em; /*tamanho default*/
+}
+
+/* HEADER */
+.appHeader
+{
+	margin: 0px;
+}
+
+.appTitle 
+{
+	background-color: darkblue;
+	color: white;
+	font-weight: bold;
+	font-size: large;
+	padding: 1em;
+}
+
+.appHeaderMenuLoginContainer
+{
+	background-color: yellow;
+	padding-left: 1em;
+}
+
+md-menu
+{
+}
+
+login
+{
+	display: inline-block;
+	margin-left: 2em;
+}
+
+.appMainContainer
+{
+	background-color: coral;
+	margin: 0;
+}
+
+.appFooter
+{
+	background-color: yellow;
+	margin: 0px;
+	padding: 10px;
+    text-align:left;
+}
+
+/*hide div md-erros-spacer at md-input-container*/
+md-input-container.hide-error-msg .md-errors-spacer
+{ 
+	display: none; 
+}
+
+/*hide scroll at smart-search (clear button mdAutoComplete)*/
+md-content .md-errors-spacer
+{ 
+	display: none; 
+}
+md-content button
+{ 
+	display: none; 
+}
+
+/*smart-search .md-content .ng-form .div .md-autocomplete .md-autocomplete-wrap*/ 
+md-input-container:not(.md-input-invalid).ng-scope
+{
+	margin: 0px;
+	margin-bottom: 0px;
+	padding: 0px;
+	padding-bottom: 0px;
+}
+
+md-card .searchResultCard
+{
+	width: 100em;
+}
+
+.searchResultCardActionPanel
+{
+	background-color: bisque;
+}
+
+/*date-time-picker*/
+.datetimepicker
+{
+	background-color: white;
+}
+.dateTimePickerInputContainer
+{
+	margin: 0px;
+	margin-bottom: 0px;
+	padding: 0px;
+	padding-bottom: 0px;
+}
+
+.entriesBoardSlot
+{
+	margin: 1em;
+	padding: 1em;
+	border-style: dashed;
+	border-width: medium;
+	float: left;
+}
+
+.entryCard
+{
+	/*border: 1px;
+	border-style: solid;*/
+}
+
+.entryCardToolbar
+{
+	margin: 0em;
+	padding: 0em;
+	background-color: whitesmoke;
+}
+

@@ -1,0 +1,41 @@
+﻿<md-content>
+	<ng-form name="smartSearchForm">
+		<div layout="row">
+			<md-autocomplete ng-required="isRequired"
+							 md-input-name="smartSearchField"
+							 md-no-cache="noCache"
+							 md-selected-item="selectedItem"
+							 md-search-text="searchText"
+							 md-selected-item-change="ctrl.selectedItemChange(item)"
+							 md-search-text-change="ctrl.searchTextChange(searchText)"
+							 md-items="item in ctrl.search(searchText)"
+							 md-item-text="item.Presentation"
+							 md-min-length="1"
+							 md-require-match="true"
+							 md-floating-label="{{ctrl.labelName}}"
+							 placeholder="type here..."
+							 md-escape-options="blur"
+							 md-delay="1000"
+							 md-select-on-match="true"
+							 md-match-case-insensitive="true">
+							 <!--class="md-hide-clear-button hide-error-msg"
+							 ng-disabled="isDisabled"
+							 md-menu-class="smart-search-template"-->
+
+				<md-item-template>
+					<span md-highlight-text="searchText">{{item.Presentation}}</span>
+				</md-item-template>
+				<md-not-found>
+					Nada encontrado correspondente a "{{searchText}}".
+				</md-not-found>
+				<!--<div ng-messages="!smartSearchForm.smartSearchField.$error">
+					<div style="color:blue">{{selectedItem.Presentation}}</div>
+				</div>-->
+				<div ng-messages="smartSearchForm.smartSearchField.$error" ng-if="smartSearchForm.smartSearchField.$touched">
+					<div ng-message="required">Required</div>
+					<div ng-message="md-require-match">Select an item</div>
+				</div>
+			</md-autocomplete>
+		</div>
+	</ng-form>
+</md-content>

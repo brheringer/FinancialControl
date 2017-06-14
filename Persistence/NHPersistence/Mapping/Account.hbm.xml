@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+				   assembly="FinancialControl.Model" namespace="FinancialControl.Model">
+
+	<class name="Account">
+		<id name="AutoId">
+			<!--generator class="identity"/-->
+			<generator class="native"/>
+		</id>
+		<property name="Description" not-null="true"/>
+		<property name="Structure" not-null="true"/>
+		<property name="Type" not-null="true"/>
+		<property name="User" not-null="true"/>
+		<many-to-one name="ParentAccount"/>
+	</class>
+
+</hibernate-mapping>

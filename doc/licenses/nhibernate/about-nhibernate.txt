@@ -1,0 +1,3 @@
+SOURCE:
+https://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt
+2017-06-09

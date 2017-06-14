@@ -1,0 +1,161 @@
+﻿<div>
+	<div class="formTitle">Search Entries</div>
+
+	<div class="formFieldsArea">
+		<span class="formGroupLabel">Filters</span>
+
+		<form name="formFilters" ng-submit="$ctrl.search()">
+			<div layout="column" ng-show="$ctrl.visibleFilters">
+
+				<div layout="row">
+					<md-input-container>
+						<label>Initial Date</label>
+						<date-time-picker ng-model="$ctrl.model.FilterInitialDate"
+										  required="false"
+										  config="{'startView': 'day', 'minView': 'day'}"
+										  placeholder="..." />
+					</md-input-container>
+
+					<md-input-container>
+						<label>Final Date</label>
+						<date-time-picker ng-model="$ctrl.model.FilterFinalDate"
+										  required="false"
+										  config="{'startView': 'day', 'minView': 'day'}"
+										  placeholder="..." />
+					</md-input-container>
+				</div>
+
+				<md-input-container>
+					<label>Exact Date</label>
+					<date-time-picker ng-model="$ctrl.model.FilterExactDate"
+									  required="false"
+									  config="{'startView': 'day', 'minView': 'day'}"
+									  placeholder="..." />
+				</md-input-container>
+
+				<div layout="row">
+					<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
+						<label>Lower Value</label>
+						<input ng-model="$ctrl.model.FilterLowerValue" type="number" placeholder="type here..." />
+					</md-input-container>
+
+					<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
+						<label>Higher Value</label>
+						<input ng-model="$ctrl.model.FilterHigherValue" type="number" placeholder="type here..." />
+					</md-input-container>
+				</div>
+
+				<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
+					<label>Exact Value</label>
+					<input ng-model="$ctrl.model.FilterExactValue" type="number" placeholder="type here..." />
+				</md-input-container>
+
+				<md-input-container>
+					<label>Account</label>
+					<smart-search ng-model="$ctrl.model.FilterAccount" target-service="Accounts" />
+				</md-input-container>
+
+				<md-input-container>
+					<label>Result Center</label>
+					<smart-search ng-model="$ctrl.model.FilterCenter" target-service="ResultsCenters" />
+				</md-input-container>
+
+				<md-input-container md-no-float style="max-width: 20em" class="hide-error-msg">
+					<label>Memo</label>
+					<input ng-model="$ctrl.model.FilterMemo" type="text" placeholder="type here..." />
+				</md-input-container>
+
+			</div>
+
+			<div layout="row">
+				<md-button ng-click="$ctrl.search()">
+					<md-icon md-svg-icon="iconSearch"></md-icon>
+					Pesquisar
+				</md-button>
+
+				<md-button ng-href="#!/entriesBoard">
+					<md-icon md-svg-icon="iconNew"></md-icon>
+					Novo
+				</md-button>
+
+				<md-button ng-click="$ctrl.hideFilters()" ng-show="$ctrl.visibleFilters">
+					<md-icon md-svg-icon="iconHide"></md-icon>
+					Ocultar Filtros
+				</md-button>
+
+				<md-button ng-click="$ctrl.showFilters()" ng-show="!$ctrl.visibleFilters">
+					<md-icon md-svg-icon="iconShow"></md-icon>
+					Exibir Filtros
+				</md-button>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="formFieldsArea" ng-show="$ctrl.didSearch && $ctrl.model.Entries.length == 0" layout="column">
+		No item was found.
+	</div>
+
+	<div class="formFieldsArea" ng-show="$ctrl.model.Entries.length > 0" layout="column">
+
+		<div layout="row" layout-align="space-between">
+			<md-button ng-click="$ctrl.previousPage()" ng-disabled="$ctrl.model.SearchPage < 1">
+				<md-icon md-svg-icon="iconPagePrevious" aria-label=""></md-icon>
+			</md-button>
+
+			<div layout="column" layout-align="center space-between">
+				<span class="formFieldLabel">Search Result</span>
+				<span class="formFieldLabel">Showing {{$ctrl.model.Entries.length}} found items.</span>
+				<span class="formFieldLabel">Page {{$ctrl.model.SearchPage + 1}}</span>
+			</div>
+
+			<md-button ng-click="$ctrl.nextPage()">
+				<md-icon md-svg-icon="iconPageNext" aria-label=""></md-icon>
+			</md-button>
+		</div>
+
+		<div layout="row">
+			<span class="formFieldLabel">Filter inside results in this page:</span>
+			<input ng-model="autofilter" />
+		</div>
+
+		<md-content class="md-padding" layout="column">
+			<md-card ng-repeat="entry in $ctrl.model.Entries | filter:autofilter | orderBy:$ctrl.orderBy:$ctrl.reverseOrder"
+					 class="searchResultCard" layout="row">
+
+				<div class="searchResultCardActionPanel" layout="column" layout-align="center center">
+					<md-button class="md-icon-button" aria-label="Visualizar" ng-href="#!/entriesBoard/{{entry.AutoId}}">
+						<md-icon md-svg-icon="iconExpand"></md-icon>
+					</md-button>
+				</div>
+
+				<div layout="column">
+					<md-card-title>
+						<md-card-title-text>
+							<span class="md-headline">
+								<md-icon md-svg-icon="iconDate"/>{{entry.Data | datePresentation}}
+								<md-icon md-svg-icon="iconCurrency" />{{entry.Valor | currency:"$":2}}
+							</span>
+						</md-card-title-text>
+					</md-card-title>
+					<md-card-content layout="column">
+						<span>
+							<md-icon md-svg-icon="iconAccount"></md-icon>
+							{{entry.Account | entityReferencePresentation}}
+						</span>
+						<span>
+							<md-icon md-svg-icon="iconResultCenter"></md-icon>
+							{{entry.Center | entityReferencePresentation}}
+						</span>
+						<span>
+							<md-icon md-svg-icon="iconMemo"></md-icon>
+							{{entry.Memo}}
+						</span>
+					</md-card-content>
+				</div>
+			</md-card>
+		</md-content>
+
+	</div>
+
+</div>

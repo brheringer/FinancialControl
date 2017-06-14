@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+				   assembly="FinancialControl.Model" namespace="FinancialControl.Model">
+
+	<class name="User" table="UserFinancialControl">
+		<!--nao pode chamar user pq da pau no sqlserver-->
+		<id name="AutoId" >
+			<generator class="native"  />
+		</id>
+
+		<version name="Version" column="Version" />
+
+		<property name="Name" not-null="true"  />
+		<property name="UserName" not-null="true" unique-key="User_NaturalKey" />
+		<property name="HashedPassword" not-null="true"  />
+		<property name="Salt" not-null="true"  />
+		<property name="Banished" not-null="true"  />
+		<property name="BanishedReason" not-null="false"  />
+		<property name="Email" not-null="false"  />
+	</class>
+
+</hibernate-mapping>

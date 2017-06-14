@@ -1,0 +1,25 @@
+﻿<ng-form name="dateTimePickerForm">
+	<md-input-container flex="30" class="dateTimePickerInputContainer">
+		<div layout="row">
+			<md-button class="md-raised" aria-label="Date Time Picker"
+					   data-toggle="modal"
+					   data-target="#anchorFor_dateTimePicker_{{$id}}">
+				<md-icon md-svg-icon="iconDateTimePicker" ng-show="config.startView != 'hour'"></md-icon>
+				<md-icon md-svg-icon="iconTimePicker" ng-show="config.startView == 'hour'"></md-icon>
+			</md-button>
+			<span ng-show="config.startView != 'hour'">{{datetime | date:"dd/MM/yyyy HH:mm"}}</span>
+			<span ng-show="config.startView == 'hour'">{{datetime | date:"HH:mm"}}</span>
+		</div>
+	</md-input-container>
+	<div>
+		<div class="modal" role="dialog" id="anchorFor_dateTimePicker_{{$id}}">
+			<div class="modal-dialog">
+				<!--https://dalelotts.github.io/angular-bootstrap-datetimepicker/-->
+				<datetimepicker data-ng-model="datetime"
+								data-on-set-time="ctrl.onSetTime(newDate, oldDate)"
+								data-datetimepicker-config="config"></datetimepicker>
+			</div>
+		</div>
+	</div>
+</ng-form>
+

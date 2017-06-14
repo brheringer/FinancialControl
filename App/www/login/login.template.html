@@ -1,0 +1,18 @@
+﻿<div layout="row">
+	<div ng-if="$ctrl.showLoginFields == true" layout="row">
+		<form ng-submit="$ctrl.doLogin(credentials)">
+			<label for="userName">User Name:</label>
+			<input ng-model="credentials.UserName" type="text" id="userName" />
+
+			<label for="password">Password:</label>
+			<input ng-model="credentials.NewPassword" type="password" id="password" />
+
+			<input type="submit" value="login" />
+		</form>
+		<button style="margin-left: 100px" ng-click="$ctrl.register(credentials)">register</button>
+	</div>
+	<div ng-if="$ctrl.showLoginFields == false" layout="row">
+		<label for="userName">Welcome, {{$ctrl.userName}}. <button ng-click="$ctrl.doLogOff()">logoff</button></label>
+	</div>
+	<span style="display: inline">{{$ctrl.result}}</span>
+</div>

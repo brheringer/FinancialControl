@@ -1,0 +1,21 @@
+﻿angular
+.module('financialControlApp',
+[
+	'ngResource',
+	'ngRoute',
+	'ngCookies',
+	'ngMaterial',
+	'core',
+	'mainMenu',
+	'login',
+	'resultCenterService',
+	'accountService',
+	'entryService',
+	'resultsCentersList',
+	'resultCenterDetail',
+	'accountsList',
+	'accountDetail',
+	'entriesList',
+	'entryCard',
+	'entriesBoard'
+]);

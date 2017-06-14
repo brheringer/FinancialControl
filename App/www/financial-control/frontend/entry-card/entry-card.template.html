@@ -1,0 +1,45 @@
+﻿<div class="entryCard" layout="row">
+
+	<div class="formFieldsArea" layout="column">
+
+		<div layout="row">
+			<md-input-container>
+				<label>Date</label>
+				<date-time-picker ng-model="model.Date"
+								  required="true"
+								  config="{'startView': 'day', 'minView': 'day'}"
+								  placeholder="Data" />
+			</md-input-container>
+
+			<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
+				<label>Value</label>
+				<input ng-model="model.Value" type="number" placeholder="Value" required />
+			</md-input-container>
+		</div>
+
+		<md-input-container>
+			<label>Account</label>
+			<smart-search ng-model="model.Account" target-service="Accounts" />
+		</md-input-container>
+
+		<md-input-container>
+			<label>Result Center</label>
+			<smart-search ng-model="model.Center" target-service="Results Centers" />
+		</md-input-container>
+
+		<md-input-container md-no-float style="max-width: 20em" class="hide-error-msg">
+			<label>Memo</label>
+			<input ng-model="model.Memo" type="text" placeholder="Memo" />
+		</md-input-container>
+
+		<div class="formStatusBar">{{ctrl.status}}</div>
+
+		<div class="entryCardToolbar" layout="row" layout-align="space-around end">
+			<md-icon-button ng-click="ctrl.save()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon><md-tooltip>Save</md-tooltip></md-icon-button>
+			<md-icon-button ng-click="ctrl.new()"><md-icon md-svg-icon="iconNew" md-menu-align-target></md-icon><md-tooltip>New</md-tooltip></md-icon-button>
+			<md-icon-button ng-click="ctrl.delete()" ng-disabled="!ctrl.isPersistent()"><md-icon md-svg-icon="iconDelete" md-menu-align-target></md-icon><md-tooltip>Delete</md-tooltip></md-icon-button>
+			<md-icon-button ng-click="ctrl.close()"><md-icon md-svg-icon="iconClose" md-menu-align-target></md-icon><md-tooltip>Close</md-tooltip></md-icon-button>
+		</div>
+	</div>
+
+</div>

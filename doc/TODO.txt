@@ -1,0 +1,42 @@
+documentar as bibliotecas usadas e os créditos e as licenças
+terminar: TestarSmartSearch para contas e centros
+logoff nao esta implementado
+Escrever testes unitários no cliente (jasmine) antes de fazer novos formulários
+Validação dos campos no cliente (pelo menos obrigatoriedade)(angularjs)
+Tratar melhor o erro ao efetuar login para sempre responder ou que não tentou fazer login ou login/senha inválido.
+	Por exemplo, se informar um usuário que não existe, dá uma mensagem do banco de dados.
+
+Quando faz alguma operação e não está autenticado, a resposta é:
+		"System.InvalidOperationException: O cabeçalho especificado não foi encontrado.   
+		em System.Net.Http.Headers.HttpHeaders.GetValues(String name)   
+		em WebAPI.Controllers.TransactionalApiContoller.RetrieveUserSessionHeader(String headerName) 
+		na D:\Aplicacoes\FinancialControlWeb\WebAPI\WebAPI\Controllers\TransactionalApiContoller.cs:linha 68   
+		em WebAPI.Controllers.TransactionalApiContoller.SetUserSessionInfoToRequestContext() 
+		na D:\Aplicacoes\FinancialControlWeb\WebAPI\WebAPI\Controllers\TransactionalApiContoller.cs:linha 61   
+		em WebAPI.Controllers.TransactionalApiContoller.InvokeCommandInsideTransaction[ResultType](Func`2 command) 
+		na D:\Aplicacoes\FinancialControlWeb\WebAPI\WebAPI\Controllers\TransactionalApiContoller.cs:linha 43"	
+	Deveria avisar que não está autenticado ou nem deixar fazer nada.
+
+Ao cadastrar conta sem tipo cd, não deu mensagem de campo obrigatório não preenchido.
+Quando deu erro no login, também não tratou exceção.
+Novo lançamento está preenchendo a hora.
+Layout de pesquisar lançamentos.
+Cadastro de lançamento: pesquisar, salvar todos
+Varios icones nao aparecem
+Paginar pesquisas.
+
+.NET Framework 4.5
+Microsoft.Owin
+Microsoft.Aspnet.Cors
+Newtonsoft.Json			http://www.newtonsoft.com/json
+NHibernate 4.0.0.4000	http://nhibernate.info/
+Spring.NET 2.0.0		http://www.springframework.net/
+PasswordHash.cs			http://crackstation.net/hashing-security.htm
+WCF by Example			https://www.codeproject.com/Articles/93161/WCF-by-Example-Chapter-IV-Transaction-Manager
+
+angular-bootstrap-datetimepicker
+bootstrap
+jasmine-2.4.1
+jquery
+moment
+angularjs

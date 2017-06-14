@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html ng-app="financialControlApp">
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />-->
+	
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="lib/angular-bootstrap-datetimepicker/css/datetimepicker.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
+	<script src="lib/jquery/jquery-3.1.1.min.js"></script>
+	<script src="lib/moment/moment.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/angular-bootstrap-datetimepicker/js/datetimepicker.js"></script>
+	<script src="lib/angular-bootstrap-datetimepicker/js/datetimepicker.templates.js"></script>
+	
+	<script src="financialControlApp.module.js"></script>
+	<script src="financialControlApp.config.js"></script>
+	<script src="core/core.module.js"></script>
+	<script src="core/app-config.js"></script>
+	<script src="core/core.dateTimeHelper.js"></script>
+	<script src="core/core.formatFilters.js"></script>
+	<script src="core/session.js"></script>
+	<script src="core/date-time-picker/date-time-picker.module.js"></script>
+	<script src="core/date-time-picker/date-time-picker.component.js"></script>
+	<script src="core/smart-search/smart-search.module.js"></script>
+	<script src="core/smart-search/smart-search.component.js"></script>
+	<script src="core/services/generic-service.module.js"></script>
+	<script src="core/services/generic-service.service.js"></script>
+	<script src="core/services/user.module.js"></script>
+	<script src="core/services/user.service.js"></script>
+	<script src="login/login.module.js"></script>
+	<script src="login/login.component.js"></script>
+	<script src="main-menu/main-menu.module.js"></script>
+	<script src="main-menu/main-menu.component.js"></script>
+	<script src="financial-control/services/result-center-service.module.js"></script>
+	<script src="financial-control/services/result-center-service.service.js"></script>
+	<script src="financial-control/services/account-service.module.js"></script>
+	<script src="financial-control/services/account-service.service.js"></script>
+	<script src="financial-control/services/entry-service.module.js"></script>
+	<script src="financial-control/services/entry-service.service.js"></script>
+	<script src="financial-control/frontend/results-centers-list/results-centers-list.module.js"></script>
+	<script src="financial-control/frontend/results-centers-list/results-centers-list.component.js"></script>
+	<script src="financial-control/frontend/result-center-detail/result-center-detail.module.js"></script>
+	<script src="financial-control/frontend/result-center-detail/result-center-detail.component.js"></script>
+	<script src="financial-control/frontend/accounts-list/accounts-list.module.js"></script>
+	<script src="financial-control/frontend/accounts-list/accounts-list.component.js"></script>
+	<script src="financial-control/frontend/account-detail/account-detail.module.js"></script>
+	<script src="financial-control/frontend/account-detail/account-detail.component.js"></script>
+	<script src="financial-control/frontend/entries-list/entries-list.module.js"></script>
+	<script src="financial-control/frontend/entries-list/entries-list.component.js"></script>
+	<script src="financial-control/frontend/entry-card/entry-card.module.js"></script>
+	<script src="financial-control/frontend/entry-card/entry-card.directive.js"></script>
+	<script src="financial-control/frontend/entries-board/entries-board.module.js"></script>
+	<script src="financial-control/frontend/entries-board/entries-board.component.js"></script>
+
+	<title>Financial Control</title>
+</head>
+<body>
+	<div class="appHeader">
+		<div class="appTitle">Financial Control</div>
+		<div class="appHeaderMenuLoginContainer">
+			<main-menu></main-menu>
+			<login></login>
+		</div>
+	</div>
+
+	<div class="appMainContainer">
+		<div ng-view></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+SOURCE:
+https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+2017-06-13
+

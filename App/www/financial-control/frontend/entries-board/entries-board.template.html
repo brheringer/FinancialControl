@@ -1,0 +1,33 @@
+﻿<div>
+	<div class="formTitle">Lançamentos</div>
+
+	<!-- comandos para addNewCard closeCard closeAll saveAll -->
+	<div layout="row">
+		<md-button ng-href="#!/entriesBoard">
+			<md-icon md-svg-icon="iconSearch"></md-icon>
+			Pesquisar
+		</md-button>
+
+		<md-button ng-click="$ctrl.addNewCard()">
+			<md-icon md-svg-icon="iconNew"></md-icon>
+			Adicionar Novo
+		</md-button>
+
+		<md-button ng-click="$ctrl.saveAll()">
+			<md-icon md-svg-icon="iconHide"></md-icon>
+			Salvar Todos
+		</md-button>
+
+		<md-button ng-click="$ctrl.closeAll()">
+			<md-icon md-svg-icon="iconShow"></md-icon>
+			Fechar Todos
+		</md-button>
+
+	</div>
+
+	<div>
+		<div ng-repeat="entry in entriesOnBoard" class="entriesBoardSlot">
+			<entry-card ng-model="entry" />
+		</div>
+	</div>
+</div>

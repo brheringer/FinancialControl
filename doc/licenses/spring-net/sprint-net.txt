@@ -1,0 +1,9 @@
+License
+
+The Spring Framework is licensed according to the terms of the Apache License, Version 2.0.
+
+The full text of this license can be found at http://www.apache.org/licenses/LICENSE-2.0 (TXT or HTML)
+
+SOURCE:
+http://www.springframework.net/license.html
+2017-06-09

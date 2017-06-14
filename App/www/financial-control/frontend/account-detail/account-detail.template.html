@@ -1,0 +1,43 @@
+﻿<div>
+	<div class="formTitle">Registro de Conta</div>
+
+	<form name="thisForm" ng-submit="$ctrl.save()" novalidate>
+		<div class="formFieldsArea" layout="column" layout-padding ng-cloak>
+
+			<md-input-container class="md-block" md-no-float>
+				<label>Structure</label>
+				<input name="fieldStructure" ng-model="$ctrl.model.Structure" md-maxlength="32" placeholder="type here...">
+				<div ng-messages="thisForm.fieldCode.$error">
+					<div ng-message="required">This is required!</div>
+					<div ng-message="md-maxlength">That's too long!</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" md-no-float>
+				<label>Descrição</label>
+				<input name="fieldDescription" ng-model="$ctrl.model.Description" md-maxlength="255" placeholder="type here...">
+				<div ng-messages="thisForm.fieldDescription.$error">
+					<div ng-message="required">This is required!</div>
+					<div ng-message="md-maxlength">That's too long!</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" md-no-float>
+				<label>Type</label>
+				<md-select name="fieldType" ng-model="$ctrl.model.Type" placeholder="type here...">
+					<md-option value="Credito">Credit</md-option>
+					<md-option value="Debito">Debt</md-option>
+				</md-select>
+			</md-input-container>
+
+			<div layout="row">
+				<md-button ng-click="$ctrl.save()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon>Save</md-button>
+				<md-button ng-href="#!/account"><md-icon md-svg-icon="iconSearch" md-menu-align-target></md-icon>Search</md-button>
+				<md-button ng-click="$ctrl.new()"><md-icon md-svg-icon="iconNew" md-menu-align-target></md-icon>New</md-button>
+				<md-button ng-click="$ctrl.delete()" ng-disabled="!$ctrl.isPersistent()"><md-icon md-svg-icon="iconDelete" md-menu-align-target></md-icon>Delete</md-button>
+			</div>
+		</div>
+	</form>
+
+	<div class="formStatusBar">{{$ctrl.status}}</div>
+</div>

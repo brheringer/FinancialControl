@@ -1,0 +1,12 @@
+https://www.codeproject.com/Articles/90060/WCF-by-Example-Chapter-I-Baseline
+
+This article is great and inspired me a lot.
+
+There are some class that i reused with modifications:
+	DependencyInjectionContext
+	Response
+	ResponseEnvelop
+	TransactionManager
+	TransactionManagerBase
+	TransactionManagerFactory
+	NHBootStrapper
