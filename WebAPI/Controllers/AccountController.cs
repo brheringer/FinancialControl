@@ -51,7 +51,7 @@ namespace FinancialControl.WebAPI.Controllers
 		}
 
 		[HttpPost]
-		[Route("api/contas/update")]
+		[Route("api/account/update")]
 		public AccountDto Update(AccountDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Update(daoFactory, dto));
@@ -73,7 +73,7 @@ namespace FinancialControl.WebAPI.Controllers
 		}
 
 		[HttpPost]
-		[Route("api/contas/search")]
+		[Route("api/account/search")]
 		public AccountsDto Search(AccountDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, dto));
@@ -81,14 +81,14 @@ namespace FinancialControl.WebAPI.Controllers
 
 		private AccountsDto Search(DaoFactory daoFactory, AccountDto dto)
 		{
-			AccountsDto resposta = new AccountsDto();
-			var contas = daoFactory.AccountDAO.Search(dto.Structure, dto.Description, this.UserName);
-			resposta.Accounts = AccountWrapper.Wrap(contas);
-			return resposta;
+			AccountsDto response = new AccountsDto();
+			var accounts = daoFactory.AccountDAO.Search(dto.Structure, dto.Description, this.UserName);
+			response.Accounts = AccountWrapper.Wrap(accounts);
+			return response;
 		}
 
 		[HttpGet]
-		[Route("api/contas/smartSearch/{smartEntry}")]
+		[Route("api/account/smartSearch/{smartEntry}")]
 		public EntitiesReferencesDto SmartSearch(string smartEntry)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => SmartSearch(daoFactory, smartEntry));
@@ -96,10 +96,10 @@ namespace FinancialControl.WebAPI.Controllers
 
 		private EntitiesReferencesDto SmartSearch(DaoFactory daoFactory, string smartEntry)
 		{
-			EntitiesReferencesDto resposta = new EntitiesReferencesDto();
+			EntitiesReferencesDto response = new EntitiesReferencesDto();
 			var accounts = daoFactory.AccountDAO.SmartSearch(smartEntry, this.UserName);
-			resposta = Wrappers.EntityWrapper.WrapToReferences(accounts);
-			return resposta;
+			response = Wrappers.EntityWrapper.WrapToReferences(accounts);
+			return response;
 		}
 	}
 }

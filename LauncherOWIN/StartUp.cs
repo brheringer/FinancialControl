@@ -11,6 +11,8 @@ namespace FinancialControl.LauncherOWIN
 		{
 			HttpConfiguration config = ConfigureWebAPI();
 
+			config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+
 			appBuilder.UseCors(CorsOptions.AllowAll);
 			appBuilder.UseWebApi(config);
 

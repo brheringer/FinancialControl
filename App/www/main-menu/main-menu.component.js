@@ -17,7 +17,9 @@
 		this.normalizedMenus = [
 			createMenu('accounts', 'Accounts'),
 			createMenu('resultsCenters', 'Results Centers'),
-			createMenu('entries', 'Entries')
+			createMenu('entries', 'Entries'),
+			createMenu('importing', 'Import Entries'),
+			createMenu('exporting', 'Export Entries')
 		];
 
 		var originatorEv;

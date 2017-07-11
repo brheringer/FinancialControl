@@ -33,7 +33,7 @@
 						}
 						else
 						{
-							alias.model.Contas = dto.Accounts;
+							alias.model.Accounts = dto.Accounts;
 							alias.status = "search ok";
 						}
 					});

@@ -46,6 +46,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImportingDto.cs" />
     <Compile Include="ResultCenterDto.cs" />
     <Compile Include="ResultsCentersDto.cs" />
     <Compile Include="CollectionDto.cs" />

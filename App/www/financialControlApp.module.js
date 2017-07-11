@@ -11,11 +11,13 @@
 	'resultCenterService',
 	'accountService',
 	'entryService',
+	'importingService',
 	'resultsCentersList',
 	'resultCenterDetail',
 	'accountsList',
 	'accountDetail',
 	'entriesList',
 	'entryCard',
-	'entriesBoard'
+	'entriesBoard',
+	'importing'
 ]);

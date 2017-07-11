@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ImportingController.cs" />
     <Compile Include="Controllers\ResultCenterController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EntryController.cs" />

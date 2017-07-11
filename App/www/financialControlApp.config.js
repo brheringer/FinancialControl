@@ -16,6 +16,7 @@
 		.when('/entries', { template: '<entries-list></entries-list>' })
 		.when('/entriesBoard', { template: '<entries-board></entries-board>' })
 		.when('/entriesBoard/:id', { template: '<entry-board></entry-board>' })
+		.when('/importing', { template: '<importing></importing>' })
 		.otherwise('/portal');
 
 		//TODO review
