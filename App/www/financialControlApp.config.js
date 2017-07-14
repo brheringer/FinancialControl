@@ -15,7 +15,7 @@
 		.when('/resultCenter/:id', { template: '<result-center-detail></result-center-detail>' })
 		.when('/entries', { template: '<entries-list></entries-list>' })
 		.when('/entriesBoard', { template: '<entries-board></entries-board>' })
-		.when('/entriesBoard/:id', { template: '<entry-board></entry-board>' })
+		.when('/entriesBoard/:id', { template: '<entries-board></entries-board>' })
 		.when('/importing', { template: '<importing></importing>' })
 		.otherwise('/portal');
 
@@ -27,7 +27,7 @@
 		]);
 
 		$mdIconProvider
-		.icon('iconAccount', 'res/icon/android/account_24px.svg', 24)
+		.icon('iconAccount', 'res/icon/android/accounts_24px.svg', 24)
 		.icon('iconCancel', 'res/icon/android/cancel_24px.svg', 24)
 		.icon('iconClose', 'res/icon/android/close_24px.svg', 24)
 		.icon('iconDate', 'res/icon/android/date_24px.svg', 24)

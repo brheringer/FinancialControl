@@ -8,13 +8,13 @@
 		service.delete = function (id)
 		{
 			var url = 'entry';
-			return GenericService.myDelete(url, { id: id });
+			return GenericService.myDelete(url, id);
 		};
 		 
 		service.load = function (id)
 		{
 			var url = 'entry';
-			return GenericService.myGet(url, { id: id });
+			return GenericService.myGet(url, id);
 		};
 
 		service.save = function (tipo)

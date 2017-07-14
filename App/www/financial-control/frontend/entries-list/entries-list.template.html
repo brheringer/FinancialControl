@@ -52,12 +52,12 @@
 
 				<md-input-container>
 					<label>Account</label>
-					<smart-search ng-model="$ctrl.model.FilterAccount" target-service="Accounts" />
+					<smart-search ng-model="$ctrl.model.FilterAccount" target-service="Account" />
 				</md-input-container>
 
 				<md-input-container>
 					<label>Result Center</label>
-					<smart-search ng-model="$ctrl.model.FilterCenter" target-service="ResultsCenters" />
+					<smart-search ng-model="$ctrl.model.FilterCenter" target-service="ResultCenter" />
 				</md-input-container>
 
 				<md-input-container md-no-float style="max-width: 20em" class="hide-error-msg">
@@ -70,22 +70,22 @@
 			<div layout="row">
 				<md-button ng-click="$ctrl.search()">
 					<md-icon md-svg-icon="iconSearch"></md-icon>
-					Pesquisar
+					Search
 				</md-button>
 
 				<md-button ng-href="#!/entriesBoard">
 					<md-icon md-svg-icon="iconNew"></md-icon>
-					Novo
+					New
 				</md-button>
 
 				<md-button ng-click="$ctrl.hideFilters()" ng-show="$ctrl.visibleFilters">
 					<md-icon md-svg-icon="iconHide"></md-icon>
-					Ocultar Filtros
+					Hide Filters
 				</md-button>
 
 				<md-button ng-click="$ctrl.showFilters()" ng-show="!$ctrl.visibleFilters">
 					<md-icon md-svg-icon="iconShow"></md-icon>
-					Exibir Filtros
+					Show Filters
 				</md-button>
 
 			</div>
@@ -133,8 +133,12 @@
 					<md-card-title>
 						<md-card-title-text>
 							<span class="md-headline">
-								<md-icon md-svg-icon="iconDate"/>{{entry.Data | datePresentation}}
-								<md-icon md-svg-icon="iconCurrency" />{{entry.Valor | currency:"$":2}}
+								<md-icon md-svg-icon="iconDate"></md-icon>
+								{{entry.Date | datePresentation}}
+							</span>
+							<span class="md-headline">
+								<md-icon md-svg-icon="iconMoney"></md-icon>
+								{{entry.Value | currency:"$":2}}
 							</span>
 						</md-card-title-text>
 					</md-card-title>
