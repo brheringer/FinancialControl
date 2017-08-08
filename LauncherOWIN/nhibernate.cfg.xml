@@ -28,6 +28,10 @@
 				 assembly="FinancialControl.Persistence.NHPersistence"/>
 		<mapping resource="FinancialControl.Persistence.NHPersistence.Mapping.Entry.hbm.xml" 
 				 assembly="FinancialControl.Persistence.NHPersistence"/>
+		<mapping resource="FinancialControl.Persistence.NHPersistence.Mapping.EntryTemplate.hbm.xml"
+				 assembly="FinancialControl.Persistence.NHPersistence"/>
+		<mapping resource="FinancialControl.Persistence.NHPersistence.Mapping.MemoMapping.hbm.xml" 
+				 assembly="FinancialControl.Persistence.NHPersistence"/>
 
 	</session-factory>
 </hibernate-configuration>

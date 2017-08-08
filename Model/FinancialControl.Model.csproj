@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MemoMapping.cs" />
+    <Compile Include="EntryTemplate.cs" />
     <Compile Include="ResultCenter.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="Entity.cs" />

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Importers\FileImporter.cs" />
     <Compile Include="Importers\BancoBrasilCsvImporter.cs" />
+    <Compile Include="Importers\MemoMapperBuilder.cs" />
     <Compile Include="Importers\MemoMapperItem.cs" />
     <Compile Include="Importers\MemoMapper.cs" />
   </ItemGroup>

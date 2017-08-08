@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="FilterHelper.cs" />
     <Compile Include="NHBootStrapper.cs" />
+    <Compile Include="NHMemoMappingDAO.cs" />
+    <Compile Include="NHEntryTemplateDAO.cs" />
     <Compile Include="NHResultCenterDAO.cs" />
     <Compile Include="NHUserSessionDAO.cs" />
     <Compile Include="NHUserDAO.cs" />
@@ -81,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\User.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\EntryTemplate.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\MemoMapping.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -22,10 +22,12 @@ namespace FinancialControl.WebAPI.Controllers
 
 		private ImportingDto Import(DaoFactory daoFactory, string data)
 		{
+			var mappings = daoFactory.MemoMappingDAO.LoadAll(this.UserName);
+
 			FileImporter importer = new BancoBrasilCsvImporter(); //TODO fabrica
 			importer.CurrentUser = this.UserName;
 			importer.FileContent = data;
-			//importer.MemoMapper = new MemoMapper(); //TODO carregar do banco os mapeamentos
+			importer.MemoMapper = new MemoMapperBuilder().Build(mappings);
 			//importer.TempAccount; //TODO carregar do banco
 			//importer.TempCenter; //TODO carregar do banco
 			importer.Import();
@@ -35,7 +37,12 @@ namespace FinancialControl.WebAPI.Controllers
 				daoFactory.EntryDAO.Update(entry);
 			}
 
-			return new ImportingDto(); //EntryWrapper.Wrap(entry);
+			var dto = new ImportingDto();
+			dto.Success = true;
+			dto.QuantityOfImportedEntries = importer.GeneratedEntries.Count;
+			dto.TimeStamp = DateTime.Now;
+			//dto.ErrorsMessages;
+			return dto;
 		}
     }
 }

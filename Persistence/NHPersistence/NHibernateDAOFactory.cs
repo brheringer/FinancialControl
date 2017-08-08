@@ -14,9 +14,11 @@ namespace FinancialControl.Persistence.NHPersistence
 		}
 
 		#region Declaração dos atributos que são DAO
-		private NHResultCenterDAO _centroDAO = null;
-		private NHAccountDAO _contaDAO = null;
-		private NHEntryDAO _lancamentoDAO = null;
+		private NHResultCenterDAO _centerDAO = null;
+		private NHAccountDAO _accountDAO = null;
+		private NHEntryDAO _entryDAO = null;
+		private NHEntryTemplateDAO _entryTemplateDAO = null;
+		private NHMemoMappingDAO _memoMappingDAO = null;
 		private NHUserDAO _userDAO = null;
 		private NHUserSessionDAO _userSessionDAO = null;
 		#endregion
@@ -27,18 +29,18 @@ namespace FinancialControl.Persistence.NHPersistence
 		{
 			get
 			{
-				if (_centroDAO == null)
-					_centroDAO = new NHResultCenterDAO(this.SessionInstance);
-				return _centroDAO;
+				if (_centerDAO == null)
+					_centerDAO = new NHResultCenterDAO(this.SessionInstance);
+				return _centerDAO;
 			}
 		}
 
 		public AccountDAO AccountDAO
 		{
 			get {
-				if (_contaDAO == null)
-					_contaDAO = new NHAccountDAO(this.SessionInstance);
-				return _contaDAO; 
+				if (_accountDAO == null)
+					_accountDAO = new NHAccountDAO(this.SessionInstance);
+				return _accountDAO; 
 			}
 		}
 
@@ -46,9 +48,29 @@ namespace FinancialControl.Persistence.NHPersistence
 		{
 			get
 			{
-				if (_lancamentoDAO == null)
-					_lancamentoDAO = new NHEntryDAO(this.SessionInstance);
-				return _lancamentoDAO;
+				if (_entryDAO == null)
+					_entryDAO = new NHEntryDAO(this.SessionInstance);
+				return _entryDAO;
+			}
+		}
+
+		public EntryTemplateDAO EntryTemplateDAO
+		{
+			get
+			{
+				if (_entryTemplateDAO == null)
+					_entryTemplateDAO = new NHEntryTemplateDAO(this.SessionInstance);
+				return _entryTemplateDAO;
+			}
+		}
+
+		public MemoMappingDAO MemoMappingDAO
+		{
+			get
+			{
+				if (_memoMappingDAO == null)
+					_memoMappingDAO = new NHMemoMappingDAO(this.SessionInstance);
+				return _memoMappingDAO;
 			}
 		}
 

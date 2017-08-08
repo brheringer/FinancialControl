@@ -1,3 +1,7 @@
+Implement new features:
+	memo mapping for entries importing
+	entries templates
+
 documentar as bibliotecas usadas e os créditos e as licenças
 terminar: TestarSmartSearch para contas e centros
 logoff nao esta implementado

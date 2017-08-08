@@ -46,6 +46,10 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MemosMappingsDto.cs" />
+    <Compile Include="EntriesTemplatesDto.cs" />
+    <Compile Include="MemoMappingDto.cs" />
+    <Compile Include="EntryTemplateDto.cs" />
     <Compile Include="ImportingDto.cs" />
     <Compile Include="ResultCenterDto.cs" />
     <Compile Include="ResultsCentersDto.cs" />

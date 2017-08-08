@@ -61,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
+    <Compile Include="EntryTemplateDAOTest.cs" />
     <Compile Include="UserSessionDAOTest.cs" />
     <Compile Include="UserDAOTest.cs" />
     <Compile Include="EntryDAOTest.cs" />

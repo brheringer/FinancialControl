@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MemoMappingController.cs" />
+    <Compile Include="Controllers\EntryTemplateController.cs" />
     <Compile Include="Controllers\ImportingController.cs" />
     <Compile Include="Controllers\ResultCenterController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -62,6 +64,8 @@
     <Compile Include="Controllers\TransactionalApiContoller.cs" />
     <Compile Include="GlobalContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\MemoMappingWrapper.cs" />
+    <Compile Include="Wrappers\EntryTemplateWrapper.cs" />
     <Compile Include="Wrappers\ResultCenterWrapper.cs" />
     <Compile Include="Wrappers\AccountWrapper.cs" />
     <Compile Include="Wrappers\EntityWrapper.cs" />
