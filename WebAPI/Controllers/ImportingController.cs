@@ -15,8 +15,9 @@ namespace FinancialControl.WebAPI.Controllers
 		: TransactionalApiContoller
     {
 		[HttpPost]
-		public ImportingDto Import(string data)
+		public ImportingDto Import()
 		{
+			string data = this.Request.Content.ReadAsStringAsync().Result;
 			return InvokeCommandInsideTransaction(daoFactory => Import(daoFactory, data));
 		}
 

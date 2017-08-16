@@ -16,6 +16,12 @@
 		.when('/entries', { template: '<entries-list></entries-list>' })
 		.when('/entriesBoard', { template: '<entries-board></entries-board>' })
 		.when('/entriesBoard/:id', { template: '<entries-board></entries-board>' })
+		.when('/entriesTemplates', { template: '<entries-templates-list></entries-templates-list>' })
+		.when('/entryTemplate', { template: '<entry-template-detail></entry-template-detail>' })
+		.when('/entryTemplate/:id', { template: '<entry-template-detail></entry-template-detail>' })
+		.when('/memosMappings', { template: '<memos-mappings-list></memos-mappings-list>' })
+		.when('/memoMapping', { template: '<memo-mapping-detail></memo-mapping-detail>' })
+		.when('/memoMapping/:id', { template: '<memo-mapping-detail></memo-mapping-detail>' })
 		.when('/importing', { template: '<importing></importing>' })
 		.otherwise('/portal');
 
@@ -35,9 +41,11 @@
 		.icon('iconDelete', 'res/icon/android/delete_24px.svg', 24)
 		.icon('iconEdit', 'res/icon/android/edit_24px.svg', 24)
 		.icon('iconEntry', 'res/icon/android/entry_24px.svg', 24)
+		.icon('iconEntryTemplate', 'res/icon/android/entry_24px.svg', 24) //TODO mudar imagem
 		.icon('iconExpand', 'res/icon/android/search_24px.svg', 24)
 		.icon('iconHide', 'res/icon/android/hide_24px.svg', 24)
 		.icon('iconMemo', 'res/icon/android/memo_24px.svg', 24)
+		.icon('iconMemoMapping', 'res/icon/android/memo_24px.svg', 24) //TODO mudar imagem
 		.icon('iconMenu', 'res/icon/android/menu_24px.svg', 24)
 		.icon('iconMoney', 'res/icon/android/money_24px.svg', 24)
 		.icon('iconNew', 'res/icon/android/new_24px.svg', 24)

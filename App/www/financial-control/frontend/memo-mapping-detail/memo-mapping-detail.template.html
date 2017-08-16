@@ -1,0 +1,40 @@
+﻿<div>
+	<div class="formTitle">Memo Mapping Details</div>
+
+	<form name="thisForm" ng-submit="$ctrl.save()" novalidate>
+		<div class="formFieldsArea" layout="column" layout-padding ng-cloak>
+
+			<md-input-container class="md-block" md-no-float>
+				<label>Incoming Memo</label>
+				<input name="fieldStructure" ng-model="$ctrl.model.IncomingMemo" placeholder="type here..." required>
+				<div ng-messages="thisForm.fieldIncomingMemo.$error">
+					<div ng-message="required">This is required!</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" md-no-float>
+				<label>Mapped Memo</label>
+				<input name="fieldMappedMemo" ng-model="$ctrl.model.MappedMemo" placeholder="type here...">
+			</md-input-container>
+
+			<md-input-container>
+				<label>Mapped Account</label>
+				<smart-search ng-model="$ctrl.model.MappedAccount" target-service="Account" />
+			</md-input-container>
+
+			<md-input-container>
+				<label>Mapped Result Center</label>
+				<smart-search ng-model="$ctrl.model.MappedCenter" target-service="ResultCenter" />
+			</md-input-container>
+
+			<div layout="row">
+				<md-button ng-click="$ctrl.save()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon>Save</md-button>
+				<md-button ng-href="#!/memosMappings"><md-icon md-svg-icon="iconSearch" md-menu-align-target></md-icon>Search</md-button>
+				<md-button ng-click="$ctrl.new()"><md-icon md-svg-icon="iconNew" md-menu-align-target></md-icon>New</md-button>
+				<md-button ng-click="$ctrl.delete()" ng-disabled="!$ctrl.isPersistent()"><md-icon md-svg-icon="iconDelete" md-menu-align-target></md-icon>Delete</md-button>
+			</div>
+		</div>
+	</form>
+
+	<div class="formStatusBar">{{$ctrl.status}}</div>
+</div>

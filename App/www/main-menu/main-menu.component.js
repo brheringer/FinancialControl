@@ -18,6 +18,8 @@
 			createMenu('accounts', 'Accounts'),
 			createMenu('resultsCenters', 'Results Centers'),
 			createMenu('entries', 'Entries'),
+			createMenu('entriesTemplates', 'Entries Templates'),
+			createMenu('memosMappings', 'Memos Mappings'),
 			createMenu('importing', 'Import Entries'),
 			createMenu('exporting', 'Export Entries')
 		];

@@ -13,6 +13,7 @@
 		<!--<property name="connection.connection_string">Data Source=D:\desenvolvimento\FinancialControlWeb\WebAPI\WebAPI\Data\TesteFinancialControl.db;New=true;Version=3;</property>-->
 		<property name="show_sql">true</property>
 		<!--<property name="hbm2ddl.auto">create-drop</property>-->
+		<property name="hbm2ddl.auto">update</property>
 		<property name="hbm2ddl.keywords">none</property>
 		<property name="cache.use_second_level_cache">true</property>
 		<property name="cache.use_query_cache" >true</property>

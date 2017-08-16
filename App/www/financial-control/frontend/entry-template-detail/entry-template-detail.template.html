@@ -1,0 +1,37 @@
+﻿<div>
+	<div class="formTitle">Entry Template Details</div>
+
+	<form name="thisForm" ng-submit="$ctrl.save()" novalidate>
+		<div class="formFieldsArea" layout="column" layout-padding ng-cloak>
+
+			<md-input-container>
+				<label>Account</label>
+				<smart-search ng-model="$ctrl.model.Account" target-service="Account" />
+			</md-input-container>
+
+			<md-input-container>
+				<label>Result Center</label>
+				<smart-search ng-model="$ctrl.model.Center" target-service="ResultCenter" />
+			</md-input-container>
+
+			<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
+				<label>Value</label>
+				<input ng-model="$ctrl.model.Value" type="number" placeholder="Value" required />
+			</md-input-container>
+
+			<md-input-container class="md-block" md-no-float>
+				<label>Memo</label>
+				<input name="fieldMemo" ng-model="$ctrl.model.Memo" placeholder="type here...">
+			</md-input-container>
+
+			<div layout="row">
+				<md-button ng-click="$ctrl.save()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon>Save</md-button>
+				<md-button ng-href="#!/entriesTemplates"><md-icon md-svg-icon="iconSearch" md-menu-align-target></md-icon>Search</md-button>
+				<md-button ng-click="$ctrl.new()"><md-icon md-svg-icon="iconNew" md-menu-align-target></md-icon>New</md-button>
+				<md-button ng-click="$ctrl.delete()" ng-disabled="!$ctrl.isPersistent()"><md-icon md-svg-icon="iconDelete" md-menu-align-target></md-icon>Delete</md-button>
+			</div>
+		</div>
+	</form>
+
+	<div class="formStatusBar">{{$ctrl.status}}</div>
+</div>

@@ -5,10 +5,10 @@
 	{
 		var service = {};
 
-		service.import = function (data)
+		service.import = function (file)
 		{
 			var url = 'importing/';
-			return GenericService.myPost(url, data);
+			return GenericService.myPost(url, file);
 		};
  
 		return service;

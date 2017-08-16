@@ -105,6 +105,24 @@
 				});
 		}
 
+		service.fileUpload = function (url, file)
+		{
+			var config = { headers: getHeaders() };
+			config.headers['Content-Type'] = undefined;
+			config.headers['transformResponse'] = angular.identity;
+
+			return $http
+				.post(getFullUrl(url), file, config)
+				.then(function (response)
+				{
+					return service.dealWithSuccess(response);
+				},
+				function (response)
+				{
+					return service.dealWithFailure(response);
+				});
+		}
+
 		return service;
 	}]
 );

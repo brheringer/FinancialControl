@@ -11,6 +11,8 @@
 	'resultCenterService',
 	'accountService',
 	'entryService',
+	'entryTemplateService',
+	'memoMappingService',
 	'importingService',
 	'resultsCentersList',
 	'resultCenterDetail',
@@ -19,5 +21,9 @@
 	'entriesList',
 	'entryCard',
 	'entriesBoard',
+	'entriesTemplatesList',
+	'entryTemplateDetail',
+	'memosMappingsList',
+	'memoMappingDetail',
 	'importing'
 ]);

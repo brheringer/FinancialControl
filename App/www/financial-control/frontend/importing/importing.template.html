@@ -1,8 +1,8 @@
 ﻿<div>
 	<div class="formTitle">Import Entries</div>
 
-	<form enctype="multipart/form-data" action="{{$ctrl.model.URL}}" method="post">
-
+	<!--<form enctype="multipart/form-data" action="{{$ctrl.model.URL}}" method="post">-->
+	<form>
 		<md-input-container class="md-block" md-no-float>
 			<label>File</label>
 			<input id="fieldFilePath" type="file" />
@@ -13,16 +13,16 @@
 
 		<div ng-show="$ctrl.model.Processed">
 			<div layout="column">
-				<div ng-show="$ctrl.model.Sucess">success</div>
-				<div ng-show="!$ctrl.model.Sucess">failure</div>
+				<div ng-show="$ctrl.model.Success">success</div>
+				<div ng-show="!$ctrl.model.Success">failure</div>
 				<div ng-repeat="entry in $ctrl.model.Details" layout="row">
 				</div>
 			</div>
 		</div>
 
 		<div layout="row">
-			<input type="submit" />
-			<!--<md-button ng-click="$ctrl.import()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon>Import</md-button>-->
+			<!--<input type="submit"/>-->
+			<md-button ng-click="$ctrl.import()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon>Import</md-button>
 		</div>
 
 	</form>
