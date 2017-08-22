@@ -1,5 +1,4 @@
-board: opção para usar template
-
+board: melhorar layout botões template
 importing: permitir escolher conta e centro temporarios
 documentar as bibliotecas usadas e os créditos e as licenças
 terminar: TestarSmartSearch para contas e centros

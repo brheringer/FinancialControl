@@ -13,6 +13,7 @@
 		{
 			alias.model = {
 				AutoId: 0,
+				Title: '',
 				Value: 0,
 				Memo: '',
 				Account: { AutoId: 0, Presentation: '' },

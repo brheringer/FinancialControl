@@ -2,7 +2,8 @@
 .component('entriesBoard',
 {
 	templateUrl: 'financial-control/frontend/entries-board/entries-board.template.html',
-	controller: ['$routeParams', '$scope', 'EntryService', function EntriesBoardController($routeParams, $scope, EntryService)
+	controller: ['$routeParams', '$scope', 'EntryService', 'EntryTemplateService',
+	function EntriesBoardController($routeParams, $scope, EntryService, EntryTemplateService)
 	{
 		var alias = this;
 		this.status = '';
@@ -19,20 +20,44 @@
 
         if (!$scope.entriesOnBoard)
         	$scope.entriesOnBoard = [];
+        $scope.templates = [];
 
-        if ($routeParams.id > 0)
+        loadEntry($routeParams.id);
+        loadTemplates();
+
+        function loadEntry(id)
         {
-        	EntryService.load($routeParams.id).then(
+        	if (id > 0)
+        	{
+        		EntryService.load(id).then(
+					function (dto)
+					{
+						if (dto.error)
+						{
+							alias.status = dto.error;
+						}
+						else
+						{
+							alias.add(dto);
+							alias.status = 'load ok';
+						}
+					});
+        	}
+        }
+
+        function loadTemplates()
+        {
+        	EntryTemplateService.search(null).then(
 				function (dto)
 				{
 					if (dto.error)
 					{
-						alias.status = dto.error;
+						alias.status = 'templates: ' + dto.error;
 					}
 					else
 					{
-						alias.add(dto);
-						alias.status = 'load ok';
+						$scope.templates = dto.Templates;
+						alias.status = 'templates ok';
 					}
 				});
         }
@@ -76,6 +101,20 @@
         		Memo: '',
         		Account: { AutoId: 0, Presentation: '' },
         		Center: { AutoId: 0, Presentation: '' }, 
+        		Version: 0
+        	}
+        	alias.add(entry);
+        }
+
+        this.addNewCardUsingTemplate = function(template)
+        {
+        	var entry = {
+        		AutoId: 0,
+        		Date: new Date(),
+        		Value: template.Value,
+        		Memo: template.Memo,
+        		Account: template.Account, //TODO clone?
+        		Center: template.Center, //TODO clone?
         		Version: 0
         	}
         	alias.add(entry);

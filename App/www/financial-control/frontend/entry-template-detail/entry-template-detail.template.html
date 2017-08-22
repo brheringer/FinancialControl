@@ -4,6 +4,11 @@
 	<form name="thisForm" ng-submit="$ctrl.save()" novalidate>
 		<div class="formFieldsArea" layout="column" layout-padding ng-cloak>
 
+			<md-input-container class="md-block" md-no-float>
+				<label>Title</label>
+				<input name="fieldTitle" ng-model="$ctrl.model.Title" placeholder="type here...">
+			</md-input-container>
+
 			<md-input-container>
 				<label>Account</label>
 				<smart-search ng-model="$ctrl.model.Account" target-service="Account" />

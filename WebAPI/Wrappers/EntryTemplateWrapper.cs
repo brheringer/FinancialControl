@@ -11,6 +11,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		{
 			EntryTemplate template = new EntryTemplate();
 			EntityWrapper.WrapIntoEntidade(dto, template);
+			template.Title = dto.Title;
 			template.Value = dto.Value;
 			template.Memo = dto.Memo;
 			template.Account = EntityWrapper.CreateProxy<Account>(dto.Account);
@@ -31,6 +32,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		{
 			EntryTemplateDto dto = new EntryTemplateDto();
 			EntityWrapper.WrapIntoDto(template, dto);
+			dto.Title = template.Title;
 			dto.Value = template.Value;
 			dto.Memo = template.Memo;
 			dto.Account = EntityWrapper.WrapToReferencia(template.Account);

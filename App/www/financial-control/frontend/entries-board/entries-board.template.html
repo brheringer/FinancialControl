@@ -31,5 +31,11 @@
 						onclosecard="$ctrl.closeCard" 
 						onduplicatecard="$ctrl.add" />
 		</div>
-	</div>
+		<div class="entriesBoardSlot">
+			<span>Templates:</span>
+			<div ng-repeat="t in templates track by $index">
+				<md-button class="md-raised"
+						   ng-click="$ctrl.addNewCardUsingTemplate(t)">(+) {{t.Title}}</md-button>
+			</div>
+		</div>
 </div>

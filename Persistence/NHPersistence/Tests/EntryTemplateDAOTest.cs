@@ -114,6 +114,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			decimal value, string memo)
 		{
 			EntryTemplate et = new EntryTemplate();
+			et.Title = "Title...";
 			et.Account = account;
 			et.Center = center;
 			et.Value = value;

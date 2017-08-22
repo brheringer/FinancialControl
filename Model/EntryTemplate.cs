@@ -4,6 +4,8 @@ namespace FinancialControl.Model
 {
 	public class EntryTemplate : Entity
 	{
+		public virtual string Title { get; set; }
+
 		public virtual ResultCenter Center { get; set; }
 
 		public virtual Account Account { get; set; }
@@ -14,10 +16,16 @@ namespace FinancialControl.Model
 
 		public override void Validate()
 		{
+			ValidateTitle();
 			ValidateAccount();
 			ValidateCenter();
 			ValidateMemo();
 			ValidateValue();
+		}
+
+		private void ValidateTitle()
+		{
+			ValidateRequiredProperty(() => this.Title);
 		}
 
 		private void ValidateAccount()
@@ -38,8 +46,7 @@ namespace FinancialControl.Model
 
 		public override string ToString()
 		{
-			return string.Format("{0} @ {1} : {2}", 
-				this.Value, this.Account, this.Center);
+			return this.Title;
 		}
 	}
 }
