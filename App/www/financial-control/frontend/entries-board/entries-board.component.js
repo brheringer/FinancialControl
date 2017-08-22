@@ -31,7 +31,7 @@
 					}
 					else
 					{
-						add(dto);
+						alias.add(dto);
 						alias.status = 'load ok';
 					}
 				});
@@ -78,19 +78,24 @@
         		Center: { AutoId: 0, Presentation: '' }, 
         		Version: 0
         	}
-        	add(entry);
+        	alias.add(entry);
         }
 
-        function add(entry)
+        this.add = function (entry)
         {
         	$scope.entriesOnBoard.push(entry);
         }
 
-        this.closeCard = function (card)
+        this.closeCard = function (cardIndex)
         {
-        	var i = $scope.entriesOnBoard.indexOf(card);
-			if(i >= 0)
-        		$scope.entriesOnBoard.splice(i, 1);
+        	if (cardIndex >= 0 && cardIndex <= $scope.entriesOnBoard.length)
+        	{
+        		$scope.entriesOnBoard.splice(cardIndex, 1);
+
+				//correct new indexes
+        		for (var i = 0; i < $scope.entriesOnBoard.length; i++)
+        			$scope.entriesOnBoard[i].CardIndex = 0;
+        	}
         }
 	}]
 });

@@ -29,8 +29,8 @@ namespace FinancialControl.WebAPI.Controllers
 			importer.CurrentUser = this.UserName;
 			importer.FileContent = data;
 			importer.MemoMapper = new MemoMapperBuilder().Build(mappings);
-			//importer.TempAccount; //TODO carregar do banco
-			//importer.TempCenter; //TODO carregar do banco
+			importer.TempAccount = daoFactory.AccountDAO.LoadFirstMatch("Importing", this.UserName); //TODO let the user choose
+			importer.TempCenter = daoFactory.ResultCenterDAO.LoadFirstMatch("Importing", this.UserName); //TODO let the user choose
 			importer.Import();
 			foreach(Entry entry in importer.GeneratedEntries)
 			{

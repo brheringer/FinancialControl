@@ -1,7 +1,6 @@
-talvez tentar usar ng-file-upload https://stackoverflow.com/questions/42121202/submit-a-form-with-post-action-using-angular
-	https://stackoverflow.com/questions/18571001/file-upload-using-angularjs
-	https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
+board: opção para usar template
 
+importing: permitir escolher conta e centro temporarios
 documentar as bibliotecas usadas e os créditos e as licenças
 terminar: TestarSmartSearch para contas e centros
 logoff nao esta implementado

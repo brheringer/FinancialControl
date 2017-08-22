@@ -26,8 +26,10 @@
 	</div>
 
 	<div>
-		<div ng-repeat="entry in entriesOnBoard" class="entriesBoardSlot">
-			<entry-card ng-model="entry" />
+		<div ng-repeat="entry in entriesOnBoard track by $index" class="entriesBoardSlot">
+			<entry-card ng-model="entry" 
+						onclosecard="$ctrl.closeCard" 
+						onduplicatecard="$ctrl.add" />
 		</div>
 	</div>
 </div>

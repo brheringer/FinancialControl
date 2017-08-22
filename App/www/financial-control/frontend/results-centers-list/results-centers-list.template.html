@@ -13,7 +13,7 @@
 				</md-input-container>
 
 				<md-input-container md-no-float style="max-width: 20em" class="hide-error-msg">
-					<label>Descrição</label>
+					<label>Description</label>
 					<input ng-model="$ctrl.model.FilterDescription" type="text" id="FilterDescription" placeholder="type here..." />
 				</md-input-container>
 
@@ -22,22 +22,22 @@
 			<div layout="row">
 				<md-button ng-click="$ctrl.search()" ng-disabled="formFilters.$invalid">
 					<md-icon md-svg-icon="iconSearch"></md-icon>
-					Pesquisar
+					Search
 				</md-button>
 
 				<md-button ng-href="#!/resultCenter">
 					<md-icon md-svg-icon="iconNew"></md-icon>
-					Novo
+					New
 				</md-button>
 
 				<md-button ng-click="$ctrl.hideFilters()" ng-show="$ctrl.visibleFilters">
 					<md-icon md-svg-icon="iconHide"></md-icon>
-					Ocultar Filtros
+					Hide Filters
 				</md-button>
 
 				<md-button ng-click="$ctrl.showFilters()" ng-show="!$ctrl.visibleFilters">
 					<md-icon md-svg-icon="iconShow"></md-icon>
-					Exibir Filtros
+					Show Filters
 				</md-button>
 
 			</div>

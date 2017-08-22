@@ -8,14 +8,16 @@
 		controllerAs: 'ctrl',
 		scope: {
 			model: '=ngModel',
-			name: '@name'
+			name: '@name',
+			onclosecard: '=',
+			onduplicatecard: '='
 		}
 	}
 });
 
 angular
 .module('entryCard')
-.controller('EntryCardController', ['$scope', 'EntryService', function EntryCardController($scope, EntryService)
+.controller('EntryCardController', ['$scope', 'EntryService', 'dateTimeHelper', function EntryCardController($scope, EntryService, dateTimeHelper)
 {
 	//TODO criar algum indicador que o card nao foi salvo, ou entao salvar sempre automaticamente, ou ambos
 	//$scope.model
@@ -45,6 +47,17 @@ angular
 	{
 		resetModel();
 		alias.status = 'new ok';
+	}
+
+	this.duplicate = function ()
+	{
+		if ($scope.onduplicatecard)
+		{
+			var clone = dateTimeHelper.clone($scope.model);
+			clone.AutoId = 0;
+			clone.Version = 0;
+			$scope.onduplicatecard(clone);
+		}
 	}
 
 	this.save = function ()
@@ -79,5 +92,11 @@ angular
 					alias.status = "delete ok";
 				}
 			});
+	}
+
+	this.close = function ()
+	{
+		if ($scope.onclosecard)
+			$scope.onclosecard($scope.$parent.$index);
 	}
 }]);

@@ -11,10 +11,13 @@
 								  placeholder="Data" />
 			</md-input-container>
 
-			<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
-				<label>Value</label>
-				<input ng-model="model.Value" type="number" placeholder="Value" required />
-			</md-input-container>
+			<div layout="column">
+				<md-input-container md-no-float style="max-width: 8em" class="hide-error-msg">
+					<label>Value</label>
+					<input ng-model="model.Value" type="number" placeholder="Value" required />
+				</md-input-container>
+				<label style="color:gray">id: {{model.AutoId}}</label>
+			</div>
 		</div>
 
 		<md-input-container>
@@ -27,9 +30,9 @@
 			<smart-search ng-model="model.Center" target-service="ResultCenter" />
 		</md-input-container>
 
-		<md-input-container md-no-float style="max-width: 20em" class="hide-error-msg">
+		<md-input-container style="max-width: 20em" class="hide-error-msg">
 			<label>Memo</label>
-			<input ng-model="model.Memo" type="text" placeholder="Memo" />
+			<textarea ng-model="model.Memo" placeholder="Memo"></textarea>
 		</md-input-container>
 
 		<div class="formStatusBar">{{ctrl.status}}</div>
@@ -37,6 +40,7 @@
 		<div class="entryCardToolbar" layout="row" layout-align="space-around end">
 			<md-icon-button ng-click="ctrl.save()"><md-icon md-svg-icon="iconSave" md-menu-align-target></md-icon><md-tooltip>Save</md-tooltip></md-icon-button>
 			<md-icon-button ng-click="ctrl.new()"><md-icon md-svg-icon="iconNew" md-menu-align-target></md-icon><md-tooltip>New</md-tooltip></md-icon-button>
+			<md-icon-button ng-click="ctrl.duplicate()"><md-icon md-svg-icon="iconDuplicate" md-menu-align-target></md-icon><md-tooltip>Duplicate</md-tooltip></md-icon-button>
 			<md-icon-button ng-click="ctrl.delete()" ng-disabled="!ctrl.isPersistent()"><md-icon md-svg-icon="iconDelete" md-menu-align-target></md-icon><md-tooltip>Delete</md-tooltip></md-icon-button>
 			<md-icon-button ng-click="ctrl.close()"><md-icon md-svg-icon="iconClose" md-menu-align-target></md-icon><md-tooltip>Close</md-tooltip></md-icon-button>
 		</div>

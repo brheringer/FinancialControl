@@ -39,6 +39,7 @@
 		.icon('iconDate', 'res/icon/android/date_24px.svg', 24)
 		.icon('iconDateTimePicker', 'res/icon/android/datetimepicker_24px.svg', 24)
 		.icon('iconDelete', 'res/icon/android/delete_24px.svg', 24)
+		.icon('iconDuplicate', 'res/icon/android/duplicate_24px.svg', 24)
 		.icon('iconEdit', 'res/icon/android/edit_24px.svg', 24)
 		.icon('iconEntry', 'res/icon/android/entry_24px.svg', 24)
 		.icon('iconEntryTemplate', 'res/icon/android/entry_24px.svg', 24) //TODO mudar imagem
