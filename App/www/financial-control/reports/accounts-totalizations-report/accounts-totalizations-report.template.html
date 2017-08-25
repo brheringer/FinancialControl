@@ -1,0 +1,103 @@
+﻿<div>
+	<div class="formTitle">Accounts Totalizations Report</div>
+
+	<div class="formFieldsArea">
+		<span class="formGroupLabel">Filters</span>
+
+		<form name="formFilters" ng-submit="$ctrl.search()">
+			<div layout="column" ng-show="$ctrl.visibleFilters">
+
+				<md-input-container>
+					<label>Initial Date</label>
+					<date-time-picker ng-model="$ctrl.model.FilterInitialDate"
+										required="false"
+										config="{'startView': 'day', 'minView': 'day'}"
+										placeholder="..." />
+				</md-input-container>
+
+				<md-input-container>
+					<label>Final Date</label>
+					<date-time-picker ng-model="$ctrl.model.FilterFinalDate"
+										required="false"
+										config="{'startView': 'day', 'minView': 'day'}"
+										placeholder="..." />
+				</md-input-container>
+
+				<md-checkbox ng-model="$ctrl.analytical" aria-label="Analytical">
+					Analytical
+				</md-checkbox>
+			</div>
+
+			<div layout="row">
+				<md-button ng-click="$ctrl.generateReport()">
+					<md-icon md-svg-icon="iconSearch"></md-icon>
+					Search
+				</md-button>
+
+				<md-button ng-click="$ctrl.hideFilters()" ng-show="$ctrl.visibleFilters">
+					<md-icon md-svg-icon="iconHide"></md-icon>
+					Hide Filters
+				</md-button>
+
+				<md-button ng-click="$ctrl.showFilters()" ng-show="!$ctrl.visibleFilters">
+					<md-icon md-svg-icon="iconShow"></md-icon>
+					Show Filters
+				</md-button>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="formFieldsArea" ng-show="$ctrl.didSearch && $ctrl.model.Totalizations.length == 0" layout="column">
+		No item was found.
+	</div>
+
+	<div class="formFieldsArea" ng-show="$ctrl.model.Totalizations.length > 0" layout="column">
+
+		<div layout="row">
+			<span class="formFieldLabel">Filter inside results in this page:</span>
+			<input ng-model="autofilter" />
+		</div>
+
+		<!--<table>
+			<tr>
+				<th><md-icon md-svg-icon="iconAccount"></md-icon>Structure</th>
+				<th><md-icon md-svg-icon="iconAccount"></md-icon>Description</th>
+				<th><md-icon md-svg-icon="iconMoney"></md-icon>Total</th>
+				<th><md-icon md-svg-icon="iconMoney"></md-icon>Value</th>
+				<th><md-icon md-svg-icon="iconDate"></md-icon>Date</th>
+				<th><md-icon md-svg-icon="iconMemo"></md-icon>Memo</th>
+			</tr>
+			<tr ng-repeat="t in $ctrl.model.Totalizations | filter:autofilter | orderBy:$ctrl.orderBy:$ctrl.reverseOrder">
+				<td>{{t.AccountStructure}}</td>
+				<td>{{t.AccountDescription}}</td>
+				<td>{{t.Total | currency:"$":2}}</td>
+			</tr>
+		</table>-->
+
+		<div class="div-table">
+			<div class="div-table-row">
+				<div class="div-table-col"><md-icon md-svg-icon="iconAccount"></md-icon>Structure</div>
+				<div class="div-table-col-large"><md-icon md-svg-icon="iconAccount"></md-icon>Description</div>
+				<div class="div-table-col-right"><md-icon md-svg-icon="iconMoney"></md-icon>Total</div>
+				<div class="div-table-col" ng-show="$ctrl.analytical"><md-icon md-svg-icon="iconDate"></md-icon>Date</div>
+				<div class="div-table-col-larger" ng-show="$ctrl.analytical"><md-icon md-svg-icon="iconMemo"></md-icon>Memo</div>
+			</div>
+			<div ng-repeat="t in $ctrl.model.Totalizations | filter:autofilter | orderBy:$ctrl.orderBy:$ctrl.reverseOrder">
+				<div class="div-table-row">
+					<div class="div-table-col">{{t.AccountStructure}}</div>
+					<div class="div-table-col-large">{{t.AccountDescription}}</div>
+					<div class="div-table-col-right">{{t.Total | currency:"$":2}}</div>
+				</div>
+				<div class="div-table-row" ng-repeat="detail in t.AnalyticalDetails" ng-show="$ctrl.analytical">
+					<div class="div-table-col">...</div>
+					<div class="div-table-col-large">...</div>
+					<div class="div-table-col-right">{{detail.Value | currency:"$":2}}</div>
+					<div class="div-table-col">{{detail.Date | datePresentation}}</div>
+					<div class="div-table-col-larger">{{detail.Memo}}</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

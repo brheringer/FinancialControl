@@ -21,7 +21,8 @@
 			createMenu('entriesTemplates', 'Entries Templates'),
 			createMenu('memosMappings', 'Memos Mappings'),
 			createMenu('importing', 'Import Entries'),
-			createMenu('exporting', 'Export Entries')
+			createMenu('exporting', 'Export Entries'),
+			createMenu('accountsTotalizationsReport', 'Accounts Totalizations Report')
 		];
 
 		var originatorEv;

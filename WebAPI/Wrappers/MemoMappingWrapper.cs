@@ -10,7 +10,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		public static MemoMapping Wrap(MemoMappingDto dto)
 		{
 			MemoMapping mapping = new MemoMapping();
-			EntityWrapper.WrapIntoEntidade(dto, mapping);
+			EntityWrapper.WrapIntoEntity(dto, mapping);
 			mapping.IncomingMemo = dto.IncomingMemo;
 			mapping.MappedMemo = dto.MappedMemo;
 			mapping.MappedAccount = EntityWrapper.CreateProxy<Account>(dto.MappedAccount);
@@ -33,8 +33,8 @@ namespace FinancialControl.WebAPI.Wrappers
 			EntityWrapper.WrapIntoDto(memo, dto);
 			dto.IncomingMemo = memo.IncomingMemo;
 			dto.MappedMemo = memo.MappedMemo;
-			dto.MappedAccount = EntityWrapper.WrapToReferencia(memo.MappedAccount);
-			dto.MappedCenter = EntityWrapper.WrapToReferencia(memo.MappedCenter);
+			dto.MappedAccount = EntityWrapper.WrapToReference(memo.MappedAccount);
+			dto.MappedCenter = EntityWrapper.WrapToReference(memo.MappedCenter);
 			return dto;
 		}
 	}

@@ -74,15 +74,15 @@ namespace FinancialControl.WebAPI.Controllers
 
 		[HttpPost]
 		[Route("api/account/search")]
-		public AccountsDto Search(AccountDto dto)
+		public AccountsDto Search(AccountsDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, dto));
 		}
 
-		private AccountsDto Search(DaoFactory daoFactory, AccountDto dto)
+		private AccountsDto Search(DaoFactory daoFactory, AccountsDto dto)
 		{
 			AccountsDto response = new AccountsDto();
-			var accounts = daoFactory.AccountDAO.Search(dto.Structure, dto.Description, this.UserName);
+			var accounts = daoFactory.AccountDAO.Search(dto.FilterStructure, dto.FilterDescription, this.UserName);
 			response.Accounts = AccountWrapper.Wrap(accounts);
 			return response;
 		}

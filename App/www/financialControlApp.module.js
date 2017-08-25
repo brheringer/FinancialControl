@@ -14,6 +14,7 @@
 	'entryTemplateService',
 	'memoMappingService',
 	'importingService',
+	'accountsTotalizationsReportService',
 	'resultsCentersList',
 	'resultCenterDetail',
 	'accountsList',
@@ -25,5 +26,6 @@
 	'entryTemplateDetail',
 	'memosMappingsList',
 	'memoMappingDetail',
-	'importing'
+	'importing',
+	'accountsTotalizationsReport'
 ]);

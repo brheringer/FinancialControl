@@ -17,7 +17,7 @@ namespace FinancialControl.WebAPI.Wrappers
 			dto.Version = entity.Version;
 		}
 
-		public static void WrapIntoEntidade(EntityDto dto, Entity entity)
+		public static void WrapIntoEntity(EntityDto dto, Entity entity)
 		{
 			if (entity == null || dto == null)
 				throw new ArgumentNullException();
@@ -32,12 +32,12 @@ namespace FinancialControl.WebAPI.Wrappers
 			EntitiesReferencesDto references = new EntitiesReferencesDto();
 			foreach (T e in entities)
 			{
-				references.References.Add(WrapToReferencia(e));
+				references.References.Add(WrapToReference(e));
 			}
 			return references;
 		}
 
-		public static EntityReferenceDto WrapToReferencia(Entity entidade)
+		public static EntityReferenceDto WrapToReference(Entity entidade)
 		{
 			EntityReferenceDto dto = new EntityReferenceDto();
 			if (entidade != null)

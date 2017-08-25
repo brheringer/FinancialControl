@@ -213,3 +213,45 @@ md-card .searchResultCard
 	background-color: whitesmoke;
 }
 
+/*https://stackoverflow.com/questions/3053205/how-create-table-only-using-div-tag-and-css*/
+.div-table {
+  display: table;         
+  width: auto;         
+  background-color: #eee;         
+  border: 1px solid #666666;         
+  border-spacing: 5px; /* cellspacing:poor IE support for  this */
+}
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+.div-table-col {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;         
+  width: 100px;         
+  background-color: #ccc;
+  padding: 5px;
+}
+.div-table-col-right {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;         
+  width: 100px;         
+  background-color: #ccc;
+  text-align: right;
+  padding: 5px;
+}
+.div-table-col-large {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;         
+  width: 200px;         
+  background-color: #ccc;  
+  padding: 5px;
+}
+.div-table-col-larger {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;         
+  width: 400px;         
+  background-color: #ccc;  
+  padding: 5px;
+}

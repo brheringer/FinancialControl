@@ -10,7 +10,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		public static ResultCenter Wrap(ResultCenterDto dto)
 		{
 			ResultCenter center = new ResultCenter();
-			EntityWrapper.WrapIntoEntidade(dto, center);
+			EntityWrapper.WrapIntoEntity(dto, center);
 			center.Code = dto.Code;
 			center.Description = dto.Description;
 			return center;

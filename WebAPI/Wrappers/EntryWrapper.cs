@@ -10,7 +10,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		public static Entry Wrap(EntryDto dto)
 		{
 			Entry entry = new Entry();
-			EntityWrapper.WrapIntoEntidade(dto, entry);
+			EntityWrapper.WrapIntoEntity(dto, entry);
 			if(dto.Date != null)
 				entry.Date = dto.Date.Value;
 			entry.Value = dto.Value;
@@ -36,8 +36,8 @@ namespace FinancialControl.WebAPI.Wrappers
 			dto.Date = entry.Date;
 			dto.Value = entry.Value;
 			dto.Memo = entry.Memo;
-			dto.Account = EntityWrapper.WrapToReferencia(entry.Account);
-			dto.Center = EntityWrapper.WrapToReferencia(entry.Center);
+			dto.Account = EntityWrapper.WrapToReference(entry.Account);
+			dto.Center = EntityWrapper.WrapToReference(entry.Center);
 			return dto;
 		}
 	}

@@ -23,6 +23,7 @@
 		.when('/memoMapping', { template: '<memo-mapping-detail></memo-mapping-detail>' })
 		.when('/memoMapping/:id', { template: '<memo-mapping-detail></memo-mapping-detail>' })
 		.when('/importing', { template: '<importing></importing>' })
+		.when('/accountsTotalizationsReport', { template: '<accounts-totalizations-report></accounts-totalizations-report>' })
 		.otherwise('/portal');
 
 		//TODO review
@@ -53,6 +54,7 @@
 		.icon('iconPagePrevious', 'res/icon/android/pagePrevious_24px.svg', 24)
 		.icon('iconPageNext', 'res/icon/android/pageNext_24px.svg', 24)
 		.icon('iconResultCenter', 'res/icon/android/resultsCenters_24px.svg', 24)
+		.icon('iconReport', 'res/icon/android/memo_24px.svg', 24) //TODO mudar imagem
 		.icon('iconSave', 'res/icon/android/save_24px.svg', 24)
 		.icon('iconSearch', 'res/icon/android/search_24px.svg', 24)
 		.icon('iconShow', 'res/icon/android/show_24px.svg', 24)

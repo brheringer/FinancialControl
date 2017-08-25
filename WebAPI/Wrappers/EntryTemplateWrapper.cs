@@ -10,7 +10,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		public static EntryTemplate Wrap(EntryTemplateDto dto)
 		{
 			EntryTemplate template = new EntryTemplate();
-			EntityWrapper.WrapIntoEntidade(dto, template);
+			EntityWrapper.WrapIntoEntity(dto, template);
 			template.Title = dto.Title;
 			template.Value = dto.Value;
 			template.Memo = dto.Memo;
@@ -35,8 +35,8 @@ namespace FinancialControl.WebAPI.Wrappers
 			dto.Title = template.Title;
 			dto.Value = template.Value;
 			dto.Memo = template.Memo;
-			dto.Account = EntityWrapper.WrapToReferencia(template.Account);
-			dto.Center = EntityWrapper.WrapToReferencia(template.Center);
+			dto.Account = EntityWrapper.WrapToReference(template.Account);
+			dto.Center = EntityWrapper.WrapToReference(template.Center);
 			return dto;
 		}
 	}

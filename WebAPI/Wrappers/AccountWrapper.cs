@@ -12,7 +12,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		public static Account Wrap(AccountDto dto)
 		{
 			Account account = new Account();
-			EntityWrapper.WrapIntoEntidade(dto, account);
+			EntityWrapper.WrapIntoEntity(dto, account);
 			account.Structure = dto.Structure;
 			account.Description = dto.Description;
 			account.ParentAccount = EntityWrapper.CreateProxy<Account>(dto.ParentAccount);
@@ -34,7 +34,7 @@ namespace FinancialControl.WebAPI.Wrappers
 			EntityWrapper.WrapIntoDto(account, dto);
 			dto.Structure = account.Structure;
 			dto.Description = account.Description;
-			dto.ParentAccount = EntityWrapper.WrapToReferencia(account.ParentAccount);
+			dto.ParentAccount = EntityWrapper.WrapToReference(account.ParentAccount);
 			dto.Level = account.Level;
 			dto.Type = account.Type.ToString();
 			return dto;

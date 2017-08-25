@@ -2,7 +2,7 @@
 
 namespace FinancialControl.Model
 {
-	public class Account : Entity
+	public class Account : Entity, IComparable<Account>
 	{
 		private const char LEVEL_SEPARATOR = '.';
 
@@ -62,6 +62,14 @@ namespace FinancialControl.Model
 				nivel = estrutura.Split(LEVEL_SEPARATOR).Length;
 			}
 			return nivel;
+		}
+
+		public virtual int CompareTo(Account other)
+		{
+			if (other == null) return 1;
+			if (this.Structure == null && other.Structure == null) return 0;
+			if (this.Structure == null && other.Structure != null) return -1;
+			return this.Structure.CompareTo(other.Structure);
 		}
 	}
 }

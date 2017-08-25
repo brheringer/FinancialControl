@@ -48,11 +48,12 @@
     <Compile Include="Importers\MemoMapperBuilder.cs" />
     <Compile Include="Importers\MemoMapperItem.cs" />
     <Compile Include="Importers\MemoMapper.cs" />
+    <Compile Include="Reports\AccountsTotalizatonsReport.cs" />
+    <Compile Include="Reports\AccountTotalization.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exporters\" />
     <Folder Include="Properties\" />
-    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\FinancialControl.Model.csproj">
