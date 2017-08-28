@@ -53,16 +53,17 @@ namespace FinancialControl.WebAPI.Controllers
 			return EntryWrapper.Wrap(entries);
 		}
 
-		public void Delete(int id)
+		public EntryDto Delete(int id)
 		{
-			InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
+			return InvokeCommandInsideTransaction(daoFactory => Delete(daoFactory, id));
 		}
 
-		private void Delete(DaoFactory daoFactory, int id)
+		private EntryDto Delete(DaoFactory daoFactory, int id)
 		{
 			Entry entry = daoFactory.EntryDAO.Load(id);
 			UserSiege(entry.User);
 			daoFactory.EntryDAO.Delete(entry);
+			return new EntryDto();
 		}
 
 		[HttpPost]
