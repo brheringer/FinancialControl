@@ -22,8 +22,18 @@
         	$scope.entriesOnBoard = [];
         $scope.templates = [];
 
-        loadEntry($routeParams.id);
+        loadEntries($routeParams.id);
         loadTemplates();
+
+        function loadEntries(ids)
+        {
+        	if (ids)
+        	{
+        		var idArray = ids.split(';'); //TODO criar constante global aqui e em entries-list.component
+        		for (var i = 0; i < idArray.length; i++)
+        			loadEntry(idArray[i]); //TODO talvez carregar tudo de uma vez
+        	}
+        }
 
         function loadEntry(id)
         {

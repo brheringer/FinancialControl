@@ -57,5 +57,17 @@
         	{
         		this.visibleFilters = true;
         	}
+
+        	this.identifySelectedEntries = function()
+        	{
+        		var array = [];
+        		for (var i = 0; i < this.model.Entries.length; i++)
+        		{
+        			var e = this.model.Entries[i];
+					if(e.IsSelected)
+        				array.push(e.AutoId);
+        		}
+        		return array.join(';'); //TODO criar constante global aqui e em entries-board.component
+        	}
         }]
 });

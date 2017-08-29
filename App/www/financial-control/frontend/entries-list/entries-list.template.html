@@ -88,6 +88,10 @@
 					Show Filters
 				</md-button>
 
+				<md-button ng-click="$ctrl.showFilters()"  aria-label="Open All Selected" ng-href="#!/entriesBoard/{{$ctrl.identifySelectedEntries()}}">
+					<md-icon md-svg-icon="iconExpand"></md-icon>
+					Open All Selected
+				</md-button>
 			</div>
 		</form>
 	</div>
@@ -124,9 +128,10 @@
 					 class="searchResultCard" layout="row">
 
 				<div class="searchResultCardActionPanel" layout="column" layout-align="center center">
-					<md-button class="md-icon-button" aria-label="Visualizar" ng-href="#!/entriesBoard/{{entry.AutoId}}">
+					<md-button class="md-icon-button" aria-label="Visualize" ng-href="#!/entriesBoard/{{entry.AutoId}}">
 						<md-icon md-svg-icon="iconExpand"></md-icon>
 					</md-button>
+					<md-checkbox ng-model="entry.IsSelected"></md-checkbox>
 				</div>
 
 				<div layout="column">
