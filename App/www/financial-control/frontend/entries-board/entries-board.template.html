@@ -31,11 +31,37 @@
 						onclosecard="$ctrl.closeCard" 
 						onduplicatecard="$ctrl.add" />
 		</div>
+
+		<!--TEMPLATES-->
 		<div class="entriesBoardSlot">
 			<span>Templates:</span>
 			<div ng-repeat="t in templates track by $index">
 				<md-button class="md-raised"
 						   ng-click="$ctrl.addNewCardUsingTemplate(t)">(+) {{t.Title}}</md-button>
+			</div>
+		</div>
+
+		<!--APPLY TO ALL-->
+		<div class="entriesBoardSlot">
+			
+			<div layout="column">
+				<md-button class="md-raised"
+						   ng-click="$ctrl.applyToAll(applicableAccount, applicableCenter, applicableMemo)">Apply to All Open Entries</md-button>
+
+				<md-input-container>
+					<label>Account</label>
+					<smart-search ng-model="applicableAccount" target-service="Account" />
+				</md-input-container>
+
+				<md-input-container>
+					<label>Result Center</label>
+					<smart-search ng-model="applicableCenter" target-service="ResultCenter" />
+				</md-input-container>
+
+				<md-input-container style="max-width: 20em" class="hide-error-msg">
+					<label>Memo</label>
+					<textarea ng-model="applicableMemo" placeholder="Memo"></textarea>
+				</md-input-container>
 			</div>
 		</div>
 </div>

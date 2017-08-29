@@ -1,3 +1,6 @@
+entries-list: select all
+entries-list: pesquisa por data parece ter problema (ex: usar um dia exato como ini e final), provavelmente por causa do fuso horario
+board: save all funciona, mas não atualiza autoid em caso de novo (falta refresh)
 board: melhorar layout botões template
 importing: permitir escolher conta e centro temporarios
 documentar as bibliotecas usadas e os créditos e as licenças

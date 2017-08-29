@@ -152,7 +152,6 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			accounts = TransactionMngrInstance.Factory.AccountDAO.SmartSearch(null, USER);
 			Assert.IsNotNull(accounts);
 			Assert.AreEqual(6, accounts.Count, "It should find 0 account when it uses null.");
-
 		}
 
 		private void CreateAccount(long id)

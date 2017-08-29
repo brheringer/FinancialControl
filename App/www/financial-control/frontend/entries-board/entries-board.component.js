@@ -2,8 +2,8 @@
 .component('entriesBoard',
 {
 	templateUrl: 'financial-control/frontend/entries-board/entries-board.template.html',
-	controller: ['$routeParams', '$scope', 'EntryService', 'EntryTemplateService',
-	function EntriesBoardController($routeParams, $scope, EntryService, EntryTemplateService)
+	controller: ['$routeParams', '$scope', 'dateTimeHelper', 'EntryService', 'EntryTemplateService',
+	function EntriesBoardController($routeParams, $scope, dateTimeHelper, EntryService, EntryTemplateService)
 	{
 		var alias = this;
 		this.status = '';
@@ -80,7 +80,7 @@
 
         this.saveAll = function()
         {
-        	for (var i = 0; i < $scope.entriesOnBoard.lenght; i++)
+        	for (var i = 0; i < $scope.entriesOnBoard.length; i++)
         		save($scope.entriesOnBoard[i]);
         }
 
@@ -144,6 +144,20 @@
 				//correct new indexes
         		for (var i = 0; i < $scope.entriesOnBoard.length; i++)
         			$scope.entriesOnBoard[i].CardIndex = 0;
+        	}
+        }
+
+        this.applyToAll = function(applicableAccount, applicableCenter, applicableMemo)
+        {
+        	for(var i = 0; i < $scope.entriesOnBoard.length; i++)
+        	{
+        		var entry = $scope.entriesOnBoard[i];
+        		if (applicableAccount && applicableAccount.AutoId > 0)
+        			entry.Account = dateTimeHelper.clone(applicableAccount);
+        		if (applicableCenter && applicableCenter.AutoId > 0)
+        			entry.Center = dateTimeHelper.clone(applicableCenter);
+        		if (applicableMemo && applicableMemo != "")
+        			entry.Memo = dateTimeHelper.clone(applicableMemo);
         	}
         }
 	}]

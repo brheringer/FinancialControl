@@ -23,7 +23,6 @@ angular
 .module('core.smartSearch')
 .controller('SmartSearchController', ['$scope', 'GenericService', function SmartSearch2Controller($scope, GenericService) {
 	var self = this;
-
 	self.simulateQuery = false;
 	self.isDisabled = false;
 	self.visible = false;
@@ -32,6 +31,9 @@ angular
 	self.labelName = ($scope.name) ? $scope.name : " "; // If you defined a floating label in your component, it has to be at least an empty string or it will not render.
 
 	self.smartSearchServiceUrl = $scope.targetService + '/SmartSearch'; //TODO
+
+	if ($scope.entityInfo == null)
+		$scope.entityInfo = { 'AutoId': 0, 'EntryKey': '', 'Presentation': '' };
 
 	//self.lastSmartEntryForCacheImprovement = '';
 	//self.lastGrabbedItems = [];
