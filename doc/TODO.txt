@@ -1,3 +1,21 @@
+fazer relatorio principal
+
+import: parece que esta importando a data com 3h a menos (tem que ignorar fuso horario)
+import: memo mapping falhou para "cobrança" por causa do "ç"
+entry list x entry board: deveria deixar pequisar mais entries para adicionar ao board sem perder o que ja ta la
+	talvez a propria pesquisa ja poderia transformar um item em um card e deixar editar e salvar
+entry list: primeiro os mais novos
+entry board: ao duplicar, o autoid do original zera
+entry board: bug: novo, preencher, salvar, duplicar: conta e centro ficou bizarras; fechar card e duplicar de novo: funciona.
+entry board: novo vem com hora na data
+pesquisas não paginam
+smartsearch: quando já está preenchido, a primeira digitação é perdida: ex: expandir entry e digitar account
+seria bom ter como classificar lançamentos com um clique para casos mais comuns - talvez usar os templates
+faltou uma funcionalidade: classificar vários lançamentos de uma vez
+
+aumentar smartentry
+smartentry contas ordenar pela estrutura
+
 entries-list: select all
 entries-list: pesquisa por data parece ter problema (ex: usar um dia exato como ini e final), provavelmente por causa do fuso horario
 board: save all funciona, mas não atualiza autoid em caso de novo (falta refresh)
