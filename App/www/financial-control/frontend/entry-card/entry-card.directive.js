@@ -25,11 +25,13 @@ angular
 	var alias = this;
 	this.status = 'nothing...';
 
-	resetModel = function ()
-	{ //TODO nao sei se isso vai ser usado aqui
+	function resetModel()
+	{
+		var today = new Date();
+		today.setHours(0, 0, 0, 0); //TODO make something reusable and maybe transparent
 		$scope.model = {
 			AutoId: 0,
-			Date: new Date(),
+			Date: today,
 			Value: 0,
 			Memo: '',
 			Account: { AutoId: 0, Presentation: '' },

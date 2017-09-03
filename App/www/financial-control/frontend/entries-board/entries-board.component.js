@@ -48,6 +48,7 @@
 						}
 						else
 						{
+							dto.Date = dto.Date.substr(0, 10);
 							alias.add(dto);
 							alias.status = 'load ok';
 						}
@@ -103,10 +104,11 @@
 
         this.addNewCard = function()
         {
-			//TODO talvez refatorar para outro lugar para ser reusavel
+        	var today = new Date();
+        	today.setHours(0, 0, 0, 0); //TODO make something reusable and maybe transparent
         	var entry = {
         		AutoId: 0,
-        		Date: new Date(),
+        		Date: today,
         		Value: 0,
         		Memo: '',
         		Account: { AutoId: 0, Presentation: '' },

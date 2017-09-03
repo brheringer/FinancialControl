@@ -9,7 +9,7 @@
 		<!--<property name="connection.connection_string">Server=.\sqlexpress;Initial Catalog=Portaria;User ID=sa;Pwd=Sa113s</property>-->
 		<property name="dialect">NHibernate.Dialect.SQLiteDialect</property>
 		<property name="connection.driver_class">NHibernate.Driver.SQLite20Driver</property>
-		<property name="connection.connection_string">Data Source=D:\Aplicacoes\FinancialControl\database\TestFinancialControl.db;New=true;Version=3;</property>
+		<property name="connection.connection_string">Data Source=D:\documentos\database\FinancialControl.db;New=true;Version=3;</property>
 		<!--<property name="connection.connection_string">Data Source=D:\desenvolvimento\FinancialControlWeb\WebAPI\WebAPI\Data\TesteFinancialControl.db;New=true;Version=3;</property>-->
 		<property name="show_sql">true</property>
 		<!--<property name="hbm2ddl.auto">create-drop</property>-->

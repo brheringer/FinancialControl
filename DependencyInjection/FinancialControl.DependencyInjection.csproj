@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Spring.Core">
-      <HintPath>..\..\..\..\lib\Spring.NET\Spring.Core.dll</HintPath>
+      <HintPath>..\..\..\desenvolvimento\lib\Spring.NET\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -1,23 +1,26 @@
 fazer relatorio principal
 
-import: parece que esta importando a data com 3h a menos (tem que ignorar fuso horario)
-import: memo mapping falhou para "cobrança" por causa do "ç"
+resolvi os dois problemas abaixo removendo informação de timezone da data antes de exibir, mas nao ficou bom pq faco em cada lugar que precisa lidar com data
+	o ideal seria interceptar alguma coisa e fazer o tratamento em um lugar so
+	1) entries-list: pesquisa por data parece ter problema (ex: usar um dia exato como ini e final), provavelmente por causa do fuso horario
+	2) import: parece que esta importando a data com 3h a menos (tem que ignorar fuso horario)
+	ainda tem resquicios desse problema (importacao, verificar de novo tambem novo, duplicar, template)
+
+entries-list: filtro por valor min max nao funciona
+import: memo mapping falhou para "cobrança" por causa do "ç"; parece que tem que mudar o ISO na importação
 entry list x entry board: deveria deixar pequisar mais entries para adicionar ao board sem perder o que ja ta la
 	talvez a propria pesquisa ja poderia transformar um item em um card e deixar editar e salvar
 entry list: primeiro os mais novos
 entry board: ao duplicar, o autoid do original zera
 entry board: bug: novo, preencher, salvar, duplicar: conta e centro ficou bizarras; fechar card e duplicar de novo: funciona.
-entry board: novo vem com hora na data
 pesquisas não paginam
-smartsearch: quando já está preenchido, a primeira digitação é perdida: ex: expandir entry e digitar account
 seria bom ter como classificar lançamentos com um clique para casos mais comuns - talvez usar os templates
-faltou uma funcionalidade: classificar vários lançamentos de uma vez
-
+smartsearch: quando já está preenchido, a primeira digitação é perdida: ex: expandir entry e digitar account
 aumentar smartentry
 smartentry contas ordenar pela estrutura
-
 entries-list: select all
-entries-list: pesquisa por data parece ter problema (ex: usar um dia exato como ini e final), provavelmente por causa do fuso horario
+entries-list: allow to delete
+entries-list: options to sort
 board: save all funciona, mas não atualiza autoid em caso de novo (falta refresh)
 board: melhorar layout botões template
 importing: permitir escolher conta e centro temporarios
@@ -28,6 +31,9 @@ Escrever testes unitários no cliente (jasmine) antes de fazer novos formulários
 Validação dos campos no cliente (pelo menos obrigatoriedade)(angularjs)
 Tratar melhor o erro ao efetuar login para sempre responder ou que não tentou fazer login ou login/senha inválido.
 	Por exemplo, se informar um usuário que não existe, dá uma mensagem do banco de dados.
+entry-card: permitir escrever expressoes no lugar do valor e resolve-las
+
+smartentry de contas: seria doido se eu pudesse procurar uma conta totalizadora e apertar + e ele mostrasse ela e seus descendentes, mas isso parece dificil
 
 Quando faz alguma operação e não está autenticado, a resposta é:
 		"System.InvalidOperationException: O cabeçalho especificado não foi encontrado.   
