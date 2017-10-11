@@ -22,6 +22,7 @@ entries-list: select all
 entries-list: allow to delete
 entries-list: options to sort
 board: save all funciona, mas não atualiza autoid em caso de novo (falta refresh)
+	na verdade, acho que não funciona, ou pelo menos não atualiza o status
 board: melhorar layout botões template
 importing: permitir escolher conta e centro temporarios
 documentar as bibliotecas usadas e os créditos e as licenças

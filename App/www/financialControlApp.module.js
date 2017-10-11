@@ -6,6 +6,7 @@
 	'ngCookies',
 	'ngMaterial',
 	'core',
+	'common',
 	'mainMenu',
 	'login',
 	'resultCenterService',

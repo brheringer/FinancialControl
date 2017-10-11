@@ -57,23 +57,9 @@
 		<div layout="row">
 			<span class="formFieldLabel">Filter inside results in this page:</span>
 			<input ng-model="autofilter" />
+			<span class="formFieldLabel">Level:</span>
+			<input ng-model="levelFilter" />
 		</div>
-
-		<!--<table>
-			<tr>
-				<th><md-icon md-svg-icon="iconAccount"></md-icon>Structure</th>
-				<th><md-icon md-svg-icon="iconAccount"></md-icon>Description</th>
-				<th><md-icon md-svg-icon="iconMoney"></md-icon>Total</th>
-				<th><md-icon md-svg-icon="iconMoney"></md-icon>Value</th>
-				<th><md-icon md-svg-icon="iconDate"></md-icon>Date</th>
-				<th><md-icon md-svg-icon="iconMemo"></md-icon>Memo</th>
-			</tr>
-			<tr ng-repeat="t in $ctrl.model.Totalizations | filter:autofilter | orderBy:$ctrl.orderBy:$ctrl.reverseOrder">
-				<td>{{t.AccountStructure}}</td>
-				<td>{{t.AccountDescription}}</td>
-				<td>{{t.Total | currency:"$":2}}</td>
-			</tr>
-		</table>-->
 
 		<div class="div-table">
 			<div class="div-table-row">
@@ -83,7 +69,7 @@
 				<div class="div-table-col" ng-show="$ctrl.analytical"><md-icon md-svg-icon="iconDate"></md-icon>Date</div>
 				<div class="div-table-col-larger" ng-show="$ctrl.analytical"><md-icon md-svg-icon="iconMemo"></md-icon>Memo</div>
 			</div>
-			<div ng-repeat="t in $ctrl.model.Totalizations | filter:autofilter | orderBy:$ctrl.orderBy:$ctrl.reverseOrder">
+			<div ng-repeat="t in $ctrl.model.Totalizations | filter:autofilter | accountLevelFilter:'AccountLevel':levelFilter | orderBy:$ctrl.orderBy:$ctrl.reverseOrder">
 				<div class="div-table-row">
 					<div class="div-table-col">{{t.AccountStructure}}</div>
 					<div class="div-table-col-large">{{t.AccountDescription}}</div>
