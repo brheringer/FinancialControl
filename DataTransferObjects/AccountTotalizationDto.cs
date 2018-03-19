@@ -16,6 +16,7 @@ namespace FinancialControl.DataTransferObjects
 
 		public string AccountStructure { get; set; }
 		public string AccountDescription { get; set; }
+		public int AccountLevel { get; set; }
 		public string CenterStructure { get; set; }
 		public string CenterDescription { get; set; }
 		public decimal Total { get; set; }

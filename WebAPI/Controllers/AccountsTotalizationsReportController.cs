@@ -45,6 +45,7 @@ namespace FinancialControl.WebAPI.Controllers
 				var dto = new AccountTotalizationDto();
 				dto.AccountStructure = t.Account.Structure;
 				dto.AccountDescription = t.Account.Description;
+				dto.AccountLevel = t.Account.Level;
 				dto.Total = t.Total;
 				//TODO dto.CenterStructure;
 				//TODO dto.CenterDescription;
