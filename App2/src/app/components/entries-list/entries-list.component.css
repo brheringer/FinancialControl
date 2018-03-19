@@ -1,0 +1,25 @@
+@import url('../../core/css/core.css');
+
+.card-container,
+.card-container-even,
+.card-container-odd {
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 13px;
+}
+
+.card-container-even {
+  background-color: steelblue;
+}
+
+.card-container-odd {
+  background-color: steelblue;
+}
+
+.card-field-container {
+  margin-top: 0.5em;
+}
+
+.card-toolbar {
+
+}

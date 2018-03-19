@@ -1,0 +1,23 @@
+<div class="input-group mb-2 mb-sm-0">
+  <div class="input-group-prepend">
+    <div *ngIf="label" class="input-group-text fin-field-type-addon"><img src="assets/text_24px.svg" /></div>
+    <div *ngIf="label" class="input-group-text fin-field-label-addon">{{label}}</div>
+  </div>
+  <input type="text" class="form-control fin-field-text" id="field-TODO-NAME" name="field-TODO-NAME"
+         [ngModel]="text"
+         (ngModelChange)="changeText($event)"
+         (blur)="onBlur($event)"
+         [placeholder]="tip"
+         [required]="required ? true : false"
+         [disabled]="disabled ? true : false"
+         [ngClass]="fieldNgClass"
+         #name="ngModel">
+  <div *ngIf="label" class="input-group-append">
+    <div class="input-group-text fin-field-help-addon">
+      <img src="assets/help_24px.svg" title="{{tip}}" />
+    </div>
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Campo obrigatório.
+    </div>
+  </div>
+</div>

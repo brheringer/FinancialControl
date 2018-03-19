@@ -1,0 +1,304 @@
+<div>
+  <div class="fin-form-title">Entries</div>
+
+  <form *ngIf="showFilters" class="fin-form" #thisForm="ngForm">
+
+    <div class="row">
+      <div class="form-group col-lg-5">
+        <date-field [(date)]="model.filterInitialDate"
+                    (dateChange)="searchAsYouType()"
+                    [label]="'Initial Date'"
+                    [tip]="'Initial Date'"></date-field>
+      </div>
+
+      <div class="form-group col-lg-5">
+        <date-field [(date)]="model.filterFinalDate"
+                    (dateChange)="searchAsYouType()"
+                    [label]="'Final Date'"
+                    [tip]="'Final Date'"></date-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-lg-5">
+        <date-field [(date)]="model.filterExactDate"
+                    (dateChange)="searchAsYouType()"
+                    [label]="'Exact Date'"
+                    [tip]="'Exact Date'"></date-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-lg-5">
+        <number-field [(number)]="model.filterLowerValue"
+                      (numberChange)="searchAsYouType()"
+                      [label]="'Lower Value'"
+                      [tip]="'Lower Value'"></number-field>
+      </div>
+
+      <div class="form-group col-lg-5">
+        <number-field [(number)]="model.FilterHigherValue"
+                      (numberChange)="searchAsYouType()"
+                      [label]="'Higher Value'"
+                      [tip]="'Higher Value'"></number-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-lg-5">
+        <number-field [(number)]="model.FilterExactValue"
+                      (numberChange)="searchAsYouType()"
+                      [label]="'Exact Value'"
+                      [tip]="'Exact Value'"></number-field>
+      </div>
+    </div>
+
+  </form>
+
+  <div *ngIf="model.entries.length == 0">
+    <span class="fin-no-items-found">No entries found.</span>
+  </div>
+
+  <div class="row bg-dark text-white">
+    <div>
+      <button class="btn fin-toolbar-button" (click)="showFilters = !showFilters">
+        <span *ngIf='showFilters'>Hide Filters</span>
+        <span *ngIf='!showFilters'>Show Filters</span>
+      </button>
+    </div>
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn fin-toolbar-button" id="menu" ngbDropdownToggle>{{layoutMode}} LAYOUT</button>
+        <div ngbDropdownMenu aria-labelledby="menu">
+          <button class="dropdown-item" (click)="layoutMode = 'CARD'">Card Layout</button>
+          <button class="dropdown-item" (click)="layoutMode = 'GRID'">Grid Layout</button>
+          <button class="dropdown-item" (click)="layoutMode = 'VIEW'">View Only Layout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="layoutMode == 'GRID'">
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr *ngIf="model.entries.length > 0">
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">Date</th>
+          <th scope="col">Value</th>
+          <th scope="col">Account</th>
+          <th scope="col">Result Center</th>
+          <th scope="col">Memo</th>
+          <th scope="col">Id</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of model.entries; index as i" [ngClass]="{'bg-danger': entry.status?.error}">
+          <td>
+            <button type="submit" class="btn fin-toolbar-button" title="Delete"
+                    (click)="delete(entry, i)">
+              <img src="assets/delete_24px.svg">
+            </button>
+          </td>
+          <td>
+            <button type="submit" class="btn fin-toolbar-button" title="Duplicate"
+                    (click)="duplicate(entry, i)">
+              <img src="assets/duplicate_24px.svg">
+            </button>
+          </td>
+          <td>
+            <date-field [(date)]="entry.date"
+                        (dateChange)="saveIfValid(entry)"
+                        [tip]="'Date'"
+                        [required]="true"></date-field>
+          </td>
+          <td>
+            <number-field [(number)]="entry.value"
+                          (blur)="saveIfValid(entry)"
+                          [tip]="'Default value'"
+                          [required]="true"></number-field>
+          </td>
+          <td>
+            <smart-search-field [(model)]="entry.account"
+                                (modelChange)="saveIfValid(entry)"
+                                [targetService]="'Account'"
+                                [tip]="'Account'"
+                                [required]="true"
+                                [ignitionMinChars]="1"></smart-search-field>
+          </td>
+          <td>
+            <smart-search-field [(model)]="entry.center"
+                                (modelChange)="saveIfValid(entry)"
+                                [targetService]="'ResultCenter'"
+                                [tip]="'Result Center'"
+                                [required]="true"
+                                [ignitionMinChars]="1"></smart-search-field>
+          </td>
+          <td>
+            <text-field [(text)]="entry.memo"
+                        (blur)="saveIfValid(entry)"
+                        [tip]="'Description'"
+                        [required]="false"></text-field>
+          </td>
+          <td>{{entry.autoId}}</td>
+          <td>
+            <img src="assets/info_24px.svg"
+                 [title]="entry|json">
+            <img *ngIf="entry.status && entry.status.error"
+                 src="assets/error_24px.svg"
+                 [title]="entry.status.msg">
+            <img *ngIf="entry.status && !entry.status.error && entry.status.msg && entry.status.msg != ''"
+                 src="assets/success_24px.svg"
+                 [title]="entry.status.msg">
+          </td>
+        </tr>
+        <tr class="bg-dark text-white">
+          <td colspan="9">
+            <button class="btn fin-toolbar-button" title="New Entry Template"
+                    (click)="createNew()">
+              <img src="assets/new_24px.svg">
+            </button>
+            <button class="btn fin-toolbar-button" title="Sort"
+                    (click)="sort()">
+              <img src="assets/sort_24px.svg">
+            </button>
+            <button class="btn fin-toolbar-button" title="Refresh Search"
+                    (click)="search()">
+              <img src="assets/refresh_24px.svg">
+            </button>
+            <button *ngFor="let t of templates" class="btn fin-template-button"
+                    (click)="createNewFromTemplate(t)">
+              {{t.title}}
+            </button>
+          </td>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="layoutMode == 'VIEW'">
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr *ngIf="model.entries.length > 0">
+          <th scope="col">Date</th>
+          <th scope="col">Value</th>
+          <th scope="col">Account</th>
+          <th scope="col">Result Center</th>
+          <th scope="col">Memo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of model.entries; index as i" [ngClass]="{'bg-danger': entry.status?.error}">
+          <td>{{entry.date|finDateFormat}}</td>
+          <td align="right">{{entry.value|number:'1.2-2'}}</td>
+          <td>{{entry.account|finEntityFormat}}</td>
+          <td>{{entry.center|finEntityFormat}}</td>
+          <td>{{entry.memo}}</td>
+        </tr>
+        <tr class="bg-dark text-white">
+          <td colspan="8">
+            <button class="btn fin-toolbar-button" title="Sort"
+                    (click)="sort()">
+              <img src="assets/sort_24px.svg">
+            </button>
+            <button class="btn fin-toolbar-button" title="Refresh Search"
+                    (click)="search()">
+              <img src="assets/refresh_24px.svg">
+            </button>
+          </td>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="layoutMode == 'CARD'" class="row">
+    <div *ngFor="let entry of model.entries; index as i; let odd = odd; let even = even"
+         [ngClass]="{'bg-danger': entry.status?.error, 'card-container-odd': odd, 'card-container-even': even}">
+
+      <div class="card-field-container">
+        <date-field [(date)]="entry.date"
+                    (dateChange)="saveIfValid(entry)"
+                    [label]="'Date'"
+                    [tip]="'Date'"
+                    [required]="true"></date-field>
+      </div>
+
+      <div class="card-field-container">
+        <number-field [(number)]="entry.value"
+                      (blur)="saveIfValid(entry)"
+                      [label]="'Value'"
+                      [tip]="'Default value'"
+                      [required]="true"></number-field>
+      </div>
+
+      <div class="card-field-container">
+        <smart-search-field [(model)]="entry.account"
+                            (modelChange)="saveIfValid(entry)"
+                            [targetService]="'Account'"
+                            [label]="'Account'"
+                            [tip]="'Account'"
+                            [required]="true"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="card-field-container">
+        <smart-search-field [(model)]="entry.center"
+                            (modelChange)="saveIfValid(entry)"
+                            [targetService]="'ResultCenter'"
+                            [label]="'Result Center'"
+                            [tip]="'Result Center'"
+                            [required]="true"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="card-field-container">
+        <text-field [(text)]="entry.memo"
+                    (blur)="saveIfValid(entry)"
+                    [label]="'Memo'"
+                    [tip]="'Description'"
+                    [required]="false"></text-field>
+      </div>
+
+      <div class="card-toolbar">
+        <button type="submit" class="btn fin-toolbar-button" title="Delete"
+                (click)="delete(entry, i)">
+          <img src="assets/delete_24px.svg">
+        </button>
+        <button type="submit" class="btn fin-toolbar-button" title="Duplicate"
+                (click)="duplicate(entry, i)">
+          <img src="assets/duplicate_24px.svg">
+        </button>
+        <img src="assets/info_24px.svg"
+             [title]="entry|json">
+        <img *ngIf="entry.status && entry.status.error"
+             src="assets/error_24px.svg"
+             [title]="entry.status.msg">
+        <img *ngIf="entry.status && !entry.status.error && entry.status.msg && entry.status.msg != ''"
+             src="assets/success_24px.svg"
+             [title]="entry.status.msg">
+        <span>Id: {{entry.autoId}}</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="layoutMode == 'CARD'" class="row">
+    <div class="bg-dark text-white">
+      <button class="btn fin-toolbar-button" title="New Entry Template"
+              (click)="createNew()">
+        <img src="assets/new_24px.svg">
+      </button>
+      <button class="btn fin-toolbar-button" title="Sort"
+              (click)="sort()">
+        <img src="assets/sort_24px.svg">
+      </button>
+      <button class="btn fin-toolbar-button" title="Refresh Search"
+              (click)="search()">
+        <img src="assets/refresh_24px.svg">
+      </button>
+      <button *ngFor="let t of templates" class="btn fin-template-button"
+              (click)="createNewFromTemplate(t)">
+        {{t.title}}
+      </button>
+    </div>
+  </div>
+</div>
