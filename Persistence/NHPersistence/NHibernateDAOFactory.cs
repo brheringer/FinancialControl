@@ -4,7 +4,7 @@ using System;
 namespace FinancialControl.Persistence.NHPersistence
 {
 	public class NHibernateDAOFactory 
-		: DaoFactory
+		: DAOFactory
 	{
 		private readonly ISession SessionInstance;
 

@@ -10,21 +10,21 @@ namespace FinancialControl.Persistence
 	{
 		protected bool TransactionIsOpen;
 
-		public DaoFactory Factory { get; set; }
+		public DAOFactory Factory { get; set; }
 
-		public ResultType InvokeCommandInsideTransaction<ResultType>(Func<DaoFactory, ResultType> command, UserSession sessionProxy)
+		public ResultType InvokeCommandInsideTransaction<ResultType>(Func<DAOFactory, ResultType> command, UserSession sessionProxy)
 			where ResultType : class//, ResponseEnvelop
 		{
 			return InvokeCommandInsideTransaction(command, false, sessionProxy);
 		}
 
-		public ResultType InvokeCommandInsideTransactionAnonymously<ResultType>(Func<DaoFactory, ResultType> command)
+		public ResultType InvokeCommandInsideTransactionAnonymously<ResultType>(Func<DAOFactory, ResultType> command)
 			where ResultType : class//, ResponseEnvelop
 		{
 			return InvokeCommandInsideTransaction(command, true, null);
 		}
 
-		private ResultType InvokeCommandInsideTransaction<ResultType>(Func<DaoFactory, ResultType> command, bool anonymous, UserSession sessionProxy)
+		private ResultType InvokeCommandInsideTransaction<ResultType>(Func<DAOFactory, ResultType> command, bool anonymous, UserSession sessionProxy)
 			where ResultType : class//, ResponseEnvelop
 		{
 			try
@@ -125,7 +125,7 @@ namespace FinancialControl.Persistence
 		//	}
 		//}
 
-		private void ValidateUserSession(DaoFactory daoFactory, UserSession sessionInfo)
+		private void ValidateUserSession(DAOFactory daoFactory, UserSession sessionInfo)
 		{
 			if (sessionInfo == null)
 			{

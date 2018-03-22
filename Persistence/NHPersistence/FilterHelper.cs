@@ -24,6 +24,11 @@ namespace FinancialControl.Persistence.NHPersistence
 			return !string.IsNullOrEmpty(filter);
 		}
 
+		public static bool IsFilterUsed(DateTime? filter)
+		{
+			return filter != null && filter > DateTime.MinValue;
+		}
+
 		public static bool IsFilterUsed(DateTime filter)
 		{
 			return filter > DateTime.MinValue;

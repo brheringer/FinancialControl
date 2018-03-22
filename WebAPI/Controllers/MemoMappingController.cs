@@ -18,7 +18,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
 		}
 
-		private MemoMappingDto Get(DaoFactory daoFactory, int id)
+		private MemoMappingDto Get(DAOFactory daoFactory, int id)
 		{
 			var mapping = daoFactory.MemoMappingDAO.Load(id);
 			UserSiege(mapping.User);
@@ -32,33 +32,33 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, filtros));
 		}
 
-		private MemosMappingsDto Search(DaoFactory daoFactory, MemosMappingsDto filters)
+		private MemosMappingsDto Search(DAOFactory daoFactory, MemosMappingsDto filters)
 		{
 			IList<MemoMapping> mappings = daoFactory.MemoMappingDAO.LoadAll(this.UserName);
 			
 			return MemoMappingWrapper.Wrap(mappings);
 		}
 
-		public void Delete(int id)
+		public MemoMappingDto Delete(int id)
 		{
-			InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
+			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
 		}
 
-		private void Delete(DaoFactory daoFactory, int id)
+		private MemoMappingDto Delete(DAOFactory daoFactory, int id)
 		{
 			var mapping = daoFactory.MemoMappingDAO.Load(id);
 			UserSiege(mapping.User);
 			daoFactory.MemoMappingDAO.Delete(mapping);
+			return new MemoMappingDto();
 		}
 
 		[HttpPost]
-		[Route("api/memoMapping/update")]
 		public MemoMappingDto Update(MemoMappingDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Update(daoFactory, dto));
 		}
 
-		private MemoMappingDto Update(DaoFactory daoFactory, MemoMappingDto dto)
+		private MemoMappingDto Update(DAOFactory daoFactory, MemoMappingDto dto)
 		{
 			MemoMapping mapping = MemoMappingWrapper.Wrap(dto);
 
@@ -67,9 +67,25 @@ namespace FinancialControl.WebAPI.Controllers
 			else
 				mapping.User = this.UserName;
 
+			mapping.MappedAccount = SolveProxy(daoFactory, mapping.MappedAccount);
+			mapping.MappedCenter = SolveProxy(daoFactory, mapping.MappedCenter);
 			mapping.Validate();
 			mapping = daoFactory.MemoMappingDAO.Update(mapping);
 			return MemoMappingWrapper.Wrap(mapping);
 		}
-    }
+
+		private Account SolveProxy(DAOFactory daoFactory, Account proxy)
+		{
+			return proxy != null && proxy.AutoId > 0
+				? daoFactory.AccountDAO.Load(proxy.AutoId)
+				: null;
+		}
+
+		private ResultCenter SolveProxy(DAOFactory daoFactory, ResultCenter proxy)
+		{
+			return proxy != null && proxy.AutoId > 0
+				? daoFactory.ResultCenterDAO.Load(proxy.AutoId)
+				: null;
+		}
+	}
 }

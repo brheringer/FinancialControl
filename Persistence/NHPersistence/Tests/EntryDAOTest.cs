@@ -266,7 +266,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			return TransactionMngrInstance.Factory.AccountDAO.Update(account);
 		}
 
-		private Account UpdateConta(DaoFactory daoFactory, Account account)
+		private Account UpdateConta(DAOFactory daoFactory, Account account)
 		{
 			daoFactory.AccountDAO.Update(account);
 			return account;
@@ -282,7 +282,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			return TransactionMngrInstance.Factory.ResultCenterDAO.Update(center);
 		}
 
-		private ResultCenter UpdateCentroResultado(DaoFactory daoFactory, ResultCenter center)
+		private ResultCenter UpdateCentroResultado(DAOFactory daoFactory, ResultCenter center)
 		{
 			daoFactory.ResultCenterDAO.Update(center);
 			return center;

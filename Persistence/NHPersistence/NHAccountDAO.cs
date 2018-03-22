@@ -64,7 +64,7 @@ namespace FinancialControl.Persistence.NHPersistence
 			query.And(Restrictions.On<Account>(x => x.Structure).IsLike(smartEntry, MatchMode.Anywhere)
 				|| Restrictions.On<Account>(x => x.Description).IsLike(smartEntry, MatchMode.Anywhere));
 
-			query.OrderBy(x => x.Description);
+			query.OrderBy(x => x.Structure);
 
 			return query.List();
 		}

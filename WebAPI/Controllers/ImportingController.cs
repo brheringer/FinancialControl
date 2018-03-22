@@ -21,7 +21,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Import(daoFactory, data));
 		}
 
-		private ImportingDto Import(DaoFactory daoFactory, string data)
+		private ImportingDto Import(DAOFactory daoFactory, string data)
 		{
 			var mappings = daoFactory.MemoMappingDAO.LoadAll(this.UserName);
 

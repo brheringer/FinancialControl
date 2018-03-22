@@ -8,6 +8,8 @@ namespace FinancialControl.Persistence
 	{
 		void Delete(EntityType entity);
 
+		EntityType ResolveProxy(EntityType proxy);
+
 		EntityType Load(long id);
 
 		EntityType LoadBy(string entryKey);

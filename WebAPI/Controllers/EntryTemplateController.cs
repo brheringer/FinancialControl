@@ -18,7 +18,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
 		}
 
-		private EntryTemplateDto Get(DaoFactory daoFactory, int id)
+		private EntryTemplateDto Get(DAOFactory daoFactory, int id)
 		{
 			EntryTemplate template = daoFactory.EntryTemplateDAO.Load(id);
 			UserSiege(template.User);
@@ -32,33 +32,33 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, filtros));
 		}
 
-		private EntriesTemplatesDto Search(DaoFactory daoFactory, EntriesTemplatesDto filters)
+		private EntriesTemplatesDto Search(DAOFactory daoFactory, EntriesTemplatesDto filters)
 		{
 			IList<EntryTemplate> templates = daoFactory.EntryTemplateDAO.LoadAll(this.UserName);
 			
 			return EntryTemplateWrapper.Wrap(templates);
 		}
 
-		public void Delete(int id)
+		public EntryTemplateDto Delete(int id)
 		{
-			InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
+			return InvokeCommandInsideTransaction(daoFactory => Delete(daoFactory, id));
 		}
 
-		private void Delete(DaoFactory daoFactory, int id)
+		private EntryTemplateDto Delete(DAOFactory daoFactory, int id)
 		{
 			EntryTemplate template = daoFactory.EntryTemplateDAO.Load(id);
 			UserSiege(template.User);
 			daoFactory.EntryTemplateDAO.Delete(template);
+			return new EntryTemplateDto();
 		}
 
 		[HttpPost]
-		[Route("api/entryTemplate/update")]
 		public EntryTemplateDto Update(EntryTemplateDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Update(daoFactory, dto));
 		}
 
-		private EntryTemplateDto Update(DaoFactory daoFactory, EntryTemplateDto dto)
+		private EntryTemplateDto Update(DAOFactory daoFactory, EntryTemplateDto dto)
 		{
 			EntryTemplate template = EntryTemplateWrapper.Wrap(dto);
 

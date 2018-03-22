@@ -9,15 +9,20 @@ namespace FinancialControl.WebAPI.Wrappers
 	{
 		public static Entry Wrap(EntryDto dto)
 		{
-			Entry entry = new Entry();
-			EntityWrapper.WrapIntoEntity(dto, entry);
-			if(dto.Date != null)
-				entry.Date = dto.Date.Value;
-			entry.Value = dto.Value;
-			entry.Memo = dto.Memo;
-			entry.Account = EntityWrapper.CreateProxy<Account>(dto.Account);
-			entry.Center = EntityWrapper.CreateProxy<ResultCenter>(dto.Center);
-			return entry;
+			Entry e = new Entry();
+			WrapInto(dto, e);
+			return e;
+		}
+
+		public static void WrapInto(EntryDto fromDto, Entry intoEntity)
+		{
+			EntityWrapper.WrapIntoEntity(fromDto, intoEntity);
+			if(fromDto.Date != null)
+				intoEntity.Date = fromDto.Date.Value;
+			intoEntity.Value = fromDto.Value;
+			intoEntity.Memo = fromDto.Memo;
+			intoEntity.Account = EntityWrapper.CreateProxy<Account>(fromDto.Account);
+			intoEntity.Center = EntityWrapper.CreateProxy<ResultCenter>(fromDto.Center);
 		}
 
 		public static EntriesDto Wrap(IList<Entry> entries)

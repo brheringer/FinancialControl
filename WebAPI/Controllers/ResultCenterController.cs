@@ -19,24 +19,24 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
 		}
 
-		private ResultCenterDto Get(DaoFactory daoFactory, int id)
+		private ResultCenterDto Get(DAOFactory daoFactory, int id)
 		{
 			ResultCenter center = daoFactory.ResultCenterDAO.Load(id);
 			UserSiege(center.User);
 			return ResultCenterWrapper.Wrap(center);
 		}
 
-		public ResultsCentersDto Get()
+		[HttpGet]
+		[Route("api/resultCenter/all")]
+		public EntitiesReferencesDto GetAll()
 		{
-			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory));
+			return InvokeCommandInsideTransaction(daoFactory => GetAll(daoFactory));
 		}
 
-		private ResultsCentersDto Get(DaoFactory daoFactory)
+		private EntitiesReferencesDto GetAll(DAOFactory daoFactory)
 		{
 			IList<ResultCenter> centros = daoFactory.ResultCenterDAO.LoadAll(this.UserName);
-			ResultsCentersDto dto = new ResultsCentersDto();
-			dto.ResultsCenters = ResultCenterWrapper.Wrap(centros);
-			return dto;
+			return EntityWrapper.WrapToReferences<ResultCenter>(centros);
 		}
 
 		public ResultCenterDto Delete(int id)
@@ -44,7 +44,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Delete(daoFactory, id));
 		}
 
-		private ResultCenterDto Delete(DaoFactory daoFactory, int id)
+		private ResultCenterDto Delete(DAOFactory daoFactory, int id)
 		{
 			ResultCenter center = daoFactory.ResultCenterDAO.Load(id);
 			UserSiege(center.User);
@@ -53,13 +53,12 @@ namespace FinancialControl.WebAPI.Controllers
 		}
 
 		[HttpPost]
-		[Route("api/resultCenter/update")]
 		public ResultCenterDto Update(ResultCenterDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Update(daoFactory, dto));
 		}
 
-		private ResultCenterDto Update(DaoFactory daoFactory, ResultCenterDto dto)
+		private ResultCenterDto Update(DAOFactory daoFactory, ResultCenterDto dto)
 		{
 			ResultCenter center = ResultCenterWrapper.Wrap(dto);
 
@@ -81,7 +80,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, dto));
 		}
 
-		private ResultsCentersDto Search(DaoFactory daoFactory, ResultCenterDto dto)
+		private ResultsCentersDto Search(DAOFactory daoFactory, ResultCenterDto dto)
 		{
 			ResultsCentersDto resposta = new ResultsCentersDto();
 			var centros = daoFactory.ResultCenterDAO.Search(dto.Code, dto.Description, this.UserName);
@@ -89,14 +88,14 @@ namespace FinancialControl.WebAPI.Controllers
 			return resposta;
 		}
 
-		[HttpGet]
-		[Route("api/resultCenter/smartSearch/{smartEntry}")]
-		public EntitiesReferencesDto SmartSearch(string smartEntry)
+		[HttpPost]
+		[Route("api/resultCenter/smartSearch")]
+		public EntitiesReferencesDto SmartSearch([FromBody]string smartEntry)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => SmartSearch(daoFactory, smartEntry));
 		}
 
-		private EntitiesReferencesDto SmartSearch(DaoFactory daoFactory, string smartEntry)
+		private EntitiesReferencesDto SmartSearch(DAOFactory daoFactory, string smartEntry)
 		{
 			EntitiesReferencesDto resposta = new EntitiesReferencesDto();
 			var centros = daoFactory.ResultCenterDAO.SmartSearch(smartEntry, this.UserName);

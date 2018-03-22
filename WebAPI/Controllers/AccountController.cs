@@ -17,24 +17,24 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
 		}
 
-		private AccountDto Get(DaoFactory daoFactory, int id)
+		private AccountDto Get(DAOFactory daoFactory, int id)
 		{
 			Account account = daoFactory.AccountDAO.Load(id);
 			UserSiege(account.User);
 			return AccountWrapper.Wrap(account);
 		}
 
-		public AccountsDto Get()
+		[HttpGet]
+		[Route("api/account/all")]
+		public EntitiesReferencesDto GetAll()
 		{
-			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory));
+			return InvokeCommandInsideTransaction(daoFactory => GetAll(daoFactory));
 		}
 
-		private AccountsDto Get(DaoFactory daoFactory)
+		private EntitiesReferencesDto GetAll(DAOFactory daoFactory)
 		{
-			AccountsDto dto = new AccountsDto();
 			IList<Account> accounts = daoFactory.AccountDAO.LoadAll(this.UserName);
-			dto.Accounts = AccountWrapper.Wrap(accounts);
-			return dto;
+			return EntityWrapper.WrapToReferences<Account>(accounts);
 		}
 
 		public AccountDto Delete(int id)
@@ -42,7 +42,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Delete(daoFactory, id));
 		}
 
-		private AccountDto Delete(DaoFactory daoFactory, int id)
+		private AccountDto Delete(DAOFactory daoFactory, int id)
 		{
 			Account account = daoFactory.AccountDAO.Load(id);
 			UserSiege(account.User);
@@ -51,13 +51,12 @@ namespace FinancialControl.WebAPI.Controllers
 		}
 
 		[HttpPost]
-		[Route("api/account/update")]
 		public AccountDto Update(AccountDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Update(daoFactory, dto));
 		}
 
-		private AccountDto Update(DaoFactory daoFactory, AccountDto dto)
+		private AccountDto Update(DAOFactory daoFactory, AccountDto dto)
 		{
 			Account account = AccountWrapper.Wrap(dto);
 
@@ -79,22 +78,22 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, dto));
 		}
 
-		private AccountsDto Search(DaoFactory daoFactory, AccountsDto dto)
+		private AccountsDto Search(DAOFactory daoFactory, AccountsDto dto)
 		{
 			AccountsDto response = new AccountsDto();
-			var accounts = daoFactory.AccountDAO.Search(dto.FilterStructure, dto.FilterDescription, this.UserName);
+			var accounts = daoFactory.AccountDAO.Search(dto.FilterDescription, dto.FilterStructure, this.UserName);
 			response.Accounts = AccountWrapper.Wrap(accounts);
 			return response;
 		}
 
-		[HttpGet]
-		[Route("api/account/smartSearch/{smartEntry}")]
-		public EntitiesReferencesDto SmartSearch(string smartEntry)
+		[HttpPost]
+		[Route("api/account/smartSearch")]
+		public EntitiesReferencesDto SmartSearch([FromBody]SmartEntryDto smartEntry)
 		{
-			return InvokeCommandInsideTransaction(daoFactory => SmartSearch(daoFactory, smartEntry));
+			return InvokeCommandInsideTransaction(daoFactory => SmartSearch(daoFactory, smartEntry.SmartEntry));
 		}
 
-		private EntitiesReferencesDto SmartSearch(DaoFactory daoFactory, string smartEntry)
+		private EntitiesReferencesDto SmartSearch(DAOFactory daoFactory, string smartEntry)
 		{
 			EntitiesReferencesDto response = new EntitiesReferencesDto();
 			var accounts = daoFactory.AccountDAO.SmartSearch(smartEntry, this.UserName);

@@ -10,7 +10,7 @@ namespace FinancialControl.DataTransferObjects
 		public DateTime? FilterFinalDate { get; set; }
 		public DateTime? FilterExactDate { get; set; }
 		public decimal FilterLowerValue { get; set; }
-		public decimal FilterHigherSuperior { get; set; }
+		public decimal FilterHigherValue { get; set; }
 		public decimal FilterExactValue { get; set; }
 		public string FilterMemo { get; set; }
 		public EntityReferenceDto FilterAccount { get; set; }

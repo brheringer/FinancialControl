@@ -5,7 +5,7 @@ namespace FinancialControl.DataTransferObjects
 	public class UserSessionDto 
 		: EntityDto
 	{
-		public string UserSessionId { get; set; }
+		public string UserSessionToken { get; set; }
 		public string UserName { get; set; }
 		public bool IsAdmin { get; set; }
 
@@ -13,7 +13,7 @@ namespace FinancialControl.DataTransferObjects
 		{
 			get
 			{
-				return !string.IsNullOrEmpty(UserSessionId)
+				return !string.IsNullOrEmpty(UserSessionToken)
 					&& !string.IsNullOrEmpty(UserName);
 			}
 		}

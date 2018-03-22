@@ -30,6 +30,11 @@ namespace FinancialControl.Persistence.NHPersistence
 			return Load(id);
 		}
 
+		public virtual EntityType ResolveProxy(EntityType proxy)
+		{
+			return Load(proxy.AutoId);
+		}
+
 		public virtual EntityType Load(long id)
 		{
 			EntityType entidade = this.SessionInstance.Get<EntityType>(id);

@@ -66,6 +66,7 @@
     <Compile Include="EntryDto.cs" />
     <Compile Include="EntriesDto.cs" />
     <Compile Include="EntityReferenceDto.cs" />
+    <Compile Include="SmartEntryDto.cs" />
     <Compile Include="UserDto.cs" />
     <Compile Include="UserSessionDto.cs" />
   </ItemGroup>

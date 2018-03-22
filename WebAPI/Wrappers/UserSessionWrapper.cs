@@ -10,7 +10,7 @@ namespace FinancialControl.WebAPI.Wrappers
 		{
 			UserSessionDto dto = new UserSessionDto();
 			EntityWrapper.WrapIntoDto(session, dto);
-			dto.UserSessionId = session.SessionId;
+			dto.UserSessionToken = session.SessionId;
 			dto.UserName = session.UserLoggedIn.UserName;
 			return dto;
 		}

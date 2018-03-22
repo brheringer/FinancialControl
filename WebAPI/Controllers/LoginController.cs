@@ -14,7 +14,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransactionAnoymously(daoFactory => Login(daoFactory, dto));
 		}
 
-		private UserSessionDto Login(DaoFactory daoFactory, UserDto login)
+		private UserSessionDto Login(DAOFactory daoFactory, UserDto login)
 		{
 			if (login == null)
 				login = new UserDto();
@@ -41,7 +41,17 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransactionAnoymously(daoFactory => Register(daoFactory, dto));
 		}
 
-		private UserDto Register(DaoFactory daoFactory, UserDto dto)
+		[HttpGet]
+		[Route("api/login/registerAPI/{user}/{pass}")]
+		public UserDto Register(string user, string pass)
+		{
+			UserDto dto = new UserDto();
+			dto.NewPassword = pass;
+			dto.UserName = user;
+			return InvokeCommandInsideTransactionAnoymously(daoFactory => Register(daoFactory, dto));
+		}
+
+		private UserDto Register(DAOFactory daoFactory, UserDto dto)
 		{
 			if (dto == null)
 				dto = new UserDto();

@@ -12,6 +12,19 @@ namespace FinancialControl.Model
 
 		public virtual string Structure { get; set; }
 
+		public virtual string ParentStructure
+		{
+			get
+			{
+				if (this.Structure == null)
+					return null;
+				int i = this.Structure.LastIndexOf(LEVEL_SEPARATOR);
+				return i >= 0
+					? this.Structure.Substring(0, i)
+					: string.Empty;
+			}
+		}
+
 		public virtual int Level
 		{
 			get

@@ -11,21 +11,21 @@ using FinancialControl.WebAPI.Wrappers;
 
 namespace FinancialControl.WebAPI.Controllers
 {
-	public class AccountsTotalizationsReportController 
+	public class AccountsTotalizationsReportController
 		: TransactionalApiContoller
-    {
+	{
 		[HttpPost]
 		public AccountsTotalizationsReportDto GenerateReport(AccountsTotalizationsReportDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, dto));
 		}
 
-		private AccountsTotalizationsReportDto Search(DaoFactory daoFactory, AccountsTotalizationsReportDto dto)
+		private AccountsTotalizationsReportDto Search(DAOFactory daoFactory, AccountsTotalizationsReportDto dto)
 		{
 			AccountsTotalizationsReportDto response = new AccountsTotalizationsReportDto();
 
 			var accounts = daoFactory.AccountDAO.LoadAll(this.UserName);
-			var entries = daoFactory.EntryDAO.Search(dto.FilterInitialDate, dto.FilterFinalDate, 
+			var entries = daoFactory.EntryDAO.Search(dto.FilterInitialDate, dto.FilterFinalDate,
 				null, 0, 0, 0, null, null, null, this.UserName, 0);
 
 			AccountsTotalizatonsReport report = new AccountsTotalizatonsReport();
@@ -45,10 +45,11 @@ namespace FinancialControl.WebAPI.Controllers
 				var dto = new AccountTotalizationDto();
 				dto.AccountStructure = t.Account.Structure;
 				dto.AccountDescription = t.Account.Description;
-				dto.AccountLevel = t.Account.Level;
 				dto.Total = t.Total;
 				//TODO dto.CenterStructure;
 				//TODO dto.CenterDescription;
+				dto.AccountLevel = t.Account.Level;
+				dto.IsDetail = t.Entries.Count > 0 && t.Entries[0].Account == t.Account;
 				dto.AnalyticalDetails = new List<AccountTotalizationDto.DetailDto>();
 				foreach (var entry in t.Entries)
 				{

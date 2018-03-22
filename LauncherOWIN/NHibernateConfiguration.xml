@@ -17,7 +17,7 @@
             type="FinancialControl.Persistence.NHPersistence.NhTransactionManagerFactory, FinancialControl.Persistence.NHPersistence">
 		
 		<!--TODO tornar caminho relativo-->
-		<property name="ConfigurationFileName" value="D:\git-repositorio-local\FinancialControl\LauncherOWIN\bin\debug\nhibernate.cfg.xml" />
+		<property name="ConfigurationFileName" value="D:\Aplicacoes\FinancialControl\LauncherOWIN\bin\debug\nhibernate.cfg.xml" />
 	</object>
 
 </objects>

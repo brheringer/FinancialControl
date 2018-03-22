@@ -40,5 +40,17 @@ namespace FinancialControl.Model.Tests
 			Assert.AreEqual(1, account101.CompareTo(accountEmpty), "By definition, empty strucutre should be before a valid structure.");
 			Assert.AreEqual(-1, accountNull.CompareTo(accountEmpty), "By definition, null strucutre should be before an empty structure.");
 		}
+
+		[TestMethod]
+		public void TestParentStructure()
+		{
+			Assert.AreEqual("1.01", new Account() { Structure = "1.01.001" }.ParentStructure);
+			Assert.AreEqual("1", new Account() { Structure = "1.01" }.ParentStructure);
+			Assert.AreEqual("", new Account() { Structure = "1" }.ParentStructure);
+			Assert.AreEqual("", new Account() { Structure = "asdf" }.ParentStructure);
+			Assert.AreEqual("", new Account() { Structure = "." }.ParentStructure);
+			Assert.AreEqual("..", new Account() { Structure = "..." }.ParentStructure);
+			Assert.AreEqual(null, new Account() { Structure = null }.ParentStructure);
+		}
 	}
 }

@@ -3,6 +3,8 @@ using Owin;
 using Microsoft.Owin.Cors;
 using System.Web.Http;
 
+[assembly: Microsoft.Owin.OwinStartup(typeof(FinancialControl.LauncherOWIN.Startup))]
+
 namespace FinancialControl.LauncherOWIN
 {
 	public class Startup
@@ -12,6 +14,8 @@ namespace FinancialControl.LauncherOWIN
 			HttpConfiguration config = ConfigureWebAPI();
 
 			config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+			config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+			config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 
 			appBuilder.UseCors(CorsOptions.AllowAll);
 			appBuilder.UseWebApi(config);

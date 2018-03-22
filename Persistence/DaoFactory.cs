@@ -2,7 +2,7 @@
 
 namespace FinancialControl.Persistence
 {
-	public interface DaoFactory
+	public interface DAOFactory
 	{
 		ResultCenterDAO ResultCenterDAO { get; }
 		AccountDAO AccountDAO { get; }

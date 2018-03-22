@@ -10,7 +10,7 @@ namespace FinancialControl.LauncherOWIN
 		{
 			try
 			{
-				StartWebApp();
+				//StartWebApp();
 				StartWebApiHost();
 			}
 			catch(Exception ex)

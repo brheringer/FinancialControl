@@ -18,7 +18,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Get(daoFactory, id));
 		}
 
-		private EntryDto Get(DaoFactory daoFactory, int id)
+		private EntryDto Get(DAOFactory daoFactory, int id)
 		{
 			Entry entry = daoFactory.EntryDAO.Load(id);
 			UserSiege(entry.User);
@@ -32,7 +32,7 @@ namespace FinancialControl.WebAPI.Controllers
 			return InvokeCommandInsideTransaction(daoFactory => Search(daoFactory, filtros));
 		}
 
-		private EntriesDto Search(DaoFactory daoFactory, EntriesDto filters)
+		private EntriesDto Search(DAOFactory daoFactory, EntriesDto filters)
 		{
 			Account accountFilter = null;
 			if (filters.FilterAccount != null && filters.FilterAccount.AutoId > 0)
@@ -44,7 +44,7 @@ namespace FinancialControl.WebAPI.Controllers
 
 			IList<Entry> entries = daoFactory.EntryDAO.Search(
 				filters.FilterInitialDate, filters.FilterFinalDate, filters.FilterExactDate,
-				filters.FilterLowerValue, filters.FilterHigherSuperior, filters.FilterExactValue,
+				filters.FilterLowerValue, filters.FilterHigherValue, filters.FilterExactValue,
 				accountFilter, filterCenter, 
 				filters.FilterMemo, 
 				this.UserName, 
@@ -53,12 +53,14 @@ namespace FinancialControl.WebAPI.Controllers
 			return EntryWrapper.Wrap(entries);
 		}
 
+		[HttpDelete]
+		[Route("api/entry")]
 		public EntryDto Delete(int id)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Delete(daoFactory, id));
 		}
 
-		private EntryDto Delete(DaoFactory daoFactory, int id)
+		private EntryDto Delete(DAOFactory daoFactory, int id)
 		{
 			Entry entry = daoFactory.EntryDAO.Load(id);
 			UserSiege(entry.User);
@@ -67,24 +69,36 @@ namespace FinancialControl.WebAPI.Controllers
 		}
 
 		[HttpPost]
-		[Route("api/entry/update")]
+		[Route("api/entry")]
 		public EntryDto Update(EntryDto dto)
 		{
 			return InvokeCommandInsideTransaction(daoFactory => Update(daoFactory, dto));
 		}
 
-		private EntryDto Update(DaoFactory daoFactory, EntryDto dto)
+		private EntryDto Update(DAOFactory daoFactory, EntryDto dto)
 		{
-			Entry entry = EntryWrapper.Wrap(dto);
+			Entry entry;
 
-			if (entry.IsPersistent)
+			if (dto.AutoId > 0)
+			{
+				entry = daoFactory.EntryDAO.Load(dto.AutoId);
 				UserSiege(entry.User);
+			}
 			else
-				entry.User = this.UserName;
+			{
+				dto.User = this.UserName;
+				entry = new Entry();
+			}
+
+			EntryWrapper.WrapInto(dto, entry);
+
+			entry.Account = daoFactory.AccountDAO.ResolveProxy(entry.Account);
+			entry.Center = daoFactory.ResultCenterDAO.ResolveProxy(entry.Center);
 
 			entry.Validate();
 			entry = daoFactory.EntryDAO.Update(entry);
 			return EntryWrapper.Wrap(entry);
 		}
-    }
+
+	}
 }

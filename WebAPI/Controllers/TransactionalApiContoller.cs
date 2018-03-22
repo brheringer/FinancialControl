@@ -24,7 +24,7 @@ namespace FinancialControl.WebAPI.Controllers
 			} 
 		}
 
-		protected ResultType InvokeCommandInsideTransactionAnoymously<ResultType>(Func<DaoFactory, ResultType> command)
+		protected ResultType InvokeCommandInsideTransactionAnoymously<ResultType>(Func<DAOFactory, ResultType> command)
 			where ResultType : class, ResponseEnvelop, new()
 		{
 			using (TransactionManager tx = GlobalContext.Instance().TransactionManagerFactory.Create())
@@ -33,7 +33,7 @@ namespace FinancialControl.WebAPI.Controllers
 			}
 		}
 
-		protected ResultType InvokeCommandInsideTransaction<ResultType>(Func<DaoFactory, ResultType> command)
+		protected ResultType InvokeCommandInsideTransaction<ResultType>(Func<DAOFactory, ResultType> command)
 			where ResultType : class, ResponseEnvelop, new()
 		{
 			try
