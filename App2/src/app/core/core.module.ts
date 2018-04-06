@@ -17,6 +17,7 @@ import { NumberFieldComponent } from './components/number-field/number-field.com
 import { SelectEntityFieldComponent } from './components/select-entity-field/select-entity-field.component';
 import { SelectPrimitiveFieldComponent } from './components/select-primitive-field/select-primitive-field.component';
 import { SmartSearchFieldComponent } from './components/smart-search-field/smart-search-field.component';
+import { RichLabelComponent } from './components/rich-label/rich-label.component';
 import { TextAreaFieldComponent } from './components/text-area-field/text-area-field.component';
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { DateFormatPipe } from './pipes/date-pipe';
@@ -29,6 +30,7 @@ import { EntityFormatPipe } from './pipes/entity-pipe';
     BooleanFieldComponent,
     DateFieldComponent,
     NumberFieldComponent,
+    RichLabelComponent,
     SelectEntityFieldComponent,
     SelectPrimitiveFieldComponent,
     SmartSearchFieldComponent,
@@ -50,6 +52,7 @@ import { EntityFormatPipe } from './pipes/entity-pipe';
     BooleanFieldComponent,
     DateFieldComponent,
     NumberFieldComponent,
+    RichLabelComponent,
     SelectEntityFieldComponent,
     SelectPrimitiveFieldComponent,
     SmartSearchFieldComponent,

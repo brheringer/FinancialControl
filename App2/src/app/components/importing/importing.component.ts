@@ -12,7 +12,7 @@ import { AlertService } from '../../core/local-services/alert.service';
 })
 export class ImportingComponent implements OnInit {
 
-  private model: Importing = new Importing();
+  public model: Importing = new Importing();
 
   constructor(
     private service: ImportingService,

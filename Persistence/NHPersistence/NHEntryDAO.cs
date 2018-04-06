@@ -18,7 +18,7 @@ namespace FinancialControl.Persistence.NHPersistence
 			DateTime? initialDate, DateTime? finalDate, DateTime? exactDate,
 			decimal lowerValue, decimal higherValue, decimal exactValue,
 			Account account, ResultCenter center, string memo, string username,
-			int searchLimit)
+			int searchLimit, int searchPage)
 		{
 			if (string.IsNullOrEmpty(username))
 				throw new ArgumentException();
@@ -61,7 +61,9 @@ namespace FinancialControl.Persistence.NHPersistence
 			query.OrderBy(x => x.Date);
 
 			if (searchLimit > 0)
-				query.Take(searchLimit);
+				query
+					.Skip(searchLimit * (Math.Max(searchPage - 1, 0)))
+					.Take(searchLimit);
 
 			return query.List();
 		}

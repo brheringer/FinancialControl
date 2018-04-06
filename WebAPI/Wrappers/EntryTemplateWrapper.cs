@@ -10,13 +10,18 @@ namespace FinancialControl.WebAPI.Wrappers
 		public static EntryTemplate Wrap(EntryTemplateDto dto)
 		{
 			EntryTemplate template = new EntryTemplate();
-			EntityWrapper.WrapIntoEntity(dto, template);
-			template.Title = dto.Title;
-			template.Value = dto.Value;
-			template.Memo = dto.Memo;
-			template.Account = EntityWrapper.CreateProxy<Account>(dto.Account);
-			template.Center = EntityWrapper.CreateProxy<ResultCenter>(dto.Center);
+			WrapInto(dto, template);
 			return template;
+		}
+
+		public static void WrapInto(EntryTemplateDto fromDto, EntryTemplate intoEntity)
+		{
+			EntityWrapper.WrapIntoEntity(fromDto, intoEntity);
+			intoEntity.Title = fromDto.Title;
+			intoEntity.Value = fromDto.Value;
+			intoEntity.Memo = fromDto.Memo;
+			intoEntity.Account = EntityWrapper.CreateProxy<Account>(fromDto.Account);
+			intoEntity.Center = EntityWrapper.CreateProxy<ResultCenter>(fromDto.Center);
 		}
 
 		public static EntriesTemplatesDto Wrap(IList<EntryTemplate> templates)

@@ -18,7 +18,7 @@ export class NumberFieldComponent {
     this.numberChange.emit(this.number);
   }
 
-  onBlur(): void {
+  onBlur(strnumber: string): void {
     this.blur.emit(null);
   }
 

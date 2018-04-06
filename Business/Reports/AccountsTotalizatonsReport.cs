@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FinancialControl.Model;
 
 namespace FinancialControl.Business.Reports
@@ -58,8 +59,12 @@ namespace FinancialControl.Business.Reports
 
 			totalization.Total += value;
 
-			if (account.ParentAccount != null)
-				Totalize(account.ParentAccount, value);
+			if (!string.IsNullOrEmpty(account.ParentStructure))
+			{
+				Account parent = this.accounts.Find(x => x.Structure == account.ParentStructure);
+				if (parent != null)
+					Totalize(parent, value);
+			}
 
 			return totalization;
 		}

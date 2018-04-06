@@ -90,9 +90,9 @@ namespace FinancialControl.WebAPI.Controllers
 
 		[HttpPost]
 		[Route("api/resultCenter/smartSearch")]
-		public EntitiesReferencesDto SmartSearch([FromBody]string smartEntry)
+		public EntitiesReferencesDto SmartSearch([FromBody]SmartEntryDto smartEntry)
 		{
-			return InvokeCommandInsideTransaction(daoFactory => SmartSearch(daoFactory, smartEntry));
+			return InvokeCommandInsideTransaction(daoFactory => SmartSearch(daoFactory, smartEntry.SmartEntry));
 		}
 
 		private EntitiesReferencesDto SmartSearch(DAOFactory daoFactory, string smartEntry)

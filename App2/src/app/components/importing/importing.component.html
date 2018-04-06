@@ -4,8 +4,8 @@
   <form class="fin-form" #thisForm="ngForm">
     <div class="form-group">
       <label for="fieldFilePath">File</label>
-      <input type="file" id="fieldFilePath" name="fieldFilePath" required style="border:solid"/>
-      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      <input type="file" id="fieldFilePath" name="fieldFilePath" required style="border:solid" #filePath/>
+      <div [hidden]="filePath.valid || filePath.pristine" class="alert alert-danger">
         File is required.
       </div>
     </div>

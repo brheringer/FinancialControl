@@ -37,7 +37,7 @@
       </div>
 
       <div class="form-group col-lg-5">
-        <number-field [(number)]="model.FilterHigherValue"
+        <number-field [(number)]="model.filterHigherValue"
                       (numberChange)="searchAsYouType()"
                       [label]="'Higher Value'"
                       [tip]="'Higher Value'"></number-field>
@@ -46,10 +46,37 @@
 
     <div class="row">
       <div class="form-group col-lg-5">
-        <number-field [(number)]="model.FilterExactValue"
+        <number-field [(number)]="model.filterExactValue"
                       (numberChange)="searchAsYouType()"
                       [label]="'Exact Value'"
                       [tip]="'Exact Value'"></number-field>
+      </div>
+
+      <div class="form-group col-lg-5">
+          <text-field [(text)]="model.filterMemo"
+                      (textChange)="searchAsYouType()"
+                      [label]="'Memo'"
+                      [tip]="'Filter by memo (partially)'"></text-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-lg-5">
+        <smart-search-field [(model)]="model.filterAccount"
+                            (modelChange)="searchAsYouType()"
+                            [targetService]="'Account'"
+                            [label]="'Account'"
+                            [tip]="'Filter by Account'"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="form-group col-lg-5">
+        <smart-search-field [(model)]="model.filterCenter"
+                            (modelChange)="searchAsYouType()"
+                            [targetService]="'ResultCenter'"
+                            [label]="'Result Center'"
+                            [tip]="'Filter by Result Center'"
+                            [ignitionMinChars]="1"></smart-search-field>
       </div>
     </div>
 
@@ -75,6 +102,20 @@
           <button class="dropdown-item" (click)="layoutMode = 'VIEW'">View Only Layout</button>
         </div>
       </div>
+    </div>
+    <div>
+      <button class="btn fin-toolbar-button" (click)="previousPage()">
+        Previous Page
+      </button>
+      <span>
+        Showing page {{model.searchPage}} with {{model.entries.length}} items.
+      </span>
+      <button class="btn fin-toolbar-button" (click)="nextPage()">
+        Next Page
+      </button>
+      <button class="btn fin-toolbar-button" title="{{this.model|json}}">
+          debug
+        </button>
     </div>
   </div>
 

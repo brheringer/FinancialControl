@@ -48,7 +48,8 @@ namespace FinancialControl.WebAPI.Controllers
 				accountFilter, filterCenter, 
 				filters.FilterMemo, 
 				this.UserName, 
-				filters.SearchMaxResults);
+				filters.SearchMaxResults,
+				filters.SearchPage);
 			
 			return EntryWrapper.Wrap(entries);
 		}

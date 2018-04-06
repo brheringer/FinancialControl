@@ -60,16 +60,28 @@ namespace FinancialControl.WebAPI.Controllers
 
 		private EntryTemplateDto Update(DAOFactory daoFactory, EntryTemplateDto dto)
 		{
-			EntryTemplate template = EntryTemplateWrapper.Wrap(dto);
+			EntryTemplate template;
 
-			if (template.IsPersistent)
+			if (dto.AutoId > 0)
+			{
+				template = daoFactory.EntryTemplateDAO.Load(dto.AutoId);
 				UserSiege(template.User);
+			}
 			else
-				template.User = this.UserName;
+			{
+				dto.User = this.UserName;
+				template = new EntryTemplate();
+			}
+
+			EntryTemplateWrapper.WrapInto(dto, template);
+
+			template.Account = daoFactory.AccountDAO.ResolveProxy(template.Account);
+			template.Center = daoFactory.ResultCenterDAO.ResolveProxy(template.Center);
 
 			template.Validate();
 			template = daoFactory.EntryTemplateDAO.Update(template);
 			return EntryTemplateWrapper.Wrap(template);
+
 		}
     }
 }

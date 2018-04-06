@@ -11,6 +11,6 @@ namespace FinancialControl.Persistence
 			DateTime? initialDate, DateTime? finalDate, DateTime? exactDate,
 			decimal lowerValue, decimal higherValue, decimal exactValue,
 			Account account, ResultCenter center, string memo, string username,
-			int searchLimit);
+			int searchLimit, int searchPage);
 	}
 }

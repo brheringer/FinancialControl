@@ -63,6 +63,20 @@ namespace FinancialControl.Model
 		{
 		}
 
+		public override bool Equals(object obj)
+		{
+			if (obj == this) return true;
+			if (obj == null) return false;
+			if (obj.GetType() != this.GetType()) return false;
+			Account other = (Account)obj;
+			return this.CompareTo(other) == 0;
+		}
+
+		public override int GetHashCode()
+		{
+			return this.Structure == null ? 0 : this.Structure.GetHashCode();
+		}
+
 		public override string ToString()
 		{
 			return String.Format("{0} {1}", this.Structure, this.Description);

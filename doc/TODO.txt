@@ -1,3 +1,74 @@
+datas e números em formato americano...
+smart search: 
+	quando apaga o valor ou deixa um valor inválido, fica continua selecionado o que estava antes
+	não está mantendo a ordenação do jeito que vem do servidor
+entries-list:
+	criar opções de ordenação por coluna
+	filtro de data parece que so funciona se clicar na data (se digitar e der tab, não reage)
+	validação dos campo decimal está com problema quando tem separador de decimal
+	inicialmente, buscar os lançamentos mais recentes
+	alinhar campo de valor à direita
+	alterar a distribuição dos campos (data e valor precisam de menos espaço que memo)
+	os botões deveriam estar sempre na tela, é ruim ficar rolando a tela pra chegar nos botões (paginação, refresh, etc)
+	no layout de grid, não dá pra ver o memo; talvez exibir como tooltip ou uma opção de wrap + grow
+	card layout: memo multiline + scroll
+	viagem: talvez marcar um filtro para pular pra ele com uma tecla e/ou pinar os outros filtros; assim, fica fácil fazer várias pesquisas diretas (por exemplo, mudando o valorR$)
+	default: grid layout
+	opção para aplicar alterações (conta+centro+memo+valor+data, todos opcionais) em vários itens selecionados
+	mostrar total dos itens exibidos, permitir ocultar cada item (+opcao para reexibir o que estiver oculto)(se pesquisar de novo, nada fica oculto mais)
+	talvez permitir selecionar alguns itens e mostrar o total do que foi selecionado
+accounts-totalizations-report: 
+	contas analíticas sem lançamentos estão ficando em negrito
+	opção para ocultar zeradas
+	opção para filtrar por níveis
+	parece que se não preencher uma das datas dá pau, então seria bom fazer validação no lado cliente para obrigar as datas
+	navegação para lançamento não funciona
+entries-templates-list: 
+	validação dos campo decimal está com problema quando tem separador de decimal
+
+criar um relatório onde eu coloco as contas na ordem que eu quiser e ele vai totalizando
+	deixar criar varios "esqueletos"
+	para criar um novo esqueleto, listar as contas e permitir remover algumas e mudar a ordem
+		se nao for muito dificil, permitir agrupar algumas
+	ex:	VISAO 1				VISAO 2
+		contas mensais			prestacoes
+		contas anuais			contas mensais
+		educacao			contas anuais
+		alimentacao			educacao
+		combustivel			alimentacao
+		onibus				combustivel
+		uber&cia			outros transporte
+		manutencao do carro		manutencao da casa
+		estacionamento			saude e cuidados pessoais
+		outros (transporte)		lazer
+		manutencao da casa		animais
+		saude e cuidados pessoais	despesas extraordinarias
+		lazer				obra
+		animais				ministerio
+		despesas extraordinarias	
+		prestacoes			
+		obra				
+		previdencia			
+		ministerio			
+
+Ao logar, ir para o portal.
+smart search: algo para limpar o campo; talvez ao clicar no smart selecionar o texto todo já ajuda;
+smart search: quando digita a estrutura, seria interessante pesquisar a partir do começo somente, mas isso atrapalharia a pesquisa pela descrição
+pensar em importação do alelo e fatura do cartão (talvez usar a area de transferencia ou um campão para copiar e colar)
+talvez rede neural para classificacao automatica
+
+memo mappings:
+	multiplan -> estacionamento
+	indigo -> estacionamento
+	epa%loja, roma%plus, SUPERMERCADOS BH -> compras para casa (problema: as vezes tem rateio, epa pode dar match em parte....)
+	impostos está caindo em gasolina como "postos"
+	cobrança de iof -> tarifa bancária, banco
+	cobrança de juros -> tarifa bancária, banco
+	KI-SACOLAO -> compras para casa
+
+--------------------------------------------
+daqui pra baixo era na epoca do angularjs
+
 fazer relatorio principal
 
 resolvi os dois problemas abaixo removendo informação de timezone da data antes de exibir, mas nao ficou bom pq faco em cada lugar que precisa lidar com data

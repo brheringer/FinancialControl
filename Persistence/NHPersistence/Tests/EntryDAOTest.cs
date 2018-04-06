@@ -80,7 +80,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry();
 			CreateEntry();
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 0);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 0, 0);
 			
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(3, entries.Count);
@@ -95,7 +95,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 				CreateEntry(account, center, new DateTime(2016, 12, 30).AddDays(i), i, "test");
 
 			NHTransactionManager t = (NHTransactionManager)this.TransactionMngrInstance;
-			var entries = t.Factory.EntryDAO.Search(new DateTime(2017, 1, 1), new DateTime(2017, 1, 10), null, 0, 0, 0, null, null, null, USER, 0);
+			var entries = t.Factory.EntryDAO.Search(new DateTime(2017, 1, 1), new DateTime(2017, 1, 10), null, 0, 0, 0, null, null, null, USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(10, entries.Count);
@@ -115,7 +115,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 				CreateEntry(account, center, new DateTime(2016, 12, 30).AddDays(i), i, "test");
 
 			NHTransactionManager t = (NHTransactionManager)this.TransactionMngrInstance;
-			var entries = t.Factory.EntryDAO.Search(null, null, new DateTime(2017, 1, 5), 0, 0, 0, null, null, null, USER, 0);
+			var entries = t.Factory.EntryDAO.Search(null, null, new DateTime(2017, 1, 5), 0, 0, 0, null, null, null, USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(1, entries.Count);
@@ -133,7 +133,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry(account, center, new DateTime(2016, 12, 30), 1.03M, "test");
 			CreateEntry(account, center, new DateTime(2016, 12, 30), 1.04M, "test");
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 1.01M, 1.03M, 0, null, null, null, USER, 0);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 1.01M, 1.03M, 0, null, null, null, USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(3, entries.Count);
@@ -155,7 +155,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry(account, center, new DateTime(2016, 12, 30), 1.03M, "test");
 			CreateEntry(account, center, new DateTime(2016, 12, 30), 1.04M, "test");
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 1.02M, null, null, null, USER, 0);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 1.02M, null, null, null, USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(1, entries.Count);
@@ -173,7 +173,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry(account, center, new DateTime(2016, 12, 30), 1.03M, "qwer");
 			CreateEntry(account, center, new DateTime(2016, 12, 30), 1.04M, "poiu");
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, "test", USER, 0);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, "test", USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(2, entries.Count);
@@ -193,7 +193,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry(account, center2, new DateTime(2016, 12, 30), 1.03M, "qwer");
 			CreateEntry(account, center2, new DateTime(2016, 12, 30), 1.04M, "poiu");
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, center2, null, USER, 0);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, center2, null, USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(2, entries.Count);
@@ -216,7 +216,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry(account4, center, new DateTime(2016, 12, 30), 1.03M, "qwer");
 			CreateEntry(account5, center, new DateTime(2016, 12, 30), 1.04M, "poiu");
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, account1, null, null, USER, 0);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, account1, null, null, USER, 0, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(3, entries.Count);
@@ -232,14 +232,14 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry();
 			CreateEntry();
 
-			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 2);
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 2, 0);
 
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(2, entries.Count);
 			Assert.AreEqual("tester", entries[0].User);
 			Assert.AreEqual("tester", entries[1].User);
 
-			entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, "asdf", 2);
+			entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, "asdf", 2, 0);
 			Assert.IsNotNull(entries);
 			Assert.AreEqual(0, entries.Count);
 
@@ -253,7 +253,31 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 			CreateEntry();
 			CreateEntry();
 
-			var lctos = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, "", 0);
+			var lctos = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, "", 0, 0);
+		}
+
+		[TestMethod]
+		public void TestPagination()
+		{
+			CreateEntry();
+			CreateEntry();
+			CreateEntry();
+
+			int page = 1;
+			var entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 2, page);
+
+			Assert.IsNotNull(entries);
+			Assert.AreEqual(2, entries.Count, "There are 3 entries, the max results is 2, so the first page should contain only the first and second entries.");
+
+			page = 2;
+			entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 2, page);
+			Assert.IsNotNull(entries);
+			Assert.AreEqual(1, entries.Count, "There are 3 entries, the max results is 2, so the second page should contain only the third entry.");
+
+			page = 0;
+			entries = TransactionMngrInstance.Factory.EntryDAO.Search(null, null, null, 0, 0, 0, null, null, null, USER, 2, page);
+			Assert.IsNotNull(entries);
+			Assert.AreEqual(2, entries.Count, "Page 0 is treated as page 1 by definition.");
 		}
 
 		private Account CreateAccount(long id, string structure = null)
@@ -312,7 +336,7 @@ namespace FinancialControl.Persistence.NHPersistence.Tests
 		private IList<Entry> Search()
 		{
 			var entries = TransactionMngrInstance.Factory.EntryDAO
-				.Search(null, null, null, 0, 0, 0, null, null, null, USER, 0);
+				.Search(null, null, null, 0, 0, 0, null, null, null, USER, 0, 0);
 			return entries;
 		}
 

@@ -49,6 +49,7 @@ namespace FinancialControl.Persistence.NHPersistence
 			FilterByUser(query, username);
 			query.WhereRestrictionOn(x => x.Description).IsLike(description, MatchMode.Anywhere);
 			query.WhereRestrictionOn(x => x.Structure).IsLike(structure, MatchMode.Start);
+			query.OrderBy(x => x.Structure);
 			IList<Account> accounts = query.List();
 			return accounts;
 		}

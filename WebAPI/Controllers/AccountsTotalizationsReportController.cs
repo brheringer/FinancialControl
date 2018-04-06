@@ -26,7 +26,7 @@ namespace FinancialControl.WebAPI.Controllers
 
 			var accounts = daoFactory.AccountDAO.LoadAll(this.UserName);
 			var entries = daoFactory.EntryDAO.Search(dto.FilterInitialDate, dto.FilterFinalDate,
-				null, 0, 0, 0, null, null, null, this.UserName, 0);
+				null, 0, 0, 0, null, null, null, this.UserName, 0, 0);
 
 			AccountsTotalizatonsReport report = new AccountsTotalizatonsReport();
 			report.AddAccounts(accounts);

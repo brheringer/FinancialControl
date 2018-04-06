@@ -57,7 +57,20 @@ export class EntriesListComponent implements OnInit {
       })
   }
 
+  nextPage(): void {
+    this.model.searchPage++;
+    this.search();
+  }
+
+  previousPage(): void {
+    if(this.model.searchPage > 1) {
+      this.model.searchPage--;
+      this.search();
+    }
+  }
+
   searchAsYouType(): void {
+    this.model.searchPage = 1;
     this.searchAsYouTypeSubject.next();
   }
 
