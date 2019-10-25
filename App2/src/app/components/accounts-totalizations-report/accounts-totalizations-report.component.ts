@@ -15,6 +15,8 @@ export class AccountsTotalizationsReportComponent implements OnInit {
 
   model: AccountsTotalizationsReport = new AccountsTotalizationsReport();
   showFilters: boolean = true;
+  analytical: boolean = false;
+  showZeros: boolean = false;
 
   constructor(
     private service: AccountsTotalizationsReportService,
@@ -26,10 +28,7 @@ export class AccountsTotalizationsReportComponent implements OnInit {
   generateReport(): void {
     this.service.generateReport(this.model)
       .subscribe(dto => {
-        if (dto.response.hasException) {
-          this.alertService.error(dto.response.exception);
-        }
-        else {
+        if (!dto.response.hasException) {
           this.model.accountsTotalizations = dto.accountsTotalizations;
         }
       });
@@ -41,6 +40,5 @@ export class AccountsTotalizationsReportComponent implements OnInit {
 
 }
 
-//TODO filtro por nivel, conta, centro
 //TODO no analitico, destacar os detalhes de alguma forma
 //TODO rever cores das linhas, talvez degrade por nivel e alternar cores no nivel de detalhe e nas linhas analiticas

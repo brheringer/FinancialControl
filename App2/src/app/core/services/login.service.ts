@@ -14,13 +14,22 @@ export class LoginService {
 
   login(dto: User): Observable<UserSession>
   {
-    let observable = this.generic.post<UserSession>('login', dto);
-    observable.subscribe(sessionDto => {
-      if (sessionDto && sessionDto.userSessionToken) {
-        this.session.setCurrentSession(sessionDto);
-      }
+    return new Observable(observer => {
+      this.generic.post<UserSession>('login', dto).subscribe(sessionDto => {
+        if (sessionDto && sessionDto.userSessionToken) {
+          this.session.setCurrentSession(sessionDto);
+        }
+        observer.next(sessionDto);
+        observer.complete();
+      })
     });
-    return observable;
+    // let observable = this.generic.post<UserSession>('login', dto);
+    // observable.subscribe(sessionDto => {
+    //   if (sessionDto && sessionDto.userSessionToken) {
+    //     this.session.setCurrentSession(sessionDto);
+    //   }
+    // });
+    // return observable;
   }
 
   logout(): void

@@ -1,8 +1,10 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FinancialCoreModule } from './core/core.module';
@@ -21,6 +23,7 @@ import { MemosMappingsListComponent } from './components/memos-mappings-list/mem
 import { ImportingComponent } from './components/importing/importing.component';
 import { EntriesListComponent } from './components/entries-list/entries-list.component';
 import { AccountsTotalizationsReportComponent } from './components/accounts-totalizations-report/accounts-totalizations-report.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -34,15 +37,18 @@ import { AccountsTotalizationsReportComponent } from './components/accounts-tota
     EntriesListComponent,
     AccountsTotalizationsReportComponent,
     PortalComponent,
-    UserCornerComponent
+    UserCornerComponent,
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     CommonModule,
     FormsModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
-    FinancialCoreModule
+    FinancialCoreModule,
+    NgxChartsModule
   ],
   providers: [
     AuthGuard,

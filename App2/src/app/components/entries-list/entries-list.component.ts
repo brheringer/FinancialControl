@@ -31,7 +31,7 @@ export class EntriesListComponent implements OnInit {
   public searchAsYouTypeSubject = new Subject();
   public searchAsYouTypeObservable = new Subscription();
   public templates = new Array<EntryTemplate>();
-  public layoutMode = 'CARD';
+  public layoutMode = 'GRID';
 
   constructor(
     private service: EntryService,

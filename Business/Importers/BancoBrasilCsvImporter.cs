@@ -80,9 +80,8 @@ namespace FinancialControl.Business.Importers
 			//data no formato americano
 			DateTime date;
 			string sDate = tokens[0].Replace("\"", string.Empty);
-			date = Convert.ToDateTime(sDate,
-				System.Globalization.CultureInfo
-				.GetCultureInfo("en-US").DateTimeFormat);
+			date = DateTime.ParseExact(sDate, "dd/MM/yyyy",
+				System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat);
 			return date;
 		}
 

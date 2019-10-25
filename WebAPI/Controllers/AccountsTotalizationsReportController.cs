@@ -24,13 +24,22 @@ namespace FinancialControl.WebAPI.Controllers
 		{
 			AccountsTotalizationsReportDto response = new AccountsTotalizationsReportDto();
 
+			Account filterAccount = null;
+			if (dto.FilterAccount != null && dto.FilterAccount.AutoId > 0)
+				filterAccount = daoFactory.AccountDAO.Load(dto.FilterAccount.AutoId);
+
+			ResultCenter filterCenter = null;
+			if (dto.FilterResultCenter != null && dto.FilterResultCenter.AutoId > 0)
+				filterCenter = daoFactory.ResultCenterDAO.Load(dto.FilterResultCenter.AutoId);
+
 			var accounts = daoFactory.AccountDAO.LoadAll(this.UserName);
 			var entries = daoFactory.EntryDAO.Search(dto.FilterInitialDate, dto.FilterFinalDate,
-				null, 0, 0, 0, null, null, null, this.UserName, 0, 0);
+				null, 0, 0, 0, filterAccount, filterCenter, null, this.UserName, 0, 0);
 
 			AccountsTotalizatonsReport report = new AccountsTotalizatonsReport();
 			report.AddAccounts(accounts);
 			report.AddEntries(entries);
+			report.SetMaxAccountLevel(dto.FilterAccountLevel);
 			var totalizations = report.GenerateReport();
 
 			response.AccountsTotalizations = Wrap(totalizations);

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Importers\GenericCsvImporter.cs" />
     <Compile Include="Importers\FileImporter.cs" />
     <Compile Include="Importers\BancoBrasilCsvImporter.cs" />
     <Compile Include="Importers\MemoMapperBuilder.cs" />

@@ -10,6 +10,7 @@ namespace FinancialControl.Business.Reports
 		private List<Account> accounts = new List<Account>();
 		private List<Entry> entries = new List<Entry>();
 		private List<AccountTotalization> totalizations = new List<AccountTotalization>();
+		private int maxAccountLevel = 0;
 
 		public void AddAccounts(IEnumerable<Account> accounts)
 		{
@@ -21,11 +22,16 @@ namespace FinancialControl.Business.Reports
 			this.entries.AddRange(entries);
 		}
 
+		public void SetMaxAccountLevel(int level)
+		{
+			this.maxAccountLevel = level;
+		}
+
 		public List<AccountTotalization> GenerateReport()
 		{
 			InitializeTotalizationWithAccounts();
 			TotalizeEntries();
-
+			PruneByAccountLevel();
 			this.totalizations.Sort();
 			return this.totalizations;
 		}
@@ -67,6 +73,12 @@ namespace FinancialControl.Business.Reports
 			}
 
 			return totalization;
+		}
+
+		private void PruneByAccountLevel()
+		{
+			if(this.maxAccountLevel > 0)
+				this.totalizations.RemoveAll(x => x.Account.Level > maxAccountLevel);
 		}
 	}
 }

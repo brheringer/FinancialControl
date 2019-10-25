@@ -22,6 +22,37 @@
                        tip="Show or hide the analytical details."></boolean-field>
       </div>
 
+      <div class="form-group">
+        <boolean-field [(booleanValue)]="showZeros"
+                       label="Show Zeros"
+                       tip="Show or hide the accounts which total is zero."></boolean-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <smart-search-field [(model)]="model.filterAccount"
+                            (modelChange)="searchAsYouType()"
+                            [targetService]="'Account'"
+                            [label]="'Account'"
+                            [tip]="'Filter by Account'"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="form-group">
+        <smart-search-field [(model)]="model.filterResultCenter"
+                            (modelChange)="searchAsYouType()"
+                            [targetService]="'ResultCenter'"
+                            [label]="'Result Center'"
+                            [tip]="'Filter by Result Center'"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="form-group">
+        <number-field [(number)]="model.filterAccountLevel"
+                      label="Account Level"
+                      tip="Show accounts until this level."></number-field>
+      </div>
     </div>
 
   </form>
@@ -55,24 +86,26 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let total of model.accountsTotalizations">
-          <tr>
-            <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-text': true}">{{total.accountStructure}}</td>
-            <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-text': true}">{{total.accountDescription}}</td>
-            <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-value': true}">{{total.total|number:'1.2-2'}}</td>
-          </tr>
-          <ng-container *ngIf="analytical">
-            <tr *ngFor="let detail of total.analyticalDetails">
-              <td>...</td>
-              <td>...</td>
-              <td align="right">{{detail.value|number:'1.2-2'}}</td>
-              <td>{{detail.date|finDateFormat}}</td>
-              <td>{{detail.memo}}</td>
-              <td>
-                <button (click)="expand(detail.originalEntry?.autoId)">
-                  <img src="../../../assets/search_24px.svg" />
-                </button>
-              </td>
+          <ng-container *ngIf="showZeros || total.total > 0">
+            <tr>
+              <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-text': true}">{{total.accountStructure}}</td>
+              <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-text': true}">{{total.accountDescription}}</td>
+              <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-value': true}">{{total.total|number:'1.2-2'}}</td>
             </tr>
+            <ng-container *ngIf="analytical">
+              <tr *ngFor="let detail of total.analyticalDetails">
+                <td>...</td>
+                <td>...</td>
+                <td align="right">{{detail.value|number:'1.2-2'}}</td>
+                <td>{{detail.date|finDateFormat}}</td>
+                <td>{{detail.memo}}</td>
+                <td>
+                  <button (click)="expand(detail.originalEntry?.autoId)">
+                    <img src="../../../assets/search_24px.svg" />
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
           </ng-container>
         </ng-container>
       </tbody>

@@ -1,7 +1,8 @@
 datas e números em formato americano...
 smart search: 
-	quando apaga o valor ou deixa um valor inválido, fica continua selecionado o que estava antes
+	quando apaga o valor ou deixa um valor inválido, fica continua selecionado o que estava antes (acho que resolvi isso na metal)
 	não está mantendo a ordenação do jeito que vem do servidor
+	ignorar contas obsoletas
 entries-list:
 	criar opções de ordenação por coluna
 	filtro de data parece que so funciona se clicar na data (se digitar e der tab, não reage)
@@ -19,13 +20,17 @@ entries-list:
 	talvez permitir selecionar alguns itens e mostrar o total do que foi selecionado
 accounts-totalizations-report: 
 	contas analíticas sem lançamentos estão ficando em negrito
-	opção para ocultar zeradas
-	opção para filtrar por níveis
 	parece que se não preencher uma das datas dá pau, então seria bom fazer validação no lado cliente para obrigar as datas
 	navegação para lançamento não funciona
 entries-templates-list: 
 	validação dos campo decimal está com problema quando tem separador de decimal
-
+memo-mapping:
+	não está excluindo
+	criar filtros
+	corrigir as tips
+criar relatório para comparar vários períodos
+accounts/result-centers: criar opção para impressão
+criar campo que resolve fórmula (ex: =10+20 vira 30)
 criar um relatório onde eu coloco as contas na ordem que eu quiser e ele vai totalizando
 	deixar criar varios "esqueletos"
 	para criar um novo esqueleto, listar as contas e permitir remover algumas e mudar a ordem
@@ -57,14 +62,11 @@ smart search: quando digita a estrutura, seria interessante pesquisar a partir d
 pensar em importação do alelo e fatura do cartão (talvez usar a area de transferencia ou um campão para copiar e colar)
 talvez rede neural para classificacao automatica
 
-memo mappings:
-	multiplan -> estacionamento
-	indigo -> estacionamento
-	epa%loja, roma%plus, SUPERMERCADOS BH -> compras para casa (problema: as vezes tem rateio, epa pode dar match em parte....)
-	impostos está caindo em gasolina como "postos"
-	cobrança de iof -> tarifa bancária, banco
-	cobrança de juros -> tarifa bancária, banco
-	KI-SACOLAO -> compras para casa
+memos:
+TRANSF.RECURSO E I - Tarifa referente a 26/04/2018 -> tarifas bancárias, banco
+impostos vai para combustível ("postos")
+Cobran?a de Juros
+Cobran?a de I.O.F.
 
 --------------------------------------------
 daqui pra baixo era na epoca do angularjs

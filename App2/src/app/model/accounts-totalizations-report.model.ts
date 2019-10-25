@@ -6,4 +6,7 @@ export class AccountsTotalizationsReport extends DataTransferObject {
   filterInitialDate: Date;
   filterFinalDate: Date;
   accountsTotalizations: Array<AccountTotalization> = new Array<AccountTotalization>();
+  filterAccount: EntityReference = null;
+  filterResultCenter: EntityReference = null;
+  filterAccountLevel: number = 0;
 }

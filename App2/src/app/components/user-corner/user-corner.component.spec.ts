@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserCornerComponent } from './user-corner.component';
+import { PortalComponent } from '../portal/portal.component';
 
 describe('UserCornerComponent', () => {
   let component: PortalComponent;
