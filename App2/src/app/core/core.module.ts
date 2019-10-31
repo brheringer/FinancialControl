@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MyHttpInterceptor } from './services/my-http-interceptor';
 import { GenericService } from './services/generic.service';
@@ -22,6 +22,7 @@ import { TextAreaFieldComponent } from './components/text-area-field/text-area-f
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { DateFormatPipe } from './pipes/date-pipe';
 import { EntityFormatPipe } from './pipes/entity-pipe';
+import { MathExpressionDirective } from './directives/math-expression.directive';
 
 @NgModule({
   declarations: [
@@ -37,14 +38,15 @@ import { EntityFormatPipe } from './pipes/entity-pipe';
     TextAreaFieldComponent,
     TextFieldComponent,
     DateFormatPipe,
-    EntityFormatPipe
+    EntityFormatPipe,
+    MathExpressionDirective
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
-    NgbModule.forRoot(),
+    NgbTypeaheadModule
   ],
   exports: [
     AlertComponent,
@@ -59,7 +61,8 @@ import { EntityFormatPipe } from './pipes/entity-pipe';
     TextAreaFieldComponent,
     TextFieldComponent,
     DateFormatPipe,
-    EntityFormatPipe
+    EntityFormatPipe,
+    MathExpressionDirective
   ],
   providers: [
     GenericService,

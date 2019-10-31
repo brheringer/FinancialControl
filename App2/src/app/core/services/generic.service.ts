@@ -5,7 +5,6 @@ import { DataTransferObject } from '../model/data-transfer-object';
 import { Response } from '../model/response';
 import { SessionService } from '../local-services/session.service';
 import { EntitiesReferences } from '../model/entities-references';
-import config from "../../../assets/config/financial-control-config.json";
 
 @Injectable()
 export class GenericService {

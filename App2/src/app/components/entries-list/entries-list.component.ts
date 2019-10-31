@@ -31,7 +31,7 @@ export class EntriesListComponent implements OnInit {
   public searchAsYouTypeSubject = new Subject();
   public searchAsYouTypeObservable = new Subscription();
   public templates = new Array<EntryTemplate>();
-  public layoutMode = 'GRID';
+  public layoutMode = 'GRID2';
 
   constructor(
     private service: EntryService,
@@ -47,8 +47,6 @@ export class EntriesListComponent implements OnInit {
         else
           this.templates = dto.templates;
       });
-
-    this.search();
 
     this.searchAsYouTypeObservable = this.searchAsYouTypeSubject
       .debounceTime(300)

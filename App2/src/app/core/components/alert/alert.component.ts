@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../local-services/alert.service';
 
 @Component({
-  moduleId: module.id, //TODO pq isso?
+  //moduleId: module.id, //TODO pq isso?
   selector: 'alert',
   templateUrl: 'alert.component.html'
 })

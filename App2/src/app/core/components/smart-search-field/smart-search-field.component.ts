@@ -1,15 +1,8 @@
+
+import {debounceTime, mergeMap, distinctUntilChanged, catchError, merge, switchMap, tap} from 'rxjs/operators';
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/switchMap';
 import 'rxjs/Rx';
 
 import { GenericService } from '../../services/generic.service';
@@ -27,12 +20,13 @@ export class SmartSearchFieldComponent {
   @Input() label: string;
   @Input() tip: string;
   @Input() targetService: string;
+  @Input() fnTargetService: any;
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
   @Input() ignitionMilisseconds: number = 300;
   @Input() ignitionMinChars: number = 2;
 
-  private searching = false;
+  public searching = false;
   private searchFailed = false;
   private hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
 
@@ -45,36 +39,41 @@ export class SmartSearchFieldComponent {
   }
 
   changeModel(event: any): void {
-    if (event && event.autoId) { //verifica se é um objeto válido (pq antes de selecionar é apenas uma string)
+    if (!event)
+      event = null;
+
+    if (event === null || event.autoId) { //verifica se é um objeto válido (pq antes de selecionar é apenas uma string)
       this.model = event;
       this.modelChange.emit(this.model);
     }
   }
 
   searchAsYouType = (text$: Observable<string>) =>
-    text$
-      .debounceTime(this.ignitionMilisseconds)
-      .distinctUntilChanged()
-      .do(() => this.searching = true)
-      .switchMap((term: string) => {
+    text$.pipe(
+      debounceTime(this.ignitionMilisseconds),
+      distinctUntilChanged(),
+      tap(() => this.searching = true),
+      switchMap((term:string) => {
         if (!term || term.length < this.ignitionMinChars)
           return new EmptyObservable<EntityReference[]>();
         else
-          return this.service.smartSearch(this.targetService, term)
-            .flatMap(dto => of(dto.references))
-            .do(() => {
+          return this.realSearch(term).pipe(
+            mergeMap(dto => of(dto.references)),
+            tap(() => {
               this.searchFailed = false
-            })
-            .catch(() => {
+            }),
+            catchError(() => {
               this.searchFailed = true;
               return of([]);
-            })
-      })
-      .do(() => this.searching = false)
-      .merge(this.hideSearchingWhenUnsubscribed);
+            }),)
+      }),
+      tap(() => this.searching = false),
+      merge(this.hideSearchingWhenUnsubscribed),);
 
-  realSearch(smartEntry: string) {
-    return this.service.smartSearch(this.targetService, smartEntry);
+  realSearch(term: string): Observable<EntitiesReferences> {
+    return this.fnTargetService == null
+      ? this.service.smartSearch(this.targetService, term)
+      : this.fnTargetService(this.targetService, term);
   }
 }
 

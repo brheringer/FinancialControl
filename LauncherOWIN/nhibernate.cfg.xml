@@ -10,7 +10,7 @@
 		<property name="dialect">NHibernate.Dialect.SQLiteDialect</property>
 		<property name="connection.driver_class">NHibernate.Driver.SQLite20Driver</property>
 		<!--<property name="connection.connection_string">Data Source=D:\Aplicacoes\FinancialControl\database\FinancialControl.db;New=true;Version=3;</property>-->
-		<property name="connection.connection_string">Data Source=E:\documentos\database\FinancialControl.db;New=true;Version=3;</property>
+		<property name="connection.connection_string">Data Source=D:\Aplicacoes\FinancialControlSVN\FinancialControl.db;New=true;Version=3;</property>
 		<property name="show_sql">true</property>
 		<!--<property name="hbm2ddl.auto">create-drop</property>-->
 		<property name="hbm2ddl.auto">update</property>

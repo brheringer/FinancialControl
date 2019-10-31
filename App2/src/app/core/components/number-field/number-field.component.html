@@ -3,14 +3,15 @@
     <div *ngIf="label" class="input-group-text fin-field-type-addon"><img src="assets/number_24px.svg" /></div>
     <div *ngIf="label" class="input-group-text fin-field-label-addon">{{label}}</div>
   </div>
-  <input type="number" class="form-control" id="field-TODO-NAME" name="field-TODO-NAME"
+  <input type="text" class="form-control" id="field-TODO-NAME" name="field-TODO-NAME"
          [ngModel]="toString(number)"
-         (ngModelChange)="number=fromString($event);changeNumber()"
+         (ngModelChange)="onModelChange($event)"
          (blur)="onBlur($event)"
          [placeholder]="tip"
          [required]="required ? true : false"
          [disabled]="disabled ? true : false"
-         #name="ngModel">
+         #name="ngModel"
+         finMathExpression>
   <div *ngIf="label" class="input-group-append">
     <div class="input-group-text fin-field-help-addon">
       <img src="assets/help_24px.svg" title="{{tip}}" />

@@ -18,7 +18,7 @@
 		
 		<!--TODO tornar caminho relativo-->
 		<property name="ConfigurationFileName" 
-				  value="D:\desenvolvimento\FinancialControl\trunk\LauncherOWIN\bin\debug\nhibernate.cfg.xml" />
+				  value="D:\Aplicacoes\FinancialControlSVN\trunk\LauncherOWIN\bin\debug\nhibernate.cfg.xml" />
 	</object>
 
 </objects>

@@ -1,5 +1,6 @@
 datas e números em formato americano...
 smart search: 
+	spin (ampulheta)
 	quando apaga o valor ou deixa um valor inválido, fica continua selecionado o que estava antes (acho que resolvi isso na metal)
 	não está mantendo a ordenação do jeito que vem do servidor
 	ignorar contas obsoletas

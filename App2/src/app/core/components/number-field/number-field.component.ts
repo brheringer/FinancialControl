@@ -14,6 +14,12 @@ export class NumberFieldComponent {
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
 
+  onModelChange(strnumber: string): void {
+    //if(strnumber && strnumber.startsWith("="))
+    this.number=this.fromString(strnumber);
+    this.changeNumber();
+  }
+
   changeNumber(): void {
     this.numberChange.emit(this.number);
   }
@@ -24,7 +30,10 @@ export class NumberFieldComponent {
 
 
   toString(number: number): string {
-    return number + ''; //TODO e o separador de decima?
+    if(!number)
+      return '';
+    else
+      return number + ''; //TODO e o separador de decima?
   }
 
   fromString(strnumber: string): number {

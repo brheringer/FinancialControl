@@ -1,10 +1,12 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import localePT from '@angular/common/locales/pt'; 
+registerLocaleData(localePT, 'pt-BR'); 
 
 import { AppRoutingModule } from './app-routing.module';
 import { FinancialCoreModule } from './core/core.module';
@@ -12,6 +14,7 @@ import { FinancialCoreModule } from './core/core.module';
 import { AuthGuard } from './guards/auth.guard';
 import { AlertService } from './core/local-services/alert.service';
 import { SessionService } from './core/local-services/session.service';
+import { MyHttpInterceptor } from './core/services/my-http-interceptor';
 
 import { AppComponent } from './app.component';
 import { PortalComponent } from './components/portal/portal.component';
@@ -23,8 +26,6 @@ import { MemosMappingsListComponent } from './components/memos-mappings-list/mem
 import { ImportingComponent } from './components/importing/importing.component';
 import { EntriesListComponent } from './components/entries-list/entries-list.component';
 import { AccountsTotalizationsReportComponent } from './components/accounts-totalizations-report/accounts-totalizations-report.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
 
 @NgModule({
   declarations: [
@@ -37,23 +38,24 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     EntriesListComponent,
     AccountsTotalizationsReportComponent,
     PortalComponent,
-    UserCornerComponent,
-    DashboardComponent
+    UserCornerComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule,
-    NgbModule.forRoot(),
-    FinancialCoreModule,
-    NgxChartsModule
+    HttpClientModule,
+    NgbTypeaheadModule,
+    FinancialCoreModule
   ],
   providers: [
     AuthGuard,
     AlertService,
-    SessionService
+    SessionService,
+      { provide: LOCALE_ID, useValue: 'pt-BR' },
+	    { provide: 'environmentProvider', useValue: environment },
+	    { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

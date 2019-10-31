@@ -2,9 +2,9 @@
 
   <div *ngIf="isLoggedIn">
     <div class="col">
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-primary" id="menu" ngbDropdownToggle>Olá, {{userName}}!</button>
-        <div ngbDropdownMenu aria-labelledby="menu">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" id="menu" data-toggle="dropdown">Olá, {{userName}}!</button>
+        <div class="dropdown-menu">
           <a class="dropdown-item" routerLink="portal" routerLinkActive="active">Portal</a>
           <a class="dropdown-item" routerLink="change-password" routerLinkActive="active">Alterar Minha Senha</a>
           <button class="dropdown-item" (click)="doLogout()">Logout</button>
