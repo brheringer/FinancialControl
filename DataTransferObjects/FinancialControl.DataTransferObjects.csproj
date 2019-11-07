@@ -46,6 +46,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashboardDto.cs" />
     <Compile Include="AccountsTotalizationsReportDto.cs" />
     <Compile Include="AccountTotalizationDto.cs" />
     <Compile Include="MemosMappingsDto.cs" />

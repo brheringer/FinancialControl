@@ -23,7 +23,7 @@ export class MathExpressionDirective implements OnInit {
     this.el.dispatchEvent(new Event('input'))
   }
 
-  resolveExpression() {
+  resolveExpression(): number {
     let value = this.ngControl.control.value;
 
     if(value && value.length > 1 && value[0] == '=') {
@@ -58,7 +58,7 @@ export class MathExpressionDirective implements OnInit {
       return a;
     }
 
-    else return value;
+    else return isNaN(Number(value)) ? 0 : Number(value);
   }
 
   operate(a: number, op: string, b: number): number {

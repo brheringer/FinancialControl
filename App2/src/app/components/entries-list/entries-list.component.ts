@@ -202,13 +202,15 @@ export class EntriesListComponent implements OnInit {
     to.status = new EntityStatus();
   }
 
+  totalizarLancamentos(): number {
+    return this.model.entries.length > 0
+     ? this.model.entries.map(entry => entry.value).reduce((a, b) => a + b)
+     : 0;
+  }
 }
 
 //TODO salvar somente se realmente teve modificacao
 //TODO se clicar nos botoes pra aumentar/diminuir o valor, nao salva
 //TODO se der erro no interceptor, mostra alerta geral, mas não mostra que item não foi salvo, isso é problema?
-//TODO delete deu pau ( [405] Http failure response for http://localhost:58452/api/Entry?id=2: 405 Method Not Allowed )
-//TODO confirmar exclusao
-//TODO permitir ordenar por qualquer coluna
 //TODO mostar total e contagem
 //TODO exportar csv?

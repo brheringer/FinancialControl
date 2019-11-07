@@ -111,7 +111,7 @@
         Previous Page
       </button>
       <span>
-        Showing page {{model.searchPage}} with {{model.entries.length}} items.
+        Showing page {{model.searchPage}} with {{model.entries.length}} items. Total da página: {{totalizarLancamentos() | number:'1.2'}}
       </span>
       <button class="btn fin-toolbar-button" (click)="nextPage()">
         Next Page
@@ -233,12 +233,20 @@
                     [required]="true"></date-field>
       </div>
 
-      <div class="col mt-0">
+      <div class="col-auto mt-0">
         <span class="grid2label">value</span>
-        <number-field [(number)]="entry.value"
+        <!-- <number-field [(number)]="entry.value"
                       (blur)="saveIfValid(entry)"
                       [tip]="'Default value'"
-                      [required]="true"></number-field>
+                      [required]="true"></number-field> -->
+        <input type="number" class="form-control"
+               [(ngModel)]="entry.value"
+               (blur)="saveIfValid(entry)"
+               [placeholder]="'Default value'"
+               [title]="entry.value"
+               [required]="true"
+               [disabled]="false"
+               finMathExpression>
       </div>
 
       <div class="col mt-0">
@@ -266,7 +274,8 @@
        <text-field [(text)]="entry.memo"
                     (blur)="saveIfValid(entry)"
                     [tip]="'Description'"
-                    [required]="false"></text-field>
+                    [required]="false"
+                    [title]="entry.memo"></text-field>
       </div>
 
       <div class="card-toolbar">
@@ -417,4 +426,5 @@
       </button>
     </div>
   </div>
+
 </div>

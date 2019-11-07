@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\AccountsTotalizationsReportController.cs" />
     <Compile Include="Controllers\MemoMappingController.cs" />
     <Compile Include="Controllers\EntryTemplateController.cs" />

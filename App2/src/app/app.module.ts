@@ -26,6 +26,7 @@ import { MemosMappingsListComponent } from './components/memos-mappings-list/mem
 import { ImportingComponent } from './components/importing/importing.component';
 import { EntriesListComponent } from './components/entries-list/entries-list.component';
 import { AccountsTotalizationsReportComponent } from './components/accounts-totalizations-report/accounts-totalizations-report.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AccountsTotalizationsReportComponent } from './components/accounts-tota
     EntriesListComponent,
     AccountsTotalizationsReportComponent,
     PortalComponent,
-    UserCornerComponent
+    UserCornerComponent,
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
