@@ -31,7 +31,7 @@ export class DateFieldComponent {
     }
     else {
       //let utc = incoming + 'T00:00:00Z';
-      this.date = new Date(incoming);
+      this.date = moment(incoming).toDate(); // new Date(incoming);
     }
   }
 }

@@ -1,0 +1,87 @@
+<div>
+    <div class="fin-form-title">Dashboard</div>
+
+    <form *ngIf="showFilters" class="fin-form" #thisForm="ngForm">
+
+        <div class="row">
+            <div class="form-group col-lg-5">
+                <date-field [(date)]="model.filterInitialDate"
+                            [label]="'Initial Date'"
+                            [tip]="'Initial Date'"></date-field>
+            </div>
+
+            <div class="form-group col-lg-5">
+                <date-field [(date)]="model.filterFinalDate"
+                            [label]="'Final Date'"
+                            [tip]="'Final Date'"></date-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-5">
+                <number-field [(number)]="model.filterLowerValue"
+                            [label]="'Lower Value'"
+                            [tip]="'Lower Value'"></number-field>
+            </div>
+
+            <div class="form-group col-lg-5">
+                <number-field [(number)]="model.filterHigherValue"
+                            [label]="'Higher Value'"
+                            [tip]="'Higher Value'"></number-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-5">
+                <text-field [(text)]="model.filterMemo"
+                            [label]="'Memo'"
+                            [tip]="'Filter by memo (partially)'"></text-field>
+            </div>
+
+            <div class="form-group col-lg-5">
+                <number-field [(number)]="model.filterAccountLevel"
+                            [label]="'Account Level'"
+                            [tip]="'Show this account level'"></number-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-5">
+                <smart-search-field [(model)]="model.filterAccount"
+                                    [targetService]="'Account'"
+                                    [label]="'Account'"
+                                    [tip]="'Filter by Account'"
+                                    [ignitionMinChars]="1"></smart-search-field>
+            </div>
+
+            <div class="form-group col-lg-5">
+                <smart-search-field [(model)]="model.filterResultCenter"
+                                    [targetService]="'ResultCenter'"
+                                    [label]="'Result Center'"
+                                    [tip]="'Filter by Result Center'"
+                                    [ignitionMinChars]="1"></smart-search-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" (click)="generateDashboard()">Generate Dashboard</button>
+                <img src="assets/info_24px.svg" [title]="model|json">
+            </div>
+        </div>
+    
+    </form>
+
+    <div class="row">
+        <div class="col">
+            <select [(ngModel)]="model.periodicity">
+                <option *ngFor="let p of periodicities" [value]="p">{{p}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="chart">
+            grafico de barras no tempo
+    </div>
+        
+</div>

@@ -1,23 +1,28 @@
-datas e números em formato americano...
+fazer funcionar math
+terminar dashboard
+criar mais uma classificação de lançamentos para indicar a "cobertura" ou "origem". a ideia eh agrupar uma visão de orçamento associando uma despesa a uma receita
+	ex: salário -> todas as contas, alimentação, combustível, aulas especializadas
+	ex: aluguéis -> cuidados pessoais, manutenção do carro, man. da casa, lazer, outros
+OK datas e números em formato americano...
 smart search: 
 	spin (ampulheta)
-	quando apaga o valor ou deixa um valor inválido, fica continua selecionado o que estava antes (acho que resolvi isso na metal)
+	OK quando apaga o valor ou deixa um valor inválido, fica continua selecionado o que estava antes (acho que resolvi isso na metal)
 	não está mantendo a ordenação do jeito que vem do servidor
 	ignorar contas obsoletas
 entries-list:
 	criar opções de ordenação por coluna
-	filtro de data parece que so funciona se clicar na data (se digitar e der tab, não reage)
 	validação dos campo decimal está com problema quando tem separador de decimal
 	inicialmente, buscar os lançamentos mais recentes
 	alinhar campo de valor à direita
 	alterar a distribuição dos campos (data e valor precisam de menos espaço que memo)
 	os botões deveriam estar sempre na tela, é ruim ficar rolando a tela pra chegar nos botões (paginação, refresh, etc)
-	no layout de grid, não dá pra ver o memo; talvez exibir como tooltip ou uma opção de wrap + grow
+	OK no layout de grid, não dá pra ver o memo; talvez exibir como tooltip ou uma opção de wrap + grow
 	card layout: memo multiline + scroll
 	viagem: talvez marcar um filtro para pular pra ele com uma tecla e/ou pinar os outros filtros; assim, fica fácil fazer várias pesquisas diretas (por exemplo, mudando o valorR$)
-	default: grid layout
+	OK default: grid layout
 	opção para aplicar alterações (conta+centro+memo+valor+data, todos opcionais) em vários itens selecionados
-	mostrar total dos itens exibidos, permitir ocultar cada item (+opcao para reexibir o que estiver oculto)(se pesquisar de novo, nada fica oculto mais)
+	OK mostrar total dos itens exibidos 
+	permitir ocultar cada item (+opcao para reexibir o que estiver oculto)(se pesquisar de novo, nada fica oculto mais)
 	talvez permitir selecionar alguns itens e mostrar o total do que foi selecionado
 accounts-totalizations-report: 
 	contas analíticas sem lançamentos estão ficando em negrito

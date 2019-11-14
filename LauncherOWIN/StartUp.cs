@@ -13,7 +13,7 @@ namespace FinancialControl.LauncherOWIN
 		{
 			HttpConfiguration config = ConfigureWebAPI();
 
-			config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+			config.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
 			config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
 			config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 

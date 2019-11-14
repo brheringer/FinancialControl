@@ -95,7 +95,7 @@ export class EntriesListComponent implements OnInit {
 
   createNew(): void {
     let e = new Entry();
-    e.date = moment.utc().startOf("day").toDate();
+    e.date = moment().startOf("day").toDate();
     e.account = new Account();
     e.center = new ResultCenter();
     this.model.entries.push(e);
@@ -103,7 +103,7 @@ export class EntriesListComponent implements OnInit {
 
   createNewFromTemplate(template: EntryTemplate): void {
     let e = new Entry();
-    e.date = moment.utc().startOf("day").toDate();
+    e.date = moment().startOf("day").toDate();
     e.account = this.clone(template.account);
     e.center = this.clone(template.center);
     e.memo = template.memo;
