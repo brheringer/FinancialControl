@@ -1,0 +1,17 @@
+@import url('../../core/css/core.css');
+
+.fin-synthetic {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.fin-detail {
+  font-weight: normal;
+}
+
+.fin-text {
+}
+
+.fin-value {
+  text-align: right;
+}

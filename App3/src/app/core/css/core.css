@@ -1,0 +1,72 @@
+.ng-valid[required], .ng-valid.required {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.fin-toolbar-button, .fin-template-button {
+  background-color: #8cc3fc;
+  margin: 10px;
+}
+
+.fin-template-button {
+  font-size: small;
+}
+
+.fin-app-header {
+  background-color: #336699;
+  color: white;
+  font-size: xx-large;
+}
+
+.fin-app-footer {
+  background-color: #333333;
+  color: white;
+}
+
+.fin-app-title {
+  font-size: x-large;
+  color: white;
+}
+
+.fin-form-title {
+  font-size: x-large;
+  /*background-color: #8cc3fc;*/
+}
+
+/*.fin-field-label {
+  margin:0; padding:0;
+}*/
+
+input::placeholder {
+  font-size: smaller;
+}
+
+.fin-field-help-addon {
+  background-color: #d9ecf5;
+}
+
+.fin-field-type-addon {
+  /*background-color: #cccccc;*/
+  vertical-align: text-top; /*nao funcionou*/
+}
+
+.fin-field-label-addon {
+  /*background-color: #cccccc;*/
+  vertical-align: text-top; /*nao funcionou*/
+}
+
+/*
+http://www.color-hex.com/color-palette/19241
+Color Hex RGB #336699 (51,102,153) #8cc3fc (140,195,252) #d9ecf5 (217,236,245) #cccccc (204,204,204) #333333 (51,51,51)
+*/
+
+.fin-state-creating { background-color: red; }
+.fin-state-editing { background-color: orange; }
+.fin-state-viewing { background-color: whitesmoke; }
+.fin-state-pinned { background-color: yellow; }
+
+.fin-no-items-found {
+}

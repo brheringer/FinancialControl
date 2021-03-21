@@ -1,0 +1,89 @@
+<div>
+  <div class="fin-form-title">Accounts</div>
+
+  <form class="fin-form" #thisForm="ngForm">
+
+    <div class="form-group col-lg-10">
+      <text-field [(text)]="model.filterStructure"
+                  (textChange)="searchAsYouType()"
+                  [label]="'Structure'"
+                  [tip]="'Structure'"></text-field>
+    </div>
+
+    <div class="form-group col-lg-10">
+      <text-field [(text)]="model.filterDescription"
+                  (textChange)="searchAsYouType()"
+                  [label]="'Description'"
+                  [tip]="'Description'"></text-field>
+    </div>
+
+  </form>
+
+  <div *ngIf="model.accounts.length == 0">
+    <span class="fin-no-items-found">No accounts found.</span>
+  </div>
+
+  <div>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr *ngIf="model.accounts.length > 0">
+          <th scope="col"></th>
+          <th scope="col">Structure</th>
+          <th scope="col">Description</th>
+          <th scope="col">Id</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of model.accounts; index as i" [ngClass]="{'bg-danger': account.status?.error}">
+          <td>
+            <button type="submit" class="btn fin-toolbar-button" title="Delete"
+                    (click)="delete(account, i)">
+              <img src="assets/delete_24px.svg">
+            </button>
+          </td>
+          <td>
+            <text-field [(text)]="account.structure"
+                        (blur)="saveIfValid(account)"
+                        [tip]="'Structure'"
+                        [required]="true"></text-field>
+          </td>
+          <td>
+            <text-field [(text)]="account.description"
+                        (blur)="saveIfValid(account)"
+                        [tip]="'Description'"
+                        [required]="true"></text-field>
+          </td>
+          <td>{{account.autoId}}</td>
+          <td>
+            <img src="assets/info_24px.svg"
+                 [title]="account|json">
+            <img *ngIf="account.status && account.status.error"
+                 src="assets/error_24px.svg"
+                 [title]="account.status.msg">
+            <img *ngIf="account.status && !account.status.error && account.status.msg && account.status.msg != ''"
+                 src="assets/success_24px.svg"
+                 [title]="account.status.msg">
+          </td>
+        </tr>
+        <tr class="bg-dark text-white">
+          <td colspan="5">
+            <button type="submit" class="btn fin-toolbar-button" title="New Account"
+                    (click)="createNew()">
+              <img src="assets/new_24px.svg">
+            </button>
+            <button type="submit" class="btn fin-toolbar-button" title="Sort"
+                    (click)="sort()">
+              <img src="assets/sort_24px.svg">
+            </button>
+            <button type="submit" class="btn fin-toolbar-button" title="Refresh Search"
+                    (click)="search()">
+              <img src="assets/refresh_24px.svg">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

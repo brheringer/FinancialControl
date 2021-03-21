@@ -1,0 +1,82 @@
+<div>
+  <div class="fin-form-title">Results Centers</div>
+
+  <form class="fin-form" #thisForm="ngForm">
+
+    <div class="form-group col-lg-10">
+      <text-field [(text)]="model.filterDescription"
+                  (textChange)="searchAsYouType()"
+                  [label]="'Description'"
+                  [tip]="'Description'"></text-field>
+    </div>
+
+  </form>
+
+  <div *ngIf="model.resultsCenters.length == 0">
+    <span class="fin-no-items-found">No resuls centers found.</span>
+  </div>
+
+  <div>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr *ngIf="model.resultsCenters.length > 0">
+          <th scope="col"></th>
+          <th scope="col">Code</th>
+          <th scope="col">Description</th>
+          <th scope="col">Id</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rc of model.resultsCenters; index as i" [ngClass]="{'bg-danger': rc.status?.error}">
+          <td>
+            <button type="submit" class="btn fin-toolbar-button" title="Delete"
+                    (click)="delete(rc, i)">
+              <img src="assets/delete_24px.svg">
+            </button>
+          </td>
+          <td>
+            <text-field [(text)]="rc.code"
+                        (blur)="saveIfValid(rc)"
+                        [tip]="'Structure'"
+                        [required]="true"></text-field>
+          </td>
+          <td>
+            <text-field [(text)]="rc.description"
+                        (blur)="saveIfValid(rc)"
+                        [tip]="'Description'"
+                        [required]="true"></text-field>
+          </td>
+          <td>{{rc.autoId}}</td>
+          <td>
+            <img src="assets/info_24px.svg"
+                 [title]="rc|json">
+            <img *ngIf="rc.status && rc.status.error"
+                 src="assets/error_24px.svg"
+                 [title]="rc.status.msg">
+            <img *ngIf="rc.status && !rc.status.error && rc.status.msg && rc.status.msg != ''"
+                 src="assets/success_24px.svg"
+                 [title]="rc.status.msg">
+          </td>
+        </tr>
+        <tr class="bg-dark text-white">
+          <td colspan="5">
+            <button type="submit" class="btn fin-toolbar-button" title="New Account"
+                    (click)="createNew()">
+              <img src="assets/new_24px.svg">
+            </button>
+            <button type="submit" class="btn fin-toolbar-button" title="Sort"
+                    (click)="sort()">
+              <img src="assets/sort_24px.svg">
+            </button>
+            <button type="submit" class="btn fin-toolbar-button" title="Refresh Search"
+                    (click)="search()">
+              <img src="assets/refresh_24px.svg">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

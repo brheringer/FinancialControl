@@ -1,0 +1,29 @@
+<div>
+  <div class="fin-form-title">Importing</div>
+
+  <form class="fin-form" #thisForm="ngForm">
+    <div class="form-group">
+      <label for="fieldFilePath">File</label>
+      <input type="file" id="fieldFilePath" name="fieldFilePath" required style="border:solid" #filePath/>
+      <div [hidden]="filePath.valid || filePath.pristine" class="alert alert-danger">
+        File is required.
+      </div>
+    </div>
+
+    <div *ngIf="model.processed">
+      <div layout="column">
+        <div *ngIf="model.success">success</div>
+        <div *ngIf="!model.success">failure</div>
+        <div *ngFor="let entry of model.details"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-success" (click)="import()">
+        <img src="assets/importing_24px.svg">
+      </button>
+    </div>
+
+  </form>
+
+</div>

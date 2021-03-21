@@ -1,0 +1,115 @@
+<div>
+  <div class="fin-form-title">Accounts Totalizations Report</div>
+
+  <form *ngIf="showFilters" class="fin-form" #thisForm="ngForm">
+
+    <div class="row">
+      <div class="form-group">
+        <date-field [(date)]="model.filterInitialDate"
+                    [label]="'Initial Date'"
+                    [tip]="'Initial Date'"></date-field>
+      </div>
+
+      <div class="form-group">
+        <date-field [(date)]="model.filterFinalDate"
+                    [label]="'Final Date'"
+                    [tip]="'Final Date'"></date-field>
+      </div>
+
+      <div class="form-group">
+        <boolean-field [(booleanValue)]="analytical"
+                       label="Analytical"
+                       tip="Show or hide the analytical details."></boolean-field>
+      </div>
+
+      <div class="form-group">
+        <boolean-field [(booleanValue)]="showZeros"
+                       label="Show Zeros"
+                       tip="Show or hide the accounts which total is zero."></boolean-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <smart-search-field [(model)]="model.filterAccount"
+                            (modelChange)="searchAsYouType()"
+                            [targetService]="'Account'"
+                            [label]="'Account'"
+                            [tip]="'Filter by Account'"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="form-group">
+        <smart-search-field [(model)]="model.filterResultCenter"
+                            (modelChange)="searchAsYouType()"
+                            [targetService]="'ResultCenter'"
+                            [label]="'Result Center'"
+                            [tip]="'Filter by Result Center'"
+                            [ignitionMinChars]="1"></smart-search-field>
+      </div>
+
+      <div class="form-group">
+        <number-field [(number)]="model.filterAccountLevel"
+                      label="Account Level"
+                      tip="Show accounts until this level."></number-field>
+      </div>
+    </div>
+
+  </form>
+
+  <div *ngIf="model.accountsTotalizations.length == 0">
+    <span class="fin-no-items-found">No totalizations found.</span>
+  </div>
+
+  <div class="row bg-dark text-white">
+    <div>
+      <button class="btn fin-toolbar-button" (click)="showFilters = !showFilters">
+        <span *ngIf='showFilters'>Hide Filters</span>
+        <span *ngIf='!showFilters'>Show Filters</span>
+      </button>
+      <button class="btn fin-toolbar-button" (click)="generateReport()">
+        Generate Report
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="model.accountsTotalizations.length > 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Structure</th>
+          <th scope="col">Account</th>
+          <th scope="col">Total</th>
+          <th scope="col" *ngIf="analytical">Date</th>
+          <th scope="col" *ngIf="analytical">Memo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let total of model.accountsTotalizations">
+          <ng-container *ngIf="showZeros || total.total > 0">
+            <tr>
+              <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-text': true}">{{total.accountStructure}}</td>
+              <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-text': true}">{{total.accountDescription}}</td>
+              <td [ngClass]="{'fin-synthetic': !total.isDetail, 'fin-detail': total.isDetail, 'fin-value': true}">{{total.total|number:'1.2-2'}}</td>
+            </tr>
+            <ng-container *ngIf="analytical">
+              <tr *ngFor="let detail of total.analyticalDetails">
+                <td>...</td>
+                <td>...</td>
+                <td align="right">{{detail.value|number:'1.2-2'}}</td>
+                <td>{{detail.date|finDateFormat}}</td>
+                <td>{{detail.memo}}</td>
+                <td>
+                  <button (click)="expand(detail.originalEntry?.autoId)">
+                    <img src="../../../assets/search_24px.svg" />
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+</div>
